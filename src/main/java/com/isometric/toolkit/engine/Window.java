@@ -18,6 +18,7 @@ public class Window
   static Logger logger = Logger.getLogger(Window.class);
   Vector<Integer> keyPress = new Vector<Integer>();
 
+  
   private World gameWorld = null;
   private boolean calledInit = false;
 
@@ -26,8 +27,10 @@ public class Window
 
     try {
       logger.info("Creating LWJGL display");
+      
       Display.setDisplayMode(new DisplayMode(800, 600));
       Display.create();
+      Display.setTitle("Java RPG Toolkit");
     }
     catch (LWJGLException e) {
       logger.error("Could not create LWJGL display! Exiting");
