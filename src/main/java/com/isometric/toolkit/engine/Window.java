@@ -42,7 +42,8 @@ public class Window
     logger.info("Window initialized");
     this.calledInit = true;
     this.gameWorld = w;
-    // TODO: Initialize scenegraph
+    
+    
   }
 
   public void start ()
@@ -64,6 +65,7 @@ public class Window
     // TODO: Implement FPS loading limiting
     while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
+      
       
       gameWorld.update();
       gameWorld.draw();
