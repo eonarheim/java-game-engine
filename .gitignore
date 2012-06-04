@@ -1,0 +1,37 @@
+# Don't commit changes to these files out unless you know what you are doing
+.classpath
+.project
+.gitmodules
+rw.gitmodules
+
+# IntelliJ IDEA project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# editor temp files
+*~
+
+# Deployment directories and runtime artifacts
+bin/
+target/
+activemq-data/
+logs/
+log/
+.settings/
+server-main/boot-data.xml
+
+# OS generated files
+.DS_Store?
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+*.log
+
+# Compiled source
+*.class
+
+# Cobertura generated files
+cobertura.ser
