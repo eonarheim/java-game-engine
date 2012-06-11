@@ -20,7 +20,7 @@ public class World
   
   private String currentLevel = "";
   
-  private TextureLoader texture = null;
+  private TextureLoader textureLoader = null;
   
   private String worldName = "";
   
@@ -29,14 +29,13 @@ public class World
     
     
     logger.info("Reading starting world file");
-    texture = new TextureLoader();
+    textureLoader = new TextureLoader();
     
     
     // TODO: Call parser to create hashmap data structures from world file
-    
-    
-    
   }
+  
+  
   
   public void update(){
     

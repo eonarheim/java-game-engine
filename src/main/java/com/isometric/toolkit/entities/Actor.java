@@ -1,6 +1,7 @@
 package com.isometric.toolkit.entities;
 
 import com.isometric.toolkit.engine.Sprite;
+import com.isometric.toolkit.engine.TextureLoader;
 
 public abstract class Actor implements Actable
 {
@@ -14,8 +15,13 @@ public abstract class Actor implements Actable
   
   protected Sprite sprite;
   
-  protected Actor(Sprite sprite, float x, float y, float dx, float dy){
-    this.sprite = sprite;
+  private TextureLoader tl;
+  
+  
+  protected Actor(TextureLoader tl, String ref, float x, float y, float dx, float dy){
+    
+    
+    this.sprite = new Sprite(tl,ref);
     this.x = x;
     this.y = y;
     this.dx = dx;

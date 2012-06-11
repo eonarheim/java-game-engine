@@ -1,0 +1,6 @@
+WorldName = Test
+Camera = Orthographic
+IsMouseValid = true
+ValidKeys = UP DOWN LEFT RIGHT
+Playable = TestPlayer
+Level = 
