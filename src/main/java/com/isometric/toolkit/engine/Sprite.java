@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class Sprite
+public class Sprite implements Drawable
 {
 
   /** The texture that stores the image for this sprite */

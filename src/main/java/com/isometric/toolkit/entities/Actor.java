@@ -13,15 +13,10 @@ public abstract class Actor implements Actable
   protected float dx;
   protected float dy;
   
-  protected Sprite sprite;
-  
-  private TextureLoader tl;
   
   
-  protected Actor(TextureLoader tl, String ref, float x, float y, float dx, float dy){
-    
-    
-    this.sprite = new Sprite(tl,ref);
+  protected Actor(float x, float y, float dx, float dy){
+
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -34,10 +29,8 @@ public abstract class Actor implements Actable
     return type;
   }
 
-  abstract protected void update ();
-  protected void draw (){
-    sprite.draw((int) x, (int) y);
-  }
+  abstract public void update ();
+  abstract public void draw ();
 
   public float getX ()
   {

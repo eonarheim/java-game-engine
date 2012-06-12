@@ -1,7 +1,9 @@
 package com.isometric.toolkit.engine;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.lwjgl.opengl.GL11;
@@ -14,23 +16,17 @@ public class World
 {
   static Logger logger = Logger.getLogger(World.class);
   
-  private HashMap<String,Actor> actors = new HashMap<String, Actor>();
+  private List<Actor> actors = new ArrayList<Actor>();
   
-  private HashMap<String,Level> levels = new HashMap<String, Level>();
+  private List<Level> levels = new ArrayList<Level>();
   
-  private String currentLevel = "";
-  
-  private TextureLoader textureLoader = null;
+  private Level currentLevel = new Level(); 
+    
   
   private String worldName = "";
   
   
-  public World(InputStream in){
-    
-    
-    logger.info("Reading starting world file");
-    textureLoader = new TextureLoader();
-    
+  public World(){
     
     // TODO: Call parser to create hashmap data structures from world file
   }
@@ -38,6 +34,11 @@ public class World
   
   
   public void update(){
+    for(Actor a : actors){
+      a.update();
+    }
+    
+    currentLevel.update();
     
   }
   
@@ -50,6 +51,13 @@ public class World
     
     // Clear the screen and depth buffer
         
+ 
+    currentLevel.draw();
+    for(Actor a : actors){
+      a.draw();
+    }
+    
+    /*
     // set the color of the quad (R,G,B,A)
     GL11.glColor3f(0.5f,0.5f,1.0f);
         
@@ -59,28 +67,27 @@ public class World
         GL11.glVertex2f(100+200,100);
         GL11.glVertex2f(100+200,100+200);
         GL11.glVertex2f(100,100+200);
-    GL11.glEnd();
+    GL11.glEnd();*/
     
   }
   
-  public void addActor(String key, Actor a){
-    actors.put(key, a);
+  public void addActor(Actor a){
+    actors.add(a);
   }
   
-  public void addLevel(String key, Level l){
-    levels.put(key, l);
+  public void addLevel(Level l){
+    levels.add(l);
   }
   
-  public void removeActor(String key){
-    actors.remove(key);
+  public void removeActor(Actor a){
+    actors.remove(a);
   }
   
-  public void removeLevel(String key){
-    levels.remove(key);
+  public void removeLevel(Level l){
+    levels.remove(l);
   }
   
   
-
   public String getWorldName ()
   {
     return worldName;
@@ -91,12 +98,12 @@ public class World
     this.worldName = worldName;
   }
 
-  public String getCurrentLevel ()
+  public Level getCurrentLevel ()
   {
     return currentLevel;
   }
 
-  public void setCurrentLevel (String currentLevel)
+  public void setCurrentLevel (Level currentLevel)
   {
     this.currentLevel = currentLevel;
   }

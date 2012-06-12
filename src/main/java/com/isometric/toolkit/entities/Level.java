@@ -1,10 +1,22 @@
 package com.isometric.toolkit.entities;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Level
 {
   
-  private Vector<Trigger> triggers = new Vector<Trigger>();
+  private List<Trigger> triggers = new ArrayList<Trigger>();
+  
+  public void update(){
+    for(Trigger t : triggers){
+      t.check();
+    }
+  }
+  
+  public void draw(){
+    
+  }
+  
 
 }

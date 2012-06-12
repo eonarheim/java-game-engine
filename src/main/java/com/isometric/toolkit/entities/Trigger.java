@@ -9,6 +9,10 @@ public class Trigger
   private Event trigger;
   private Script action;
   
+  public void check(){
+    
+  }
+  
   
   
 

@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
+import com.isometric.toolkit.parser.WorldBuilder;
 
 public class ToolKitMain
 {
@@ -30,7 +31,7 @@ public class ToolKitMain
     
     World gameWorld = null;
     try{
-      gameWorld = new World(ToolKitMain.class.getClassLoader().getResourceAsStream("start.world"));
+      gameWorld = WorldBuilder.parseWorld("test.world");//new World(ToolKitMain.class.getClassLoader().getResourceAsStream("start.world"));
     }catch (Exception e){
       logger.error("Failed to load starting world file exiting...");
       e.printStackTrace();

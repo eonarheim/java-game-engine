@@ -40,16 +40,16 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class TextureLoader {
     /** The table of textures that have been loaded in this loader */
-    private HashMap<String, Texture> table = new HashMap<String, Texture>();
+    private static HashMap<String, Texture> table = new HashMap<String, Texture>();
 
     /** The colour model including alpha for the GL image */
-    private ColorModel glAlphaColorModel;
+    private static ColorModel glAlphaColorModel;
 
     /** The colour model for the GL image */
-    private ColorModel glColorModel;
+    private static ColorModel glColorModel;
 
     /** Scratch buffer for texture ID's */
-    private IntBuffer textureIDBuffer = BufferUtils.createIntBuffer(1);
+    private static IntBuffer textureIDBuffer = BufferUtils.createIntBuffer(1);
 
     /**
      * Create a new texture loader based on the game panel
@@ -75,7 +75,7 @@ public class TextureLoader {
      *
      * @return A new texture ID
      */
-    private int createTextureID() {
+    private static int createTextureID() {
       glGenTextures(textureIDBuffer);
       return textureIDBuffer.get(0);
     }
@@ -87,7 +87,7 @@ public class TextureLoader {
      * @return The loaded texture
      * @throws IOException Indicates a failure to access the resource
      */
-    public Texture getTexture(String resourceName) throws IOException {
+    public static Texture getTexture(String resourceName) throws IOException {
         Texture tex = table.get(resourceName);
 
         if (tex != null) {
@@ -117,7 +117,7 @@ public class TextureLoader {
      * @return The loaded texture
      * @throws IOException Indicates a failure to access the resource
      */
-    public Texture getTexture(String resourceName,
+    public static Texture getTexture(String resourceName,
                               int target,
                               int dstPixelFormat,
                               int minFilter,
@@ -184,7 +184,7 @@ public class TextureLoader {
      * @param texture The texture to store the data into
      * @return A buffer containing the data
      */
-    private ByteBuffer convertImageData(BufferedImage bufferedImage,Texture texture) {
+    private static ByteBuffer convertImageData(BufferedImage bufferedImage,Texture texture) {
         ByteBuffer imageBuffer;
         WritableRaster raster;
         BufferedImage texImage;
@@ -239,7 +239,7 @@ public class TextureLoader {
      * @return The loaded buffered image
      * @throws IOException Indicates a failure to find a resource
      */
-    private BufferedImage loadImage(String ref) throws IOException {
+    private static BufferedImage loadImage(String ref) throws IOException {
         URL url = TextureLoader.class.getClassLoader().getResource(ref);
 
         if (url == null) {
