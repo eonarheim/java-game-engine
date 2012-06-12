@@ -43,8 +43,9 @@ public class TestPlayer extends Actor implements Playable
     if(!hasInit){
 
       logger.info("Entered lazyInit");
-      idle = new Animation(spriteRef, height, width, 0, 1, .2f);
+      
       walkSouth = new Animation(spriteRef, height, width, 1, 2, .2f);
+      idle = walkSouth;//new Animation(spriteRef, height, width, 0, 1, .2f);
       walkEast = new Animation(spriteRef, height, width, 3, 2, .2f);
       walkNorth = new Animation(spriteRef, height, width, 6, 2, .2f);
       walkWest = new Animation(spriteRef, height, width, 8, 2, .2f);

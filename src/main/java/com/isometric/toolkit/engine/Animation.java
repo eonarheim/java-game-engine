@@ -19,6 +19,9 @@ import static org.lwjgl.opengl.GL11.glTranslatef;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_LINEAR;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -41,6 +44,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
 
 import com.isometric.toolkit.ToolKitMain;
 
@@ -199,8 +203,8 @@ public class Animation implements Drawable
       textureBuffer.flip();
   
 
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
       
       // produce a texture from the byte buffer
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 
@@ -239,7 +243,6 @@ public class Animation implements Drawable
     
     // store the current model matrix
     glPushMatrix();
-
     
     // bind to the appropriate texture for this sprite
     Texture texture = sprites.get(currIndex);
@@ -247,6 +250,9 @@ public class Animation implements Drawable
     int height = texture.getImageHeight()*5;
     texture.bind();
 
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
     // translate to the right location and prepare to draw
     glTranslatef(x, y, 0);
 
@@ -267,6 +273,7 @@ public class Animation implements Drawable
     }
     glEnd();
 
+    glDisable(GL_BLEND);
     // restore the model view matrix to prevent contamination
     glPopMatrix();
   }
