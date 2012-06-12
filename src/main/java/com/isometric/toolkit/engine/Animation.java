@@ -20,7 +20,12 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_LINEAR;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.ComponentColorModel;
 import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
@@ -35,6 +40,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
+import org.lwjgl.BufferUtils;
 
 import com.isometric.toolkit.ToolKitMain;
 
@@ -59,17 +65,41 @@ public class Animation implements Drawable
   long startTime = System.currentTimeMillis();
   
   // OpenGL Stuff
-  private static IntBuffer textureIDBuffer;
+  private static IntBuffer textureIDBuffer = BufferUtils.createIntBuffer(1);
+  private ColorModel glAlphaColorModel;
+  private ColorModel glColorModel;
 
   public Animation (String ref, int height, int width, int offset, int length,
                     float speed)
   {
+    logger.info("Height: " + height);
+    logger.info("Width: " + width);
+    logger.info("Offset: " + offset);
+    logger.info("Length: " + length);
     this.height = height;
     this.width = width;
     this.offset = offset;
     this.length = length;
     this.speed = speed;
+    
+    glAlphaColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
+                                                new int[] {8,8,8,8},
+                                                true,
+                                                false,
+                                                ComponentColorModel.TRANSLUCENT,
+                                                DataBuffer.TYPE_BYTE);
+
+    glColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
+                                                new int[] {8,8,8,0},
+                                                false,
+                                                false,
+                                                ComponentColorModel.OPAQUE,
+                                                DataBuffer.TYPE_BYTE);
+    
     loadSprites(ref);
+    this.maxIndex = this.sprites.size();
+    
+   
 
   }
 
@@ -83,7 +113,7 @@ public class Animation implements Drawable
   {
     BufferedImage image = null;
     try {
-      image = ImageIO.read(Animation.class.getResourceAsStream(ref));
+      image = ImageIO.read(Animation.class.getClassLoader().getResourceAsStream("images/"+ref));
     }
     catch (Exception e) {
       logger.error("Failed to load spritesheet: " + ref + " Exception: "
@@ -91,7 +121,7 @@ public class Animation implements Drawable
     }
     
 
-    int totalImages = (int) Math.floor(image.getWidth()/this.width);
+    int totalImages = (int) Math.floor(image.getWidth()/this.width)-1;
     
     BufferedImage tmp = null;
     for(int i = 0; i < totalImages; i++){
@@ -99,7 +129,10 @@ public class Animation implements Drawable
         break;
       }
       
-      tmp = image.getSubimage((offset+i)*this.width, 0, this.width,this.height);
+      
+      logger.info("Sprite: " + i + " is loading..");
+      logger.info("X: " + (offset+i)*this.width + ",Y: " + 0);
+      tmp = image.getSubimage((offset+i)*this.width, 0, this.width, this.height);
       
       
       
@@ -111,8 +144,8 @@ public class Animation implements Drawable
       // bind this texture
       glBindTexture(GL_TEXTURE_2D, textureID);
   
-      texture.setWidth(Math.min(tmp.getWidth(), width));
-      texture.setHeight(Math.min(tmp.getHeight(), height));
+      texture.setWidth(this.width);
+      texture.setHeight(this.height);
   
       if (tmp.getColorModel().hasAlpha()) {
         srcPixelFormat = GL_RGBA;
@@ -121,42 +154,61 @@ public class Animation implements Drawable
         srcPixelFormat = GL_RGB;
       }
   
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      
+      
   
-      /*
+      
       WritableRaster raster;
       BufferedImage texImage;
       
-      if (image.getColorModel().hasAlpha()) {
-        raster =
-          Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texture.getWidth(),
-                                         texture.getHeight(), 4, null);
-        texImage =
-          new BufferedImage(glAlphaColorModel, raster, false, new Hashtable());
+      int texWidth = 2;
+      int texHeight = 2;
+
+      // find the closest power of 2 for the width and height
+      // of the produced texture
+      while (texWidth < tmp.getWidth()) {
+          texWidth *= 2;
       }
-      else {
-        raster =
-          Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texture.getWidth(),
-                                         texture.getHeight(), 3, null);
-        texImage =
-          new BufferedImage(glColorModel, raster, false, new Hashtable());
-      }*/
+      while (texHeight < tmp.getHeight()) {
+          texHeight *= 2;
+      }
+      
+      if (tmp.getColorModel().hasAlpha()) {
+            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,texWidth,texHeight,4,null);
+            texImage = new BufferedImage(glAlphaColorModel,raster,false,new Hashtable());
+      } else {
+            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,texWidth,texHeight,3,null);
+            texImage = new BufferedImage(glColorModel,raster,false,new Hashtable());
+      }
+
+      // copy the source image into the produced image
+      Graphics g = texImage.getGraphics();
+      g.setColor(new Color(0f,0f,0f,0f));
+      g.fillRect(0,0,texWidth,texHeight);
+      g.drawImage(tmp,0,0,null);
   
       ByteBuffer textureBuffer = null;
   
       byte[] data =
-        ((DataBufferByte) tmp.getRaster().getDataBuffer()).getData();
+        ((DataBufferByte) texImage.getRaster().getDataBuffer()).getData();
   
       textureBuffer = ByteBuffer.allocateDirect(data.length);
       textureBuffer.order(ByteOrder.nativeOrder());
       textureBuffer.put(data, 0, data.length);
       textureBuffer.flip();
   
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      
       // produce a texture from the byte buffer
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, get2Fold(tmp.getWidth()),
-                   get2Fold(tmp.getHeight()), 0, srcPixelFormat,
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 
+                   get2Fold(tmp.getWidth()),
+                   get2Fold(tmp.getHeight()),
+                   0, srcPixelFormat,
                    GL_UNSIGNED_BYTE, textureBuffer);
+      
+      sprites.add(texture);
     
     }
 
@@ -173,12 +225,11 @@ public class Animation implements Drawable
 
   public void tick ()
   {
-    if((startTime - System.currentTimeMillis())/1000.f>speed){
+    if(( System.currentTimeMillis() - startTime)/1000.f>speed){
       currIndex = (currIndex + 1) % maxIndex;
     }else{
       startTime = System.currentTimeMillis();
     }
-    
   }
 
   public void draw (int x, int y)
@@ -191,8 +242,8 @@ public class Animation implements Drawable
     
     // bind to the appropriate texture for this sprite
     Texture texture = sprites.get(currIndex);
-    int width = texture.getImageWidth();
-    int height = texture.getImageHeight();
+    int width = texture.getImageWidth()*5;
+    int height = texture.getImageHeight()*5;
     texture.bind();
 
     // translate to the right location and prepare to draw
@@ -204,13 +255,13 @@ public class Animation implements Drawable
       glTexCoord2f(0, 0);
       glVertex2f(0, 0);
 
-      glTexCoord2f(0, texture.getHeight());
+      glTexCoord2f(0, 1);//texture.getHeight());
       glVertex2f(0, height);
 
-      glTexCoord2f(texture.getWidth(), texture.getHeight());
+      glTexCoord2f(1,1);//texture.getWidth(), texture.getHeight());
       glVertex2f(width, height);
 
-      glTexCoord2f(texture.getWidth(), 0);
+      glTexCoord2f(1,0);//texture.getWidth(), 0);
       glVertex2f(width, 0);
     }
     glEnd();

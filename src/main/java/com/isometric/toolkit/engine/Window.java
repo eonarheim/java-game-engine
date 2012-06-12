@@ -62,7 +62,10 @@ public class Window
     GL11.glDisable(GL11.GL_DEPTH_TEST);
     GL11.glMatrixMode(GL11.GL_PROJECTION);
     GL11.glLoadIdentity();
-    GL11.glOrtho(0, 800, 0, 600, 1, -1);
+    GL11.glOrtho(0, 800, 600, 0, 1, -1);
+    GL11.glMatrixMode(GL11.GL_MODELVIEW);
+    GL11.glLoadIdentity();
+    GL11.glViewport(0,0,800,600);
 
     logger.info("Entering mainloop");
     // TODO: Implement FPS loading limiting

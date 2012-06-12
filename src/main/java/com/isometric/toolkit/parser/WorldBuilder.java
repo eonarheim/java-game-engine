@@ -8,6 +8,8 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 import com.isometric.toolkit.engine.World;
+import com.isometric.toolkit.entities.Actor;
+import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.entities.Playable;
 
 public class WorldBuilder
@@ -34,7 +36,7 @@ public class WorldBuilder
     
     World w = new World();
     w.setWorldName(WorldProps.getProperty("WorldName"));
-    String playableActor = WorldProps.getProperty("Playable");
+    String playableActor = "actors/"+WorldProps.getProperty("Playable");
     
     Properties playableProps = new Properties();
     
@@ -50,19 +52,25 @@ public class WorldBuilder
     }
     
     
-    Playable player = null;
+    Actor player = null;
     
     try {
       logger.info("Creating object of type: " + playableProps.getProperty("Class"));
       Class c = Class.forName(playableProps.getProperty("Class"));
-      Constructor cons = c.getDeclaredConstructor(new Class[]{String.class, Integer.class, Integer.class, Float.class, Float.class, Float.class, Float.class});
+      Constructor cons = c.getDeclaredConstructor(new Class[]{String.class, int.class, int.class, float.class, float.class, float.class, float.class});
       
       playableProps.remove("Class");
+               
+      player = (Actor) cons.newInstance((String)playableProps.get("SpriteRef"),
+                                           Integer.parseInt((String) playableProps.get("Height")),
+                                           Integer.parseInt((String) playableProps.get("Width")),
+                                           Float.parseFloat((String) playableProps.get("X")),
+                                           Float.parseFloat((String) playableProps.get("Y")),
+                                           Float.parseFloat((String) playableProps.get("Dx")),
+                                           Float.parseFloat((String) playableProps.get("Dy"))); 
       
-      Object[] args = new Object[playableProps.size()];
-      args = playableProps.values().toArray();
-      
-      player = (Playable) cons.newInstance(args); 
+      w.addActor(player);
+      w.addLevel(new Level());
     }
     catch (Exception e){
       logger.error("Error creating object of type: " + playableProps.getProperty("Class"));

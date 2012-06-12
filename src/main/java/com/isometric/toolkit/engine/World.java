@@ -49,6 +49,7 @@ public class World
     GL11.glMatrixMode(GL11.GL_MODELVIEW);
     GL11.glLoadIdentity();
     
+    
     // Clear the screen and depth buffer
         
  

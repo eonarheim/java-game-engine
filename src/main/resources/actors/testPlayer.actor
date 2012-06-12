@@ -5,4 +5,4 @@ Dx = 0.0
 Dy = 0.0
 SpriteRef = TestPlayer.png
 Height = 25
-Width = 16
+Width = 22
