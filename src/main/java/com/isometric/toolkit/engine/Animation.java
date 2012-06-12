@@ -60,6 +60,7 @@ public class Animation implements Drawable
   private List<Texture> sprites = new ArrayList<Texture>();
   private int currIndex;
   private int maxIndex;
+  private int ticker = 0;
   
   // Image tick
   long startTime = System.currentTimeMillis();
@@ -225,10 +226,10 @@ public class Animation implements Drawable
 
   public void tick ()
   {
-    if(( System.currentTimeMillis() - startTime)/1000.f>speed){
+    
+    if(ticker++/60.f>speed){
       currIndex = (currIndex + 1) % maxIndex;
-    }else{
-      startTime = System.currentTimeMillis();
+      ticker=0;
     }
   }
 
