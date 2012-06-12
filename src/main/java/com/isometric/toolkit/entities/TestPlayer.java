@@ -43,11 +43,11 @@ public class TestPlayer extends Actor implements Playable
     if(!hasInit){
 
       logger.info("Entered lazyInit");
-      idle = new Animation(spriteRef, height, width, 0, 1, 1.5f);
-      walkSouth = new Animation(spriteRef, height, width, 1, 2, 1.5f);
-      walkNorth = new Animation(spriteRef, height, width, 3, 2, 1.5f);
-      walkEast = new Animation(spriteRef, height, width, 6, 2, 1.5f);
-      walkWest = new Animation(spriteRef, height, width, 8, 2, 1.5f);
+      idle = new Animation(spriteRef, height, width, 0, 1, .2f);
+      walkSouth = new Animation(spriteRef, height, width, 1, 2, .2f);
+      walkEast = new Animation(spriteRef, height, width, 3, 2, .2f);
+      walkNorth = new Animation(spriteRef, height, width, 6, 2, .2f);
+      walkWest = new Animation(spriteRef, height, width, 8, 2, .2f);
       hasInit = true;
     }
   }
@@ -65,13 +65,13 @@ public class TestPlayer extends Actor implements Playable
     keyRight = Keyboard.isKeyDown(Keyboard.KEY_RIGHT);
     
     if(keyUp){
-      dy=.5f;
+      dy=-1.5f;
     }else if(keyDown){
-      dy=-.5f;
+      dy=1.5f;
     }else if(keyRight){
-      dx=.5f;
+      dx=1.5f;
     }else if(keyLeft){
-      dx=-.5f;
+      dx=-1.5f;
     }else{
       dy = dx = 0.0f;
     }
@@ -92,7 +92,7 @@ public class TestPlayer extends Actor implements Playable
       return;
     }   
     else if(keyDown){
-      logger.info("Walk South");
+      logger.info("Walk North");
       walkSouth.draw((int)this.x, (int)this.y);
       return;
     }    
