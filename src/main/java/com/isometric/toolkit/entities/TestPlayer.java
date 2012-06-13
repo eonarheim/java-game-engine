@@ -60,19 +60,20 @@ public class TestPlayer extends Actor implements Playable
   {
     lazyInit();
     
+    
     keyUp = Keyboard.isKeyDown(Keyboard.KEY_UP);
     keyDown = Keyboard.isKeyDown(Keyboard.KEY_DOWN);
     keyLeft = Keyboard.isKeyDown(Keyboard.KEY_LEFT);
     keyRight = Keyboard.isKeyDown(Keyboard.KEY_RIGHT);
     
     if(keyUp){
-      dy=-1.5f;
+      dy=-2.5f;
     }else if(keyDown){
-      dy=1.5f;
+      dy=2.5f;
     }else if(keyRight){
-      dx=1.5f;
+      dx=2.5f;
     }else if(keyLeft){
-      dx=-1.5f;
+      dx=-2.5f;
     }else{
       dy = dx = 0.0f;
     }
