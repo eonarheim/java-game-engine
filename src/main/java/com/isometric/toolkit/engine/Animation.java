@@ -56,62 +56,38 @@ public class Animation implements Drawable
   // Assumes a linear horizontal spriteshteed
   private int height; // Height of each individual sprite in the spritesheet
   private int width; // Width of each individual sprite in the spritesheet
-  private int offset; // Number of sprites to skip from the beginning
-  private int length; // Number of total sprites in the sprite sheet
   private float speed; // Number of seconds until the next image
   
   // List of textures in in animation
-  private List<Texture> sprites = new ArrayList<Texture>();
+  //private List<Texture> sprites = new ArrayList<Texture>();
+  
+  private List<Image> sprites = new ArrayList<Image>();
+  
   private int currIndex;
   private int maxIndex;
   private int ticker = 0;
   
-  // Image tick
-  long startTime = System.currentTimeMillis();
+  private int scale = 1;
+  private int rotation = 0;
   
-  // OpenGL Stuff
-  private static IntBuffer textureIDBuffer = BufferUtils.createIntBuffer(1);
-  private ColorModel glAlphaColorModel;
-  private ColorModel glColorModel;
-
-  public Animation (String ref, int height, int width, int offset, int length,
-                    float speed)
+  
+  
+  
+  public Animation (String ref, int height, int width, float speed)
   {
-    logger.info("Height: " + height);
-    logger.info("Width: " + width);
-    logger.info("Offset: " + offset);
-    logger.info("Length: " + length);
     this.height = height;
     this.width = width;
-    this.offset = offset;
-    this.length = length;
-    this.speed = speed;
-    
-    glAlphaColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
-                                                new int[] {8,8,8,8},
-                                                true,
-                                                false,
-                                                ComponentColorModel.TRANSLUCENT,
-                                                DataBuffer.TYPE_BYTE);
-
-    glColorModel = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
-                                                new int[] {8,8,8,0},
-                                                false,
-                                                false,
-                                                ComponentColorModel.OPAQUE,
-                                                DataBuffer.TYPE_BYTE);
+    this.setSpeed(speed);
     
     loadSprites(ref);
     this.maxIndex = this.sprites.size();
-    
-   
 
   }
-
-  private static int createTextureID ()
-  {
-    glGenTextures(textureIDBuffer);
-    return textureIDBuffer.get(0);
+  
+  public Animation(List<Image> images, float speed){
+    sprites = images;
+    this.maxIndex = this.sprites.size();
+    this.speed = speed;
   }
 
   private void loadSprites (String ref)
@@ -128,110 +104,19 @@ public class Animation implements Drawable
 
     int totalImages = (int) Math.floor(image.getWidth()/this.width)-1;
     
-    BufferedImage tmp = null;
     for(int i = 0; i < totalImages; i++){
-      if(i==this.length){
-        break;
-      }
-      
-      
-      logger.info("Sprite: " + i + " is loading..");
-      logger.info("X: " + (offset+i)*this.width + ",Y: " + 0);
-      tmp = image.getSubimage((offset+i)*this.width, 0, this.width, this.height);
-      
-      
-      
-      int srcPixelFormat;
-  
-      int textureID = createTextureID();
-      Texture texture = new Texture(GL_TEXTURE_2D, textureID);
-  
-      // bind this texture
-      glBindTexture(GL_TEXTURE_2D, textureID);
-  
-      texture.setWidth(this.width);
-      texture.setHeight(this.height);
-  
-      if (tmp.getColorModel().hasAlpha()) {
-        srcPixelFormat = GL_RGBA;
-      }
-      else {
-        srcPixelFormat = GL_RGB;
-      }
-  
-      
-      
-  
-      
-      WritableRaster raster;
-      BufferedImage texImage;
-      
-      int texWidth = 2;
-      int texHeight = 2;
-
-      // find the closest power of 2 for the width and height
-      // of the produced texture
-      while (texWidth < tmp.getWidth()) {
-          texWidth *= 2;
-      }
-      while (texHeight < tmp.getHeight()) {
-          texHeight *= 2;
-      }
-      
-      if (tmp.getColorModel().hasAlpha()) {
-            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,texWidth,texHeight,4,null);
-            texImage = new BufferedImage(glAlphaColorModel,raster,false,new Hashtable());
-      } else {
-            raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,texWidth,texHeight,3,null);
-            texImage = new BufferedImage(glColorModel,raster,false,new Hashtable());
-      }
-
-      // copy the source image into the produced image
-      Graphics g = texImage.getGraphics();
-      g.setColor(new Color(0f,0f,0f,0f));
-      g.fillRect(0,0,texWidth,texHeight);
-      g.drawImage(tmp,0,0,null);
-  
-      ByteBuffer textureBuffer = null;
-  
-      byte[] data =
-        ((DataBufferByte) texImage.getRaster().getDataBuffer()).getData();
-  
-      textureBuffer = ByteBuffer.allocateDirect(data.length);
-      textureBuffer.order(ByteOrder.nativeOrder());
-      textureBuffer.put(data, 0, data.length);
-      textureBuffer.flip();
-  
-
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-      
-      // produce a texture from the byte buffer
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 
-                   get2Fold(tmp.getWidth()),
-                   get2Fold(tmp.getHeight()),
-                   0, srcPixelFormat,
-                   GL_UNSIGNED_BYTE, textureBuffer);
-      
-      sprites.add(texture);
+      Image newImage = Image.loadSubimage(ref, width, height, i);
+      sprites.add(newImage);
     
     }
 
   }
 
-  private static int get2Fold (int fold)
-  {
-    int ret = 2;
-    while (ret < fold) {
-      ret *= 2;
-    }
-    return ret;
-  }
-
+ 
   public void tick ()
   {
     
-    if(ticker++/60.f>speed){
+    if(ticker++/60.f>getSpeed()){
       currIndex = (currIndex + 1) % maxIndex;
       ticker=0;
     }
@@ -240,42 +125,45 @@ public class Animation implements Drawable
   public void draw (int x, int y)
   {
     tick();
-    
-    // store the current model matrix
-    glPushMatrix();
-    
-    // bind to the appropriate texture for this sprite
-    Texture texture = sprites.get(currIndex);
-    int width = texture.getImageWidth()*5;
-    int height = texture.getImageHeight()*5;
-    texture.bind();
-
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-    // translate to the right location and prepare to draw
-    glTranslatef(x, y, 0);
-
-    // draw a quad textured to match the sprite
-    glBegin(GL_QUADS);
-    {
-      glTexCoord2f(0, 0);
-      glVertex2f(0, 0);
-
-      glTexCoord2f(0, 1f);//texture.getHeight());
-      glVertex2f(0, height);
-
-      glTexCoord2f(1f,1f);//texture.getWidth(), texture.getHeight());
-      glVertex2f(width, height);
-
-      glTexCoord2f(1f,0);//texture.getWidth(), 0);
-      glVertex2f(width, 0);
-    }
-    glEnd();
-
-    glDisable(GL_BLEND);
-    // restore the model view matrix to prevent contamination
-    glPopMatrix();
+    sprites.get(currIndex).draw(x, y);
   }
+
+  public float getSpeed ()
+  {
+    return speed;
+  }
+
+  public void setSpeed (float speed)
+  {
+    this.speed = speed;
+  }
+
+  public int getScale ()
+  {
+    return scale;
+  }
+
+  public void setScale (int scale)
+  {
+    this.scale = scale;
+    for(Image i : sprites){
+      i.setScale(scale);
+    }
+  }
+
+  public float getRotation ()
+  {
+    return rotation;
+  }
+
+  public void setRotation (int rotation)
+  {
+    this.rotation = rotation;
+    for(Image i : sprites){
+      i.setRotation(rotation);
+    }
+  }
+  
+  
 
 }

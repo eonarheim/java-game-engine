@@ -1,7 +1,6 @@
 package com.isometric.toolkit.entities;
 
-import com.isometric.toolkit.engine.Sprite;
-import com.isometric.toolkit.engine.TextureLoader;
+
 
 public abstract class Actor implements Actable
 {

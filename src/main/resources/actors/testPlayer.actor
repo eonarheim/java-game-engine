@@ -3,6 +3,6 @@ X = 0.0
 Y = 0.0
 Dx = 0.0
 Dy = 0.0
-SpriteRef = TestPlayer2.png
+SpriteRef = TestPlayer.png
 Height = 25
 Width = 21
