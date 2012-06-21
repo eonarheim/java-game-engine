@@ -92,7 +92,6 @@ public class Window
     GL11.glClearColor(0f, 1f, .2f, 1f);
 
     logger.info("Entering mainloop");
-    // TODO: Implement FPS loading limiting
     
     getDelta(); // call once before loop to initialise lastFrame
     lastFPS = getTime(); // call before loop to initialise fps timer

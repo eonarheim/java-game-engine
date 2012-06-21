@@ -53,23 +53,23 @@ public class TestPlayer extends Actor implements Playable
                                                           // Animation(spriteRef,
                                                           // height, width, 1,
                                                           // 2, .2f);
-      walkSouth.setScale(10);
+      walkSouth.setScale(2);
       idle = walkSouth;// new Animation(spriteRef, height, width, 0, 1, .2f);
       walkEast = new Animation(ss.getImages(3, 4), 0.2f);// new
                                                          // Animation(spriteRef,
                                                          // height, width, 3, 2,
                                                          // .2f);
-      walkEast.setScale(10);
+      walkEast.setScale(2);
       walkNorth = new Animation(ss.getImages(6, 7), 0.2f);// new
                                                           // Animation(spriteRef,
                                                           // height, width, 6,
                                                           // 2, .2f);
-      walkNorth.setScale(10);
+      walkNorth.setScale(2);
       walkWest = new Animation(ss.getImages(8, 9), 0.2f);// new
                                                          // Animation(spriteRef,
                                                          // height, width, 8, 2,
                                                          // .2f);
-      walkWest.setScale(10);
+      walkWest.setScale(2);
       hasInit = true;
     }
   }
