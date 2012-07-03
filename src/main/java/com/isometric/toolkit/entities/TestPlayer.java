@@ -6,8 +6,10 @@ import org.lwjgl.input.Keyboard;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.parser.WorldBuilder;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
-public class TestPlayer extends Actor implements Playable
+public class TestPlayer extends Actor
 {
 
   static Logger logger = Logger.getLogger(TestPlayer.class);
@@ -39,7 +41,9 @@ public class TestPlayer extends Actor implements Playable
     this.height = height;
     this.width = width;
     logger.info("Instantiated Player");
+    logger.info("Player xml:\n" + this.toXml());
   }
+  
 
   private void lazyInit ()
   {
@@ -139,6 +143,22 @@ public class TestPlayer extends Actor implements Playable
       idle.draw((int)this.x, (int)this.y);
     }
     
+    
+  }
+
+  @Override
+  public String toXml ()
+  {
+    
+    XStream xStream = new XStream(new DomDriver());
+    return xStream.toXML(this);
+    
+    
+  }
+
+  @Override
+  public void fromXml (String xml)
+  {
     
   }
 }
