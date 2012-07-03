@@ -16,7 +16,7 @@ public class NonPlayer extends Actor
   static Logger logger = Logger.getLogger(NonPlayer.class);
   
 
-  protected NonPlayer (World w, float x, float y, float dx, float dy)
+  public NonPlayer (World w, float x, float y, float dx, float dy)
   {
     super(w, x, y, dx, dy);
     // TODO Auto-generated constructor stub

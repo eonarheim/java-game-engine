@@ -12,7 +12,7 @@ public class Player extends Actor
   
   
 
-  protected Player (World w, float x, float y)
+  public Player (World w, float x, float y)
   {
     super(w, x, y, 0, 0);
 
