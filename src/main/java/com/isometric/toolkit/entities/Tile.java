@@ -10,7 +10,7 @@ public class Tile extends Actor {
   static Logger logger = Logger.getLogger(Tile.class);
   
 
-  protected Tile (World w, float x, float y)
+  public Tile (World w, float x, float y)
   {
     super(w, x, y, 0, 0);
     // TODO Auto-generated constructor stub

@@ -10,6 +10,12 @@ import org.apache.log4j.Logger;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
+import com.isometric.toolkit.entities.NonPlayer;
+import com.isometric.toolkit.entities.Player;
+import com.isometric.toolkit.entities.Tile;
+import com.isometric.toolkit.entities.Trigger;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 //import com.isometric.toolkit.entities.Playable;
 
 public class WorldBuilder
@@ -20,8 +26,32 @@ public class WorldBuilder
   
   
   public static World parseWorld(String uri){
+    World worldResult = new World();
+    
+    
     logger.info("Reading starting world file");
-    Properties WorldProps = new Properties();
+    
+     
+    XStream x = new XStream(new DomDriver());
+    
+    // World Alias's
+    x.alias("worldName", String.class);
+    x.alias("actors", Actor.class);
+    x.alias("levels", Level.class);
+    x.alias("currentLevel", Level.class);
+    
+    x.registerConverter(new ActorConverter());
+    x.registerConverter(new LevelConverter());
+    x.registerConverter(new AnimationConverter());
+    x.registerConverter(new ImageConverter());
+    
+    
+    
+    worldResult = (World)x.fromXML(uri);
+    
+    /*Properties WorldProps = new Properties();
+     * 
+     * 
     
     try {
       logger.info("Loading world file: " + uri);
@@ -78,14 +108,38 @@ public class WorldBuilder
     catch (Exception e){
       logger.error("Error creating object of type: " + playableProps.getProperty("Class"));
       e.printStackTrace();
-    }
+    }*/
     
     
     
     
-    return w;
+    return worldResult;
+  }
+
+  
+  
+  public static Level parseLevel(String xml){
+    
+    return new Level();
   }
   
+  public static Player parsePlayer(String xml){
+    
+    return new Player(null, 0, 0);
+  }
+  
+  public static Tile parseTile(String xml){
+    return new Tile(null, 0, 0);
+    
+  }
+  
+  public static NonPlayer parseNonPlayer(String xml){
+    return new NonPlayer(null, 0f, 0f, 0f, 0f);
+  }
+  
+  public static Trigger parseTrigger(String xml){
+    return new Trigger();
+  }
   
 
 }
