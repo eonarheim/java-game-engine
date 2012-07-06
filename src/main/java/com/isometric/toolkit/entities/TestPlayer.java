@@ -5,6 +5,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.SpriteSheet;
+import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.parser.WorldBuilder;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -36,7 +37,8 @@ public class TestPlayer extends Actor
   public TestPlayer (String spriteRef, int height, int width, float x, float y,
                      float dx, float dy)
   {
-    super(x, y, dx, dy);
+	  super(new World(), x, y, dx, dy);
+    //super(null, x, y, dx, dy);
     this.spriteRef = spriteRef;
     this.height = height;
     this.width = width;
@@ -161,4 +163,11 @@ public class TestPlayer extends Actor
   {
     
   }
+
+
+@Override
+boolean collides(Actor a) {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

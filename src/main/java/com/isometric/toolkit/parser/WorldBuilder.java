@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
-import com.isometric.toolkit.entities.Playable;
+//import com.isometric.toolkit.entities.Playable;
 
 public class WorldBuilder
 {
@@ -69,8 +69,11 @@ public class WorldBuilder
                                            Float.parseFloat((String) playableProps.get("Dx")),
                                            Float.parseFloat((String) playableProps.get("Dy"))); 
       
-      w.addActor(player);
-      w.addLevel(new Level());
+     
+      Level newLevel = new Level();
+      newLevel.addActor(player);
+      w.addLevel(newLevel);
+      w.setCurrentLevel(newLevel);
     }
     catch (Exception e){
       logger.error("Error creating object of type: " + playableProps.getProperty("Class"));

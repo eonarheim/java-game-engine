@@ -34,9 +34,9 @@ public class World
   
   
   public void update(){
-    for(Actor a : actors){
-      a.update();
-    }
+   // for(Actor a : actors){
+   //   a.update();
+   // }
     
     currentLevel.update();
     
@@ -54,9 +54,9 @@ public class World
         
  
     currentLevel.draw();
-    for(Actor a : actors){
-      a.draw();
-    }
+    //for(Actor a : actors){
+    //  a.draw();
+    //}
     
     /*
     // set the color of the quad (R,G,B,A)
