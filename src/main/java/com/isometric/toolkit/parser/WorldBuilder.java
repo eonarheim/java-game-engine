@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+import com.isometric.toolkit.engine.Animation;
+import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
@@ -23,6 +25,31 @@ public class WorldBuilder
   
 
   static Logger logger = Logger.getLogger(WorldBuilder.class);
+  
+  public static World newWorld(){
+    World w = new World();
+    
+    w.setWorldName("Default World");
+    
+    
+    Player player = new Player(w, 0, 0);
+    player.setWorld(w);
+    
+    SpriteSheet ss = new SpriteSheet("TestPlayer.png", 10, 1);
+    player.addAnimation("walkDown", new Animation(ss.getImages(1, 2), 0.2f));
+    player.addAnimation("walkLeft", new Animation(ss.getImages(3,4), 0.2f));
+    player.addAnimation("walkUp", new Animation(ss.getImages(6, 7), 0.2f));
+    player.addAnimation("walkRight", new Animation(ss.getImages(8, 9), 0.2f));
+    
+    
+    
+    Level newLevel = new Level();
+    newLevel.addActor(player);
+    w.addLevel(newLevel);
+    w.setCurrentLevel(newLevel);
+    
+    return w;
+  }
   
   
   public static World parseWorld(String uri){

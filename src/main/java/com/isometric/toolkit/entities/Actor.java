@@ -19,18 +19,20 @@ public abstract class Actor
   protected float dy;
   
   protected HashMap<String, Animation> animations = new HashMap<String, Animation>();
+  protected HashMap<Integer, String> keyHooks = new HashMap<Integer, String>();
+  
   protected String currentAnimation = "";
   
   protected SpriteSheet spriteSheet = null;
   
-  protected World worldRef = null;
+  public World world = null;
   
   private boolean isometric = false;
   
   
   
   protected Actor(World w, float x, float y, float dx, float dy){
-    this.worldRef = w;
+    this.world = w;
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -42,9 +44,9 @@ public abstract class Actor
   }
   
 
-  public String getType ()
+  public static String getType ()
   {
-    return type;
+    return Actor.class.toString();
   }
 
   abstract public void update ();
@@ -103,14 +105,14 @@ public abstract class Actor
     this.currentAnimation = currentAnimation;
   }
 
-  public World getWorldRef ()
+  public World getWorld ()
   {
-    return worldRef;
+    return world;
   }
 
-  public void setWorldRef (World worldRef)
+  public void setWorld (World worldRef)
   {
-    this.worldRef = worldRef;
+    this.world = worldRef;
   }
   
   public void addAnimation(String key, Animation value){
@@ -119,6 +121,14 @@ public abstract class Actor
   
   public void removeAnimation(String key){
     this.animations.remove(key);
+  }
+  
+  public void addKeyHook(Integer key, String name){
+    this.keyHooks.put(key, name);
+  }
+  
+  public void removeKey(Integer key){
+    this.keyHooks.remove(key);
   }
 
   public SpriteSheet getSpriteSheet ()

@@ -102,7 +102,7 @@ public class Image implements Drawable
 
     logger.info("Sprite: " + ref + " is loading..");
     tmp = image.getSubimage((offset) * width, 0, width, height);
-
+    
     int srcPixelFormat;
 
     int textureID = createTextureID();

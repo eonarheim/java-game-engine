@@ -9,7 +9,9 @@ public class Player extends Actor
   
   static Logger logger = Logger.getLogger(Player.class);
   
-  
+  public static String getType(){
+    return Player.class.toString();
+  }
   
 
   public Player (World w, float x, float y)
@@ -25,6 +27,8 @@ public class Player extends Actor
   @Override
   public void update ()
   {
+    
+    
     // TODO Auto-generated method stub
 
   }

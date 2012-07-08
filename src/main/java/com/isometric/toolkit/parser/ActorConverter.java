@@ -1,6 +1,9 @@
 package com.isometric.toolkit.parser;
 
 import com.isometric.toolkit.entities.Actor;
+import com.isometric.toolkit.entities.NonPlayer;
+import com.isometric.toolkit.entities.Player;
+import com.isometric.toolkit.entities.Tile;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -21,6 +24,10 @@ public class ActorConverter implements Converter
                        MarshallingContext context)
   {
     Actor a = (Actor) value;
+    writer.startNode("type");
+    writer.setValue(String.valueOf(a.getType()));
+    writer.endNode();
+    
     writer.startNode("x");
     writer.setValue(String.valueOf(a.getX()));
     writer.endNode();
@@ -37,15 +44,42 @@ public class ActorConverter implements Converter
     writer.setValue(String.valueOf(a.getDy()));
     writer.endNode();
     
+    writer.startNode("spritesheet");
+    writer.setValue(String.valueOf(a.getSpriteSheet().getInternalImagePath()));
+    writer.endNode();
+    
     
   }
 
   @Override
-  public Object unmarshal (HierarchicalStreamReader arg0,
-                           UnmarshallingContext arg1)
+  public Actor unmarshal (HierarchicalStreamReader reader,
+                           UnmarshallingContext context)
   {
-    // TODO Auto-generated method stub
-    return null;
+    
+    reader.moveDown();
+    String type = reader.getValue();
+    reader.moveUp();
+    
+    Actor a = null;
+    
+    if(type.equalsIgnoreCase(Player.getType())){
+      reader.moveDown();
+      float x = Float.parseFloat(reader.getValue());
+      reader.moveUp();
+      
+      reader.moveDown();
+      float y = Float.parseFloat(reader.getValue());
+      reader.moveUp();
+      
+       a = new Player(null, x, y);
+      
+    }else if (type.equalsIgnoreCase(NonPlayer.getType())){
+      
+    }else if (type.equalsIgnoreCase(Tile.getType())){
+      
+    }
+    
+    return a;
   }
 
 }
