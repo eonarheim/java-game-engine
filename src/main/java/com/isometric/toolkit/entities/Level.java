@@ -9,7 +9,7 @@ public class Level
 {
   static Logger logger = Logger.getLogger(Level.class);
   
-  private Array<Float> backgroundLayer = new Array<Float()>; //This data type may need to change
+  private List<Float> backgroundLayer = new ArrayList<Float>(); //This data type may need to change
   private List<Actor> objectLayer = new ArrayList<Actor>();
   private List<Actor> foregroundLayer = new ArrayList<Actor>(); //This data type may need to change
   
