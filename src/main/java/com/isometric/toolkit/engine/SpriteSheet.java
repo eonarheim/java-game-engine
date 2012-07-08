@@ -6,10 +6,12 @@ import java.util.List;
 public class SpriteSheet
 {
   private Image internalImage;
+  private String internalImagePath = "";
   private List<Image> images = new ArrayList<Image>();
   
   
   public SpriteSheet(String ref, int horizontalCount, int verticalCount){
+    setInternalImagePath(ref);
     internalImage = Image.loadImage(ref);
     int w = internalImage.getWidth();
     int spacing = (int) Math.floor(w/horizontalCount);
@@ -27,6 +29,16 @@ public class SpriteSheet
     }
     return resultImages;
     
+  }
+
+  public String getInternalImagePath ()
+  {
+    return internalImagePath;
+  }
+
+  public void setInternalImagePath (String internalImagePath)
+  {
+    this.internalImagePath = internalImagePath;
   }
 
 }
