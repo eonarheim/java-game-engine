@@ -10,6 +10,10 @@ public class Tile extends Actor {
   static Logger logger = Logger.getLogger(Tile.class);
   
 
+  public static String getType(){
+    return Tile.class.toString();
+  }
+  
   public Tile (World w, float x, float y)
   {
     super(w, x, y, 0, 0);

@@ -16,6 +16,10 @@ public class NonPlayer extends Actor
   static Logger logger = Logger.getLogger(NonPlayer.class);
   
 
+  public static String getType(){
+    return NonPlayer.class.toString();
+  }
+  
   public NonPlayer (World w, float x, float y, float dx, float dy)
   {
     super(w, x, y, dx, dy);
