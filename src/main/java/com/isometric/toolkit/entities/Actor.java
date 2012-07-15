@@ -2,47 +2,51 @@ package com.isometric.toolkit.entities;
 
 import java.util.HashMap;
 
+import org.lwjgl.input.Keyboard;
+
 import com.isometric.toolkit.engine.Animation;
+import com.isometric.toolkit.engine.KeyCombo;
+import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.World;
 
-
-
-public abstract class Actor 
+public abstract class Actor
 {
   protected String type = "Actor";
-  
+
   protected float x;
   protected float y;
-  
+
   protected float dx;
   protected float dy;
-  
-  protected HashMap<String, Animation> animations = new HashMap<String, Animation>();
+
+  protected HashMap<String, Animation> animations =
+    new HashMap<String, Animation>();
   protected HashMap<Integer, String> keyHooks = new HashMap<Integer, String>();
-  
+  protected HashMap<KeyCombo, Motion> motionHooks =
+    new HashMap<KeyCombo, Motion>();
+
   protected String currentAnimation = "";
-  
+
   protected SpriteSheet spriteSheet = null;
-  
+
   public World world = null;
-  
+
   private boolean isometric = false;
-  
-  
-  
-  protected Actor(World w, float x, float y, float dx, float dy){
+
+  protected Actor (World w, float x, float y, float dx, float dy)
+  {
     this.world = w;
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
   }
-  
-  protected Actor(String xml){
+
+  protected Actor (String xml)
+  {
     fromXml(xml);
   }
-  
 
   public static String getType ()
   {
@@ -50,10 +54,14 @@ public abstract class Actor
   }
 
   abstract public void update ();
+
   abstract public void draw ();
-  abstract public String toXml();
-  abstract void fromXml(String xml);
-  abstract boolean collides(Actor a);
+
+  abstract public String toXml ();
+
+  abstract void fromXml (String xml);
+
+  abstract boolean collides (Actor a);
 
   public float getX ()
   {
@@ -114,21 +122,35 @@ public abstract class Actor
   {
     this.world = worldRef;
   }
-  
-  public void addAnimation(String key, Animation value){
+
+  public void addAnimation (String key, Animation value)
+  {
     this.animations.put(key, value);
   }
-  
-  public void removeAnimation(String key){
+
+  public void removeAnimation (String key)
+  {
     this.animations.remove(key);
   }
-  
-  public void addKeyHook(Integer key, String name){
+
+  public void addKeyHook (Integer key, String name)
+  {
     this.keyHooks.put(key, name);
   }
-  
-  public void removeKey(Integer key){
+
+  public void removeKey (Integer key)
+  {
     this.keyHooks.remove(key);
+  }
+
+  public void addMotionHook (KeyCombo key, Motion motion)
+  {
+    this.motionHooks.put(key, motion);
+  }
+
+  public void removeMotionHook (KeyCombo key)
+  {
+    this.motionHooks.remove(key);
   }
 
   public SpriteSheet getSpriteSheet ()
@@ -150,6 +172,5 @@ public abstract class Actor
   {
     this.isometric = isometric;
   }
-    
-  
+
 }

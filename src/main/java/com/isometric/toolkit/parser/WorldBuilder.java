@@ -6,8 +6,11 @@ import java.lang.reflect.Constructor;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.engine.Animation;
+import com.isometric.toolkit.engine.KeyCombo;
+import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.entities.Actor;
@@ -37,9 +40,22 @@ public class WorldBuilder
     
     SpriteSheet ss = new SpriteSheet("TestPlayer.png", 10, 1);
     player.addAnimation("walkDown", new Animation(ss.getImages(1, 2), 0.2f));
+    player.addKeyHook(Keyboard.KEY_DOWN, "walkDown");
+    player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN,null), new Motion(0.f,1.f));
+    
     player.addAnimation("walkLeft", new Animation(ss.getImages(3,4), 0.2f));
+    player.addKeyHook(Keyboard.KEY_RIGHT, "walkLeft");
+    player.addMotionHook(new KeyCombo(Keyboard.KEY_RIGHT,null), new Motion(1.f,0.f));
+    
     player.addAnimation("walkUp", new Animation(ss.getImages(6, 7), 0.2f));
+    player.addKeyHook(Keyboard.KEY_UP, "walkUp");
+    player.addMotionHook(new KeyCombo(Keyboard.KEY_UP,null), new Motion(0.f,-1.f));
+    
     player.addAnimation("walkRight", new Animation(ss.getImages(8, 9), 0.2f));
+    player.addKeyHook(Keyboard.KEY_LEFT, "walkRight");
+    player.addMotionHook(new KeyCombo(Keyboard.KEY_LEFT,null), new Motion(-1.f,0.f));
+    
+    player.setCurrentAnimation("walkDown");
     
     
     
