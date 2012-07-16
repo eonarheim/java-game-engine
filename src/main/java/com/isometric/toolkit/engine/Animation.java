@@ -48,7 +48,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.isometric.toolkit.ToolKitMain;
 
-
 public class Animation implements Drawable
 {
   static Logger logger = Logger.getLogger(Animation.class);
@@ -57,34 +56,32 @@ public class Animation implements Drawable
   private int height; // Height of each individual sprite in the spritesheet
   private int width; // Width of each individual sprite in the spritesheet
   private float speed; // Number of seconds until the next image
-  
+
   // List of textures in in animation
-  //private List<Texture> sprites = new ArrayList<Texture>();
-  
+  // private List<Texture> sprites = new ArrayList<Texture>();
+
   private List<Image> sprites = new ArrayList<Image>();
-  
+
   private int currIndex;
   private int maxIndex;
   private int ticker = 0;
   
   private float scale = 1.f;
   private int rotation = 0;
-  
-  
-  
-  
+
   public Animation (String ref, int height, int width, float speed)
   {
     this.height = height;
     this.width = width;
     this.setSpeed(speed);
-    
+
     loadSprites(ref);
     this.maxIndex = this.sprites.size();
 
   }
-  
-  public Animation(List<Image> images, float speed){
+
+  public Animation (List<Image> images, float speed)
+  {
     sprites = images;
     this.maxIndex = this.sprites.size();
     this.speed = speed;
@@ -94,31 +91,34 @@ public class Animation implements Drawable
   {
     BufferedImage image = null;
     try {
-      image = ImageIO.read(Animation.class.getClassLoader().getResourceAsStream("images/"+ref));
+      image =
+        ImageIO.read(Animation.class.getClassLoader()
+                .getResourceAsStream("images/" + ref));
     }
     catch (Exception e) {
-      logger.error("Failed to load spritesheet: " + ref + " Exception: "
-                   + e);
+      logger.error("Failed to load spritesheet: " + ref + " Exception: " + e);
     }
-    
 
-    int totalImages = (int) Math.floor(image.getWidth()/this.width)-1;
-    
-    for(int i = 0; i < totalImages; i++){
-      Image newImage = Image.loadSubimage(ref, width, height, i);
-      sprites.add(newImage);
-    
+    int totalHorizontalRows =
+      (int) Math.floor(image.getWidth() / this.width) - 1;
+    int totalVerticalRows =
+      (int) Math.floor(image.getHeight() / this.height) - 1;
+
+    for (int j = 0; j < totalVerticalRows; j++) {
+      for (int i = 0; i < totalHorizontalRows; i++) {
+        Image newImage = Image.loadSubimage(ref, width, height, i, j);
+        sprites.add(newImage);
+      }
     }
 
   }
 
- 
   public void tick ()
   {
-    
-    if(ticker++/60.f>getSpeed()){
+
+    if (ticker++ / 60.f > getSpeed()) {
       currIndex = (currIndex + 1) % maxIndex;
-      ticker=0;
+      ticker = 0;
     }
   }
 
@@ -146,7 +146,7 @@ public class Animation implements Drawable
   public void setScale (float scale)
   {
     this.scale = scale;
-    for(Image i : sprites){
+    for (Image i: sprites) {
       i.setScale(scale);
     }
   }
@@ -159,11 +159,9 @@ public class Animation implements Drawable
   public void setRotation (int rotation)
   {
     this.rotation = rotation;
-    for(Image i : sprites){
+    for (Image i: sprites) {
       i.setRotation(rotation);
     }
   }
-  
-  
 
 }

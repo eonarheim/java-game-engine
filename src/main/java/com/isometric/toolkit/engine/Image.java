@@ -83,8 +83,8 @@ public class Image implements Drawable
     this.texture = texture;
   }
 
-  public static Image loadSubimage (String ref, int width, int height, 
-                                    int offset)
+  public static Image loadSubimage (String ref, int width, int height,
+                                    int horizontalOffset, int verticalOffset)
   {
     Image resultImage = new Image();
 
@@ -98,11 +98,24 @@ public class Image implements Drawable
       logger.error("Failed to load spritesheet: " + ref + " Exception: " + e);
     }
 
+    /*
+     * int imageWidth = image.getWidth();
+     * logger.info("Image width: " + imageWidth);
+     * int imageStartWidthPoint = width * offset;
+     * logger.info("Currently starting at width: " + imageStartWidthPoint);
+     * int moduloWidth = (width * (offset + 1)) % imageWidth; //set offset to
+     * one since we check the start image pt
+     * logger.info("Modulo width: " + moduloWidth);
+     */
     BufferedImage tmp = null;
 
-    logger.info("Sprite: " + ref + " is loading..");
-    tmp = image.getSubimage((offset) * width, 0, width, height);
-    
+    logger.info("Loading sprint. Vertical Offset(" + height + "): "
+                + verticalOffset + " Horizontal Offset(" + height + "): "
+                + horizontalOffset);
+    tmp =
+      image.getSubimage((horizontalOffset) * width, verticalOffset * height,
+                        width, height);
+
     int srcPixelFormat;
 
     int textureID = createTextureID();
@@ -115,7 +128,6 @@ public class Image implements Drawable
     texture.setHeight(height);
     resultImage.setHeight(height);
     resultImage.setWidth(width);
-    
 
     if (tmp.getColorModel().hasAlpha()) {
       srcPixelFormat = GL_RGBA;
@@ -138,7 +150,6 @@ public class Image implements Drawable
     while (texHeight < tmp.getHeight()) {
       texHeight *= 2;
     }
-    
 
     texture.setTextureHeight(texHeight);
     texture.setTextureWidth(texWidth);
@@ -212,7 +223,7 @@ public class Image implements Drawable
     BufferedImage tmp = null;
 
     logger.info("Sprite: " + ref + " is loading..");
-    tmp = image;//image.getSubimage((offset) * width, 0, width, height);
+    tmp = image;// image.getSubimage((offset) * width, 0, width, height);
 
     int srcPixelFormat;
 
@@ -224,10 +235,9 @@ public class Image implements Drawable
 
     texture.setWidth(tmp.getWidth());
     texture.setHeight(tmp.getHeight());
-    
+
     resultImage.setWidth(tmp.getWidth());
     resultImage.setHeight(tmp.getHeight());
-
 
     if (tmp.getColorModel().hasAlpha()) {
       srcPixelFormat = GL_RGBA;
@@ -250,7 +260,7 @@ public class Image implements Drawable
     while (texHeight < tmp.getHeight()) {
       texHeight *= 2;
     }
-    
+
     texture.setTextureHeight(texHeight);
     texture.setTextureWidth(texWidth);
 
@@ -294,11 +304,11 @@ public class Image implements Drawable
                  GL_UNSIGNED_BYTE, textureBuffer);
 
     resultImage.setTexture(texture);
-    
-    
+
     return resultImage;
 
   }
+
   private static int createTextureID ()
   {
     glGenTextures(textureIDBuffer);
@@ -323,7 +333,7 @@ public class Image implements Drawable
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     // translate to the right location and prepare to draw
 
-    glRotatef(this.rotation,0f,0f,1f);
+    glRotatef(this.rotation, 0f, 0f, 1f);
     glTranslatef(x, y, 0);
 
     // draw a quad textured to match the sprite
