@@ -53,7 +53,7 @@ public class Image implements Drawable
 
   static Logger logger = Logger.getLogger(Image.class);
   private Texture texture;
-  private int scale = 1;
+  private float scale = 1.f;
   // in degrees
   private int rotation = 0;
   private int width = 0;
@@ -315,8 +315,8 @@ public class Image implements Drawable
 
     // bind to the appropriate texture for this sprite
 
-    int width = texture.getImageWidth() * scale;
-    int height = texture.getImageHeight() * scale;
+    float width = texture.getImageWidth() * scale;
+    float height = texture.getImageHeight() * scale;
     texture.bind();
 
     glEnable(GL_BLEND);
@@ -359,12 +359,12 @@ public class Image implements Drawable
     this.texture = texture;
   }
 
-  public int getScale ()
+  public float getScale ()
   {
     return scale;
   }
 
-  public void setScale (int scale)
+  public void setScale (float scale)
   {
     this.scale = scale;
   }

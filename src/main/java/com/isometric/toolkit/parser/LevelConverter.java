@@ -19,18 +19,20 @@ public class LevelConverter implements Converter
   }
 
   @Override
-  public void marshal (Object arg0, HierarchicalStreamWriter arg1,
-                       MarshallingContext arg2)
+  public void marshal (Object value, HierarchicalStreamWriter writer,
+                       MarshallingContext context)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public Object unmarshal (HierarchicalStreamReader arg0,
-                           UnmarshallingContext arg1)
+  public Object unmarshal (HierarchicalStreamReader reader,
+                           UnmarshallingContext context)
   {
     // TODO Auto-generated method stub
+    
+    
     return null;
   }
 

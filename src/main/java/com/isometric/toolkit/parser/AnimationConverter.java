@@ -17,7 +17,7 @@ public class AnimationConverter implements Converter
   }
 
   
-  public void marshal (Object object, HierarchicalStreamWriter writer,
+  public void marshal (Object value, HierarchicalStreamWriter writer,
                        MarshallingContext context)
   {
   

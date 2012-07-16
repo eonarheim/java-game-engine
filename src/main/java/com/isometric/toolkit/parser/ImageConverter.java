@@ -17,7 +17,7 @@ public class ImageConverter implements Converter
   }
 
   @Override
-  public void marshal (Object object, HierarchicalStreamWriter writer,
+  public void marshal (Object value, HierarchicalStreamWriter writer,
                        MarshallingContext context)
   {
     // TODO Auto-generated method stub

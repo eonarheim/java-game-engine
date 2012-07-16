@@ -67,7 +67,7 @@ public class Animation implements Drawable
   private int maxIndex;
   private int ticker = 0;
   
-  private int scale = 1;
+  private float scale = 1.f;
   private int rotation = 0;
   
   
@@ -138,12 +138,12 @@ public class Animation implements Drawable
     this.speed = speed;
   }
 
-  public int getScale ()
+  public float getScale ()
   {
     return scale;
   }
 
-  public void setScale (int scale)
+  public void setScale (float scale)
   {
     this.scale = scale;
     for(Image i : sprites){

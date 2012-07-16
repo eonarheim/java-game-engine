@@ -23,11 +23,7 @@ public class ActorConverter implements Converter
   public void marshal (Object value, HierarchicalStreamWriter writer,
                        MarshallingContext context)
   {
-    Actor a = (Actor) value;
-    writer.startNode("type");
-    writer.setValue(String.valueOf(a.getType()));
-    writer.endNode();
-    
+    Actor a = (Actor) value;    
     writer.startNode("x");
     writer.setValue(String.valueOf(a.getX()));
     writer.endNode();

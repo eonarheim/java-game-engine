@@ -14,6 +14,8 @@ public abstract class Actor
 {
   protected String type = "Actor";
 
+  private float scale = 1.f;
+  
   protected float x;
   protected float y;
 
@@ -171,6 +173,20 @@ public abstract class Actor
   public void setIsometric (boolean isometric)
   {
     this.isometric = isometric;
+  }
+
+  public float getScale ()
+  {
+    return scale;
+  }
+
+  public void setScale (float scale)
+  {
+
+    this.scale = scale;
+    for(Animation a : this.animations.values()){
+      a.setScale(scale);
+    }
   }
 
 }
