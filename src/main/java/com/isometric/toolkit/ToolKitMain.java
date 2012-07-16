@@ -11,7 +11,7 @@ import com.isometric.toolkit.parser.WorldBuilder;
 public class ToolKitMain
 {
 
-  static Logger logger = Logger.getLogger(ToolKitMain.class);
+  static Logger logger = LoggerFactory.getLogger();
 
   public static void main (String[] args)
   {

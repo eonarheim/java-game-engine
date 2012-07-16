@@ -2,12 +2,13 @@ package com.isometric.toolkit.entities;
 
 import org.apache.log4j.Logger;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.World;
 
 public class Tile extends Actor {
   
   // Eveything should be sparse and debug level to avoid overlogging
-  static Logger logger = Logger.getLogger(Tile.class);
+  static Logger logger = LoggerFactory.getLogger();
   
 
   public static String getType(){

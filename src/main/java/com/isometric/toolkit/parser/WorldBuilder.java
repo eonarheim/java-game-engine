@@ -9,6 +9,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
 import com.isometric.toolkit.engine.KeyCombo;
@@ -30,7 +31,7 @@ public class WorldBuilder
 {
   
 
-  static Logger logger = Logger.getLogger(WorldBuilder.class);
+  static Logger logger = LoggerFactory.getLogger();
   
   public static World newWorld(){
     World w = new World();

@@ -48,10 +48,12 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.lwjgl.BufferUtils;
 
+import com.isometric.toolkit.LoggerFactory;
+
 public class Image implements Drawable
 {
 
-  static Logger logger = Logger.getLogger(Image.class);
+  static Logger logger = LoggerFactory.getLogger();
   private Texture texture;
   private float scale = 1.f;
   // in degrees

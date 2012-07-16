@@ -46,11 +46,12 @@ import org.apache.log4j.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
 
 public class Animation implements Drawable
 {
-  static Logger logger = Logger.getLogger(Animation.class);
+  static Logger logger = LoggerFactory.getLogger();
 
   // Assumes a linear horizontal spriteshteed
   private int height; // Height of each individual sprite in the spritesheet

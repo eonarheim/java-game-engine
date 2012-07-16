@@ -17,12 +17,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
 
 public class Window
 {
 
-  static Logger logger = Logger.getLogger(Window.class);
+  static Logger logger = LoggerFactory.getLogger();
   Vector<Integer> keyPress = new Vector<Integer>();
   
   private static List<String> debugList = new ArrayList<String>();

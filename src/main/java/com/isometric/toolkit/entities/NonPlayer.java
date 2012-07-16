@@ -2,18 +2,19 @@ package com.isometric.toolkit.entities;
 
 import org.apache.log4j.Logger;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.World;
 
 
 /***
- * Like an NPCs
+ * Like an NPCs or Enemies
  * @author Erik
  *
  */
 public class NonPlayer extends Actor
 {
   
-  static Logger logger = Logger.getLogger(NonPlayer.class);
+  static Logger logger = LoggerFactory.getLogger();
   
 
   public static String getType(){

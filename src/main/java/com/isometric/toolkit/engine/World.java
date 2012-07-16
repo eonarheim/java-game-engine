@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.parser.WorldBuilder;
@@ -16,7 +17,7 @@ import com.isometric.toolkit.parser.WorldBuilder;
 
 public class World
 {
-  static Logger logger = Logger.getLogger(World.class);
+  static Logger logger = LoggerFactory.getLogger();
   
   private List<Actor> actors = new ArrayList<Actor>();
   

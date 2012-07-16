@@ -3,6 +3,7 @@ package com.isometric.toolkit.entities;
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
@@ -11,7 +12,7 @@ import com.isometric.toolkit.engine.World;
 public class Player extends Actor
 {
 
-  static Logger logger = Logger.getLogger(Player.class);
+  static Logger logger = LoggerFactory.getLogger();
 
   public static String getType ()
   {

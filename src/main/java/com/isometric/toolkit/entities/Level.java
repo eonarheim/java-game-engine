@@ -6,11 +6,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.newdawn.slick.util.Log;
 
+import com.isometric.toolkit.LoggerFactory;
+
 public class Level
 {
   
   
-  static Logger logger = Logger.getLogger(Level.class);
+  static Logger logger = LoggerFactory.getLogger();
   
   private String name = "Default Name";
 
