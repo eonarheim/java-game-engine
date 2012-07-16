@@ -48,16 +48,23 @@ import javax.imageio.ImageIO;
 import org.apache.log4j.Logger;
 import org.lwjgl.BufferUtils;
 
+import com.isometric.toolkit.LoggerFactory;
+
 public class Image implements Drawable
 {
 
-  static Logger logger = Logger.getLogger(Image.class);
+  static Logger logger = LoggerFactory.getLogger();
   private Texture texture;
-  private int scale = 1;
+  private float scale = 1.f;
   // in degrees
   private int rotation = 0;
   private int width = 0;
   private int height = 0;
+  
+  // things for serialization
+  private String ref = "";
+  private int horizontalOffset;
+  private int verticalOffset;
 
   // OpenGL Stuff
   private static ComponentColorModel glAlphaColorModel =
@@ -87,6 +94,9 @@ public class Image implements Drawable
                                     int horizontalOffset, int verticalOffset)
   {
     Image resultImage = new Image();
+    resultImage.setRef(ref);
+    resultImage.setHorizontalOffset(horizontalOffset);
+    resultImage.setVerticalOffset(verticalOffset);
 
     BufferedImage image = null;
     try {
@@ -109,8 +119,8 @@ public class Image implements Drawable
      */
     BufferedImage tmp = null;
 
-    logger.info("Loading sprint. Vertical Offset(" + height + "): "
-                + verticalOffset + " Horizontal Offset(" + height + "): "
+    logger.info("Loading sprite. Vertical Offset(" + height + "): "
+                + verticalOffset + " Horizontal Offset(" + width + "): "
                 + horizontalOffset);
     tmp =
       image.getSubimage((horizontalOffset) * width, verticalOffset * height,
@@ -194,6 +204,7 @@ public class Image implements Drawable
                  GL_UNSIGNED_BYTE, textureBuffer);
 
     resultImage.setTexture(texture);
+
     return resultImage;
   }
 
@@ -304,6 +315,8 @@ public class Image implements Drawable
                  GL_UNSIGNED_BYTE, textureBuffer);
 
     resultImage.setTexture(texture);
+    
+    
 
     return resultImage;
 
@@ -325,8 +338,8 @@ public class Image implements Drawable
 
     // bind to the appropriate texture for this sprite
 
-    int width = texture.getImageWidth() * scale;
-    int height = texture.getImageHeight() * scale;
+    float width = texture.getImageWidth() * scale;
+    float height = texture.getImageHeight() * scale;
     texture.bind();
 
     glEnable(GL_BLEND);
@@ -369,12 +382,12 @@ public class Image implements Drawable
     this.texture = texture;
   }
 
-  public int getScale ()
+  public float getScale ()
   {
     return scale;
   }
 
-  public void setScale (int scale)
+  public void setScale (float scale)
   {
     this.scale = scale;
   }
@@ -407,6 +420,36 @@ public class Image implements Drawable
   public void setHeight (int height)
   {
     this.height = height;
+  }
+
+  public String getRef ()
+  {
+    return ref;
+  }
+
+  public void setRef (String ref)
+  {
+    this.ref = ref;
+  }
+
+  public int getHorizontalOffset ()
+  {
+    return horizontalOffset;
+  }
+
+  public void setHorizontalOffset (int horizontalOffset)
+  {
+    this.horizontalOffset = horizontalOffset;
+  }
+
+  public int getVerticalOffset ()
+  {
+    return verticalOffset;
+  }
+
+  public void setVerticalOffset (int verticalOffset)
+  {
+    this.verticalOffset = verticalOffset;
   }
 
 }

@@ -1,5 +1,6 @@
 package com.isometric.toolkit.parser;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -8,10 +9,13 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
+import com.isometric.toolkit.engine.Image;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.SpriteSheet;
+import com.isometric.toolkit.engine.Texture;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
@@ -27,7 +31,7 @@ public class WorldBuilder
 {
   
 
-  static Logger logger = Logger.getLogger(WorldBuilder.class);
+  static Logger logger = LoggerFactory.getLogger();
   
   public static World newWorld(){
     World w = new World();
@@ -61,7 +65,7 @@ public class WorldBuilder
     player.addMotionHook(new KeyCombo(Keyboard.KEY_LEFT,null), new Motion(-1.f,0.f));
     
     player.setCurrentAnimation("walkDown");
-    
+    player.setScale(2.0f);
     
     
     Level newLevel = new Level();
@@ -79,23 +83,11 @@ public class WorldBuilder
     
     logger.info("Reading starting world file");
     
-     
-    XStream x = new XStream(new DomDriver());
-    
-    // World Alias's
-    x.alias("worldName", String.class);
-    x.alias("actors", Actor.class);
-    x.alias("levels", Level.class);
-    x.alias("currentLevel", Level.class);
-    
-    x.registerConverter(new ActorConverter());
-    x.registerConverter(new LevelConverter());
-    x.registerConverter(new AnimationConverter());
-    x.registerConverter(new ImageConverter());
+
+    XStream x = setup();
     
     
-    
-    worldResult = (World)x.fromXML(uri);
+    worldResult = (World)x.fromXML(WorldBuilder.class.getClassLoader().getResourceAsStream(uri));
     
     /*Properties WorldProps = new Properties();
      * 
@@ -163,6 +155,18 @@ public class WorldBuilder
     
     return worldResult;
   }
+  
+  public static void writeWorld(World w){
+    
+    logger.info("Writing starting world file");
+    
+    XStream x = setup();    
+    
+    
+    String result = x.toXML(w);
+    
+    logger.info("World To XML: \n" + result);
+  }
 
   
   
@@ -187,6 +191,36 @@ public class WorldBuilder
   
   public static Trigger parseTrigger(String xml){
     return new Trigger();
+  }
+  
+  private static XStream setup(){
+    
+    XStream x = new XStream(new DomDriver());
+    
+    // World Alias's
+    x.alias("world", World.class);
+    x.alias("actor", Actor.class);
+    x.alias("player", Player.class);
+    x.alias("level", Level.class);
+    x.alias("trigger", Trigger.class);
+    x.alias("tile", Tile.class);
+    x.alias("nonPlayer", NonPlayer.class);
+    x.alias("texture", Texture.class);
+    x.alias("motion", Motion.class);
+    x.alias("keyCombo", KeyCombo.class);
+    x.alias("image", Image.class);
+    x.alias("animation", Animation.class);
+    
+    
+    /*
+    x.addImplicitCollection(World.class,"actors");
+    x.addImplicitCollection(World.class, "levels");
+    x.addImplicitCollection(Level.class, "backgroundLayer");
+    x.addImplicitCollection(Level.class, "objectLayer");
+    x.addImplicitCollection(Level.class, "foregroundLayer");*/
+    x.registerConverter(new ImageConverter());
+    
+    return x;
   }
   
 

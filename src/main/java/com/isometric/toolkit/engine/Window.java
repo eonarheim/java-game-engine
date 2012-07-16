@@ -1,6 +1,8 @@
 package com.isometric.toolkit.engine;
 
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -15,25 +17,30 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
 
 public class Window
 {
 
-  static Logger logger = Logger.getLogger(Window.class);
+  static Logger logger = LoggerFactory.getLogger();
   Vector<Integer> keyPress = new Vector<Integer>();
+  
+  private static List<String> debugList = new ArrayList<String>();
+  private static List<Integer> timerList = new ArrayList<Integer>();
 
   private World gameWorld = null;
   private boolean calledInit = false;
-  private boolean debug = true;
+  private static boolean debug = true;
 
-  private Font font = new Font("Arial", Font.BOLD, 20);
+  private Font font = new Font("HELVETICA", Font.PLAIN, 15);
   private UnicodeFont f = new UnicodeFont(font);
 
   private long lastFrame;
 
   private int fps;
   private int finalFps;
+  private int ticker;
 
   private long lastFPS;
 
@@ -98,15 +105,24 @@ public class Window
     while (!Display.isCloseRequested()
            && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
+      
 
       updateFPS();
       gameWorld.update();
       gameWorld.draw();
       // Debug text
-      if (debug) {
+      if (isDebug()) {
+        float yoffset = 25.f;
         GL11.glEnable(GL11.GL_BLEND);
         f.drawString(10f, 10f, "FPS: " + finalFps);
+        for(String s : debugList){
+          f.drawString(10f, yoffset, s);
+          yoffset += 15.f;
+        }
+
         GL11.glDisable(GL11.GL_BLEND);
+        
+        
       }
 
        checkInput();
@@ -124,12 +140,30 @@ public class Window
   {
     return (Sys.getTime() * 1000) / Sys.getTimerResolution();
   }
+  
+  public void tick ()
+  {
+    
+    
+    if(ticker++/60.f>1.f){
+      for(int i=0; i<timerList.size();i++){
+        Integer tmp = timerList.get(i);
+        timerList.set(i, tmp - 1);
+        if(tmp<=0){
+          timerList.remove(i);
+          debugList.remove(i);          
+        }
+      }
+      ticker=0;
+    }
+  }
 
   /**
    * Calculate the FPS and set it in the title bar
    */
   public void updateFPS ()
   {
+    tick();
     if (getTime() - lastFPS > 1000) {
       //Display.setTitle("FPS: " + fps);
       finalFps = fps;
@@ -148,20 +182,21 @@ public class Window
     return delta;
   }
 
+  
   public void checkInput ()
   {
 
     while (Keyboard.next()) {
       if (Keyboard.getEventKeyState()) {
         if (Keyboard.getEventKey() == Keyboard.KEY_D) {
-          if(!debug){
+          if(!isDebug()){
             System.out.println("Debug Enabled");
             logger.info("Debug enabled");
-            debug = true;
+            setDebug(true);
           }else{
             System.out.println("Debug Disabled");
             logger.info("Debug Disabled");
-            debug = false;
+            setDebug(false);
           }
         }
       }
@@ -170,6 +205,21 @@ public class Window
         }
       }
     }
+  }
+
+  public static boolean isDebug ()
+  {
+    return debug;
+  }
+  
+  private void setDebug(boolean b){
+    debug = b;
+  }
+  
+  
+  public static void writeToDebug(String msg){
+    debugList.add(msg);
+    timerList.add(3);
   }
 
 }

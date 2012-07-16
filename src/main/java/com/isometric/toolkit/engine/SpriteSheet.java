@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.isometric.toolkit.LoggerFactory;
+
 public class SpriteSheet
 {
+  private static Logger logger = LoggerFactory.getLogger();
+  
   private Image internalImage;
   private String internalImagePath = "";
   private List<Image> images = new ArrayList<Image>();

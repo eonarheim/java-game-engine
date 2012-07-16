@@ -46,11 +46,12 @@ import org.apache.log4j.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
 
 public class Animation implements Drawable
 {
-  static Logger logger = Logger.getLogger(Animation.class);
+  static Logger logger = LoggerFactory.getLogger();
 
   // Assumes a linear horizontal spriteshteed
   private int height; // Height of each individual sprite in the spritesheet
@@ -65,13 +66,18 @@ public class Animation implements Drawable
   private int currIndex;
   private int maxIndex;
   private int ticker = 0;
-
-  private int scale = 1;
+  
+  private float scale = 1.f;
   private int rotation = 0;
 
   public Animation (List<Image> images, float speed)
   {
     sprites = images;
+    if(sprites != null || sprites.size() != 0){
+      Image i = sprites.get(0);
+      this.height = i.getHeight();
+      this.width = i.getWidth();
+    }
     this.maxIndex = this.sprites.size();
     this.speed = speed;
   }
@@ -101,12 +107,12 @@ public class Animation implements Drawable
     this.speed = speed;
   }
 
-  public int getScale ()
+  public float getScale ()
   {
     return scale;
   }
 
-  public void setScale (int scale)
+  public void setScale (float scale)
   {
     this.scale = scale;
     for (Image i: sprites) {

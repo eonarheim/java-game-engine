@@ -17,10 +17,49 @@ public class ImageConverter implements Converter
   }
 
   @Override
-  public void marshal (Object object, HierarchicalStreamWriter writer,
+  public void marshal (Object value, HierarchicalStreamWriter writer,
                        MarshallingContext context)
   {
-    // TODO Auto-generated method stub
+    
+    Image image = (Image) value;
+    int height = image.getHeight();
+    int width = image.getWidth();
+    float scale = image.getScale();
+    int rotation = image.getRotation();
+    String ref = image.getRef();
+    int horizontalOffset = image.getHorizontalOffset();
+    int verticalOffset = image.getVerticalOffset();
+    
+    
+    writer.startNode("height");
+    writer.setValue(String.valueOf(height));
+    writer.endNode();
+    
+    writer.startNode("width");
+    writer.setValue(String.valueOf(width));
+    writer.endNode();
+    
+    writer.startNode("scale");
+    writer.setValue(String.valueOf(scale));
+    writer.endNode();
+    
+    writer.startNode("rotation");
+    writer.setValue(String.valueOf(rotation));
+    writer.endNode();
+    
+    writer.startNode("ref");
+    writer.setValue(ref);
+    writer.endNode();
+    
+    writer.startNode("horizontalOffset");
+    writer.setValue(String.valueOf(horizontalOffset));
+    writer.endNode();
+    
+    writer.startNode("verticalOffset");
+    writer.setValue(String.valueOf(verticalOffset));
+    writer.endNode();
+    
+    
 
   }
 
@@ -28,8 +67,43 @@ public class ImageConverter implements Converter
   public Object unmarshal (HierarchicalStreamReader reader,
                            UnmarshallingContext context)
   {
-    // TODO Auto-generated method stub
-    return null;
+    
+    
+    
+    reader.moveDown();
+    int height = Integer.parseInt(reader.getValue());
+    reader.moveUp();
+    
+    reader.moveDown();
+    int width = Integer.parseInt(reader.getValue());
+    reader.moveUp();
+    
+    reader.moveDown();
+    float scale = Float.parseFloat(reader.getValue());
+    reader.moveUp();
+    
+    reader.moveDown();
+    int rotation = Integer.parseInt(reader.getValue());
+    reader.moveUp();
+    
+    reader.moveDown();
+    String ref = reader.getValue();
+    reader.moveUp();
+    
+    reader.moveDown();
+    int horizontalOffset = Integer.parseInt(reader.getValue());
+    reader.moveUp();
+    
+    reader.moveDown();
+    int verticalOffset = Integer.parseInt(reader.getValue());
+    reader.moveUp();
+    
+    
+    Image image = Image.loadSubimage(ref, width, height, horizontalOffset, verticalOffset);
+    image.setScale(scale);
+    image.setRotation(rotation);
+    
+    return image;
   }
 
 }

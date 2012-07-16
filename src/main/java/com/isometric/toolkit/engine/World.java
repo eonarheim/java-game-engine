@@ -6,15 +6,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
+import com.isometric.toolkit.parser.WorldBuilder;
 
 
 public class World
 {
-  static Logger logger = Logger.getLogger(World.class);
+  static Logger logger = LoggerFactory.getLogger();
   
   private List<Actor> actors = new ArrayList<Actor>();
   
@@ -34,9 +37,10 @@ public class World
   
   
   public void update(){
-   // for(Actor a : actors){
-   //   a.update();
-   // }
+    if(Keyboard.isKeyDown(Keyboard.KEY_S)){
+      WorldBuilder.writeWorld(this);
+      Window.writeToDebug("Serializing world now!");
+    }
     
     currentLevel.update();
     
@@ -44,31 +48,14 @@ public class World
   
   public void draw(){
     
-    // TODO: Render code here
+
+    // Clear the screen and depth buffer
     GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
     GL11.glMatrixMode(GL11.GL_MODELVIEW);
-    GL11.glLoadIdentity();
-    
-    
-    // Clear the screen and depth buffer
+    GL11.glLoadIdentity(); 
         
  
     currentLevel.draw();
-    //for(Actor a : actors){
-    //  a.draw();
-    //}
-    
-    /*
-    // set the color of the quad (R,G,B,A)
-    GL11.glColor3f(0.5f,0.5f,1.0f);
-        
-    // draw quad
-    GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2f(100,100);
-        GL11.glVertex2f(100+200,100);
-        GL11.glVertex2f(100+200,100+200);
-        GL11.glVertex2f(100,100+200);
-    GL11.glEnd();*/
     
   }
   
