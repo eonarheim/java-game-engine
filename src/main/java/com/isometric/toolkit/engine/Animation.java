@@ -69,48 +69,11 @@ public class Animation implements Drawable
   private int scale = 1;
   private int rotation = 0;
 
-  public Animation (String ref, int height, int width, float speed)
-  {
-    this.height = height;
-    this.width = width;
-    this.setSpeed(speed);
-
-    loadSprites(ref);
-    this.maxIndex = this.sprites.size();
-
-  }
-
   public Animation (List<Image> images, float speed)
   {
     sprites = images;
     this.maxIndex = this.sprites.size();
     this.speed = speed;
-  }
-
-  private void loadSprites (String ref)
-  {
-    BufferedImage image = null;
-    try {
-      image =
-        ImageIO.read(Animation.class.getClassLoader()
-                .getResourceAsStream("images/" + ref));
-    }
-    catch (Exception e) {
-      logger.error("Failed to load spritesheet: " + ref + " Exception: " + e);
-    }
-
-    int totalHorizontalRows =
-      (int) Math.floor(image.getWidth() / this.width) - 1;
-    int totalVerticalRows =
-      (int) Math.floor(image.getHeight() / this.height) - 1;
-
-    for (int j = 0; j < totalVerticalRows; j++) {
-      for (int i = 0; i < totalHorizontalRows; i++) {
-        Image newImage = Image.loadSubimage(ref, width, height, i, j);
-        sprites.add(newImage);
-      }
-    }
-
   }
 
   public void tick ()

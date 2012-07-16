@@ -39,19 +39,24 @@ public class WorldBuilder
     player.setWorld(w);
     
     SpriteSheet ss = new SpriteSheet("TestPlayer.png", 10, 1);
-    player.addAnimation("walkDown", new Animation(ss.getImages(1, 2), 0.2f));
+    ss.createAnimation(1, 2, "walkDown", 0.2f); //todo, left off: pass in an Animation name, use that to reference it in the future.
+    ss.createAnimation(3, 4, "walkLeft", 0.2f); //erik says an actor can reference a spritesheet(s) and just say "walkUp" is your animation for walking up
+    ss.createAnimation(6, 7, "walkUp", 0.2f); //and it'll go get the animation of that name from the spritesheet
+    ss.createAnimation(8, 9, "walkRight", 0.2f);
+    
+    player.addAnimation("walkDown", ss.getAnimation("walkDown"));
     player.addKeyHook(Keyboard.KEY_DOWN, "walkDown");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN,null), new Motion(0.f,1.f));
     
-    player.addAnimation("walkLeft", new Animation(ss.getImages(3,4), 0.2f));
+    player.addAnimation("walkLeft",  ss.getAnimation("walkLeft"));
     player.addKeyHook(Keyboard.KEY_RIGHT, "walkLeft");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_RIGHT,null), new Motion(1.f,0.f));
     
-    player.addAnimation("walkUp", new Animation(ss.getImages(6, 7), 0.2f));
+    player.addAnimation("walkUp", ss.getAnimation("walkUp"));
     player.addKeyHook(Keyboard.KEY_UP, "walkUp");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_UP,null), new Motion(0.f,-1.f));
     
-    player.addAnimation("walkRight", new Animation(ss.getImages(8, 9), 0.2f));
+    player.addAnimation("walkRight",  ss.getAnimation("walkRight"));
     player.addKeyHook(Keyboard.KEY_LEFT, "walkRight");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_LEFT,null), new Motion(-1.f,0.f));
     
