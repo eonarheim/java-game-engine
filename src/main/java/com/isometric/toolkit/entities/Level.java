@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.newdawn.slick.util.Log;
 
 public class Level
 {
@@ -11,7 +12,7 @@ public class Level
   
   static Logger logger = Logger.getLogger(Level.class);
   
-  private String name = "";
+  private String name = "Default Name";
 
   private List<Float> backgroundLayer = new ArrayList<Float>(); // This data
                                                                 // type may need
@@ -22,10 +23,20 @@ public class Level
                                                                 // to change
 
   private List<Trigger> triggers = new ArrayList<Trigger>();
+  
+  public Level(){
+    
+  }
 
   public void update ()
   {
+    if(objectLayer ==null){
+      logger.error("Wuh? ObjectLayer is null!");
+    }
     for (Actor a: objectLayer) {
+      if(a==null){
+        logger.error("Actor is null!");
+      }
       a.update();
     }
 

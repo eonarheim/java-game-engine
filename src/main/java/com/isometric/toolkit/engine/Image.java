@@ -58,6 +58,11 @@ public class Image implements Drawable
   private int rotation = 0;
   private int width = 0;
   private int height = 0;
+  
+  // things for serialization
+  private String ref = "";
+  private int horizontalOffset;
+  private int verticalOffset;
 
   // OpenGL Stuff
   private static ComponentColorModel glAlphaColorModel =
@@ -87,6 +92,9 @@ public class Image implements Drawable
                                     int horizontalOffset, int verticalOffset)
   {
     Image resultImage = new Image();
+    resultImage.setRef(ref);
+    resultImage.setHorizontalOffset(horizontalOffset);
+    resultImage.setVerticalOffset(verticalOffset);
 
     BufferedImage image = null;
     try {
@@ -109,8 +117,8 @@ public class Image implements Drawable
      */
     BufferedImage tmp = null;
 
-    logger.info("Loading sprint. Vertical Offset(" + height + "): "
-                + verticalOffset + " Horizontal Offset(" + height + "): "
+    logger.info("Loading sprite. Vertical Offset(" + height + "): "
+                + verticalOffset + " Horizontal Offset(" + width + "): "
                 + horizontalOffset);
     tmp =
       image.getSubimage((horizontalOffset) * width, verticalOffset * height,
@@ -194,6 +202,7 @@ public class Image implements Drawable
                  GL_UNSIGNED_BYTE, textureBuffer);
 
     resultImage.setTexture(texture);
+
     return resultImage;
   }
 
@@ -304,6 +313,8 @@ public class Image implements Drawable
                  GL_UNSIGNED_BYTE, textureBuffer);
 
     resultImage.setTexture(texture);
+    
+    
 
     return resultImage;
 
@@ -407,6 +418,36 @@ public class Image implements Drawable
   public void setHeight (int height)
   {
     this.height = height;
+  }
+
+  public String getRef ()
+  {
+    return ref;
+  }
+
+  public void setRef (String ref)
+  {
+    this.ref = ref;
+  }
+
+  public int getHorizontalOffset ()
+  {
+    return horizontalOffset;
+  }
+
+  public void setHorizontalOffset (int horizontalOffset)
+  {
+    this.horizontalOffset = horizontalOffset;
+  }
+
+  public int getVerticalOffset ()
+  {
+    return verticalOffset;
+  }
+
+  public void setVerticalOffset (int verticalOffset)
+  {
+    this.verticalOffset = verticalOffset;
   }
 
 }

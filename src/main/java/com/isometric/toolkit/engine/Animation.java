@@ -83,6 +83,11 @@ public class Animation implements Drawable
   public Animation (List<Image> images, float speed)
   {
     sprites = images;
+    if(sprites != null || sprites.size() != 0){
+      Image i = sprites.get(0);
+      this.height = i.getHeight();
+      this.width = i.getWidth();
+    }
     this.maxIndex = this.sprites.size();
     this.speed = speed;
   }
