@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
@@ -19,9 +20,13 @@ public class World
 {
   static Logger logger = LoggerFactory.getLogger();
   
+  
+  private Map<String, SpriteSheet> spriteSheets = new HashMap<String, SpriteSheet>();
+  
   private List<Actor> actors = new ArrayList<Actor>();
   
   private List<Level> levels = new ArrayList<Level>();
+  
   
   private Level currentLevel = new Level(); 
     
@@ -73,6 +78,22 @@ public class World
   
   public void removeLevel(Level l){
     levels.remove(l);
+  }
+  
+  // TODO: Add custom exceptions! generic
+  public void addSpriteSheet(String name, SpriteSheet ss) throws Exception{
+    if(spriteSheets.containsKey(name)){
+      throw new Exception("Tried to add same name spritesheet twice!");
+    }
+    spriteSheets.put(name, ss);
+  }
+  
+  public SpriteSheet getSpriteSheet(String name){
+    return spriteSheets.get(name);
+  }
+  
+  public void removeSpriteSheet(String name){
+    spriteSheets.remove(name);
   }
   
   

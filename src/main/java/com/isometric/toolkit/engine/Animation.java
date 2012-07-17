@@ -61,7 +61,8 @@ public class Animation implements Drawable
   // List of textures in in animation
   // private List<Texture> sprites = new ArrayList<Texture>();
 
-  private List<Image> sprites = new ArrayList<Image>();
+  //private List<Image> sprites = new ArrayList<Image>();
+  private Image[] sprites = null;
 
   private int currIndex;
   private int maxIndex;
@@ -72,13 +73,13 @@ public class Animation implements Drawable
 
   public Animation (List<Image> images, float speed)
   {
-    sprites = images;
-    if(sprites != null || sprites.size() != 0){
-      Image i = sprites.get(0);
+    sprites = images.toArray(new Image[images.size()]);
+    if(sprites != null || sprites.length != 0){
+      Image i = sprites[0];
       this.height = i.getHeight();
       this.width = i.getWidth();
     }
-    this.maxIndex = this.sprites.size();
+    this.maxIndex = this.sprites.length;
     this.speed = speed;
   }
 
@@ -94,7 +95,7 @@ public class Animation implements Drawable
   public void draw (int x, int y)
   {
     tick();
-    sprites.get(currIndex).draw(x, y);
+    sprites[currIndex].draw(x, y);
   }
 
   public float getSpeed ()

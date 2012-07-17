@@ -16,13 +16,13 @@ import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.Texture;
+import com.isometric.toolkit.engine.Trigger;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.entities.NonPlayer;
 import com.isometric.toolkit.entities.Player;
 import com.isometric.toolkit.entities.Tile;
-import com.isometric.toolkit.entities.Trigger;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 //import com.isometric.toolkit.entities.Playable;
@@ -33,34 +33,38 @@ public class WorldBuilder
 
   static Logger logger = LoggerFactory.getLogger();
   
-  public static World newWorld(){
+  public static World newWorld() throws Exception{
     World w = new World();
     
     w.setWorldName("Default World");
-    
-    
-    Player player = new Player(w, 0, 0);
-    player.setWorld(w);
-    
     SpriteSheet ss = new SpriteSheet("TestPlayer.png", 10, 1);
     ss.createAnimation(1, 2, "walkDown", 0.2f); //todo, left off: pass in an Animation name, use that to reference it in the future.
     ss.createAnimation(3, 4, "walkLeft", 0.2f); //erik says an actor can reference a spritesheet(s) and just say "walkUp" is your animation for walking up
     ss.createAnimation(6, 7, "walkUp", 0.2f); //and it'll go get the animation of that name from the spritesheet
     ss.createAnimation(8, 9, "walkRight", 0.2f);
+    w.addSpriteSheet("TestPlayer", ss);
     
-    player.addAnimation("walkDown", ss.getAnimation("walkDown"));
+    Player player = new Player(w, 0, 0);
+    player.setWorld(w);
+    player.setSpriteSheetName("TestPlayer");
+    w.addActor(player);
+    
+    
+    
+    
+    player.addAnimation("walkDown");
     player.addKeyHook(Keyboard.KEY_DOWN, "walkDown");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN,null), new Motion(0.f,1.f));
     
-    player.addAnimation("walkLeft",  ss.getAnimation("walkLeft"));
+    player.addAnimation("walkLeft");
     player.addKeyHook(Keyboard.KEY_RIGHT, "walkLeft");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_RIGHT,null), new Motion(1.f,0.f));
     
-    player.addAnimation("walkUp", ss.getAnimation("walkUp"));
+    player.addAnimation("walkUp");
     player.addKeyHook(Keyboard.KEY_UP, "walkUp");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_UP,null), new Motion(0.f,-1.f));
     
-    player.addAnimation("walkRight",  ss.getAnimation("walkRight"));
+    player.addAnimation("walkRight");
     player.addKeyHook(Keyboard.KEY_LEFT, "walkRight");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_LEFT,null), new Motion(-1.f,0.f));
     
@@ -179,12 +183,7 @@ public class WorldBuilder
     
     return new Player(null, 0, 0);
   }
-  
-  public static Tile parseTile(String xml){
-    return new Tile(null, 0, 0);
-    
-  }
-  
+
   public static NonPlayer parseNonPlayer(String xml){
     return new NonPlayer(null, 0f, 0f, 0f, 0f);
   }
@@ -210,7 +209,7 @@ public class WorldBuilder
     x.alias("keyCombo", KeyCombo.class);
     x.alias("image", Image.class);
     x.alias("animation", Animation.class);
-    
+    x.alias("spriteSheet", SpriteSheet.class);
     
     /*
     x.addImplicitCollection(World.class,"actors");
@@ -219,6 +218,7 @@ public class WorldBuilder
     x.addImplicitCollection(Level.class, "objectLayer");
     x.addImplicitCollection(Level.class, "foregroundLayer");*/
     x.registerConverter(new ImageConverter());
+    //x.registerConverter(new SpriteSheetConverter());
     
     return x;
   }
