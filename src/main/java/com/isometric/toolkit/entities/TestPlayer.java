@@ -44,7 +44,6 @@ public class TestPlayer extends Actor
     this.height = height;
     this.width = width;
     logger.info("Instantiated Player");
-    logger.info("Player xml:\n" + this.toXml());
   }
   
 
@@ -149,24 +148,6 @@ public class TestPlayer extends Actor
     
   }
 
-  @Override
-  public String toXml ()
-  {
-    
-    XStream xStream = new XStream(new DomDriver());
-    return xStream.toXML(this);
-    
-    
-  }
-
-  @Override
-  public void fromXml (String xml)
-  {
-    
-  }
-
-
-@Override
 boolean collides(Actor a) {
 	// TODO Auto-generated method stub
 	return false;

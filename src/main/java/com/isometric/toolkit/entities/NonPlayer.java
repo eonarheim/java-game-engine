@@ -42,20 +42,6 @@ public class NonPlayer extends Actor
   }
 
   @Override
-  public String toXml ()
-  {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  void fromXml (String xml)
-  {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
   boolean collides (Actor a)
   {
     // TODO Auto-generated method stub

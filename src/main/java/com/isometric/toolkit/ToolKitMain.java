@@ -31,9 +31,9 @@ public class ToolKitMain
     
     World gameWorld = null;
     try{
-      //gameWorld = WorldBuilder.newWorld();
+      gameWorld = WorldBuilder.newWorld();
       
-      gameWorld = WorldBuilder.parseWorld("worlds/world.xml");
+      //gameWorld = WorldBuilder.parseWorld("worlds/world.xml");
       //gameWorld = WorldBuilder.parseWorld("worlds/test.world");//new World(ToolKitMain.class.getClassLoader().getResourceAsStream("start.world"));
     }catch (Exception e){
       logger.error("Failed to load world file! Exiting program...");

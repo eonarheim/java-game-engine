@@ -17,7 +17,7 @@ public class Level
   
   private String name = "Default Name";
 
-  private List<Float> backgroundLayer = new ArrayList<Float>(); // This data
+  private List<Tile> backgroundLayer = new ArrayList<Tile>(); // This data
                                                                 // type may need
                                                                 // to change
   private List<Actor> objectLayer = new ArrayList<Actor>();
@@ -33,13 +33,11 @@ public class Level
 
   public void update ()
   {
-    if(objectLayer ==null){
-      logger.error("Wuh? ObjectLayer is null!");
+    for (Tile t: backgroundLayer){
+      t.update();
     }
+   
     for (Actor a: objectLayer) {
-      if(a==null){
-        logger.error("Actor is null!");
-      }
       a.update();
     }
 
@@ -55,6 +53,10 @@ public class Level
 
   public void draw ()
   {
+    for (Tile t: backgroundLayer){
+      t.draw();
+    }
+    
     for (Actor a: objectLayer) {
       a.draw();
     }
@@ -72,6 +74,15 @@ public class Level
   public void removeActor (Actor a)
   {
     objectLayer.remove(a);
+  }
+  
+  public void addTile(Tile t){
+    backgroundLayer.add(t);
+    
+  }
+  
+  public void removeTile(Tile t){
+    backgroundLayer.remove(t);    
   }
 
   public String getName ()

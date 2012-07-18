@@ -24,7 +24,6 @@ public class Player extends Actor
     super(w, x, y, 100, 100);
 
     logger.info("Instantiated Player");
-    logger.info("Player xml:\n" + this.toXml());
 
     // TODO Auto-generated constructor stub
   }
@@ -64,19 +63,6 @@ public class Player extends Actor
     }
   }
 
-  @Override
-  public String toXml ()
-  {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  void fromXml (String xml)
-  {
-    // TODO Auto-generated method stub
-
-  }
 
   @Override
   boolean collides (Actor a)

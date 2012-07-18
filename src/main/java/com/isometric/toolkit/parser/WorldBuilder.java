@@ -44,10 +44,19 @@ public class WorldBuilder
     ss.createAnimation(8, 9, "walkRight", 0.2f);
     w.addSpriteSheet("TestPlayer", ss);
     
+    SpriteSheet tiles = new SpriteSheet("BasicTileSet.png",10,2);
+    tiles.createAnimation(0, 1, "grass", 2.f);
+    w.addSpriteSheet("BasicTileSet", tiles);
+    
     Player player = new Player(w, 0, 0);
-    player.setWorld(w);
     player.setSpriteSheetName("TestPlayer");
     w.addActor(player);
+    
+    Tile tile = new Tile(w, false, 0, 0);
+    tile.setSpriteSheetName("BasicTileSet");
+    tile.addAnimation("grass", tiles.createAnimation(0, 0, "grass", 2.f));
+    tile.setCurrentAnimation("grass");
+    tile.setScale(2.0f);
     
     
     
@@ -74,6 +83,7 @@ public class WorldBuilder
     
     Level newLevel = new Level();
     newLevel.addActor(player);
+    newLevel.addTile(tile);
     w.addLevel(newLevel);
     w.setCurrentLevel(newLevel);
     

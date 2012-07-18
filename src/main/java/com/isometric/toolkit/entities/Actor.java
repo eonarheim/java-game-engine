@@ -47,10 +47,6 @@ public abstract class Actor
     this.dy = dy;
   }
 
-  protected Actor (String xml)
-  {
-    fromXml(xml);
-  }
 
   public static String getType ()
   {
@@ -60,11 +56,6 @@ public abstract class Actor
   abstract public void update ();
 
   abstract public void draw ();
-
-  abstract public String toXml ();
-
-  abstract void fromXml (String xml);
-
   abstract boolean collides (Actor a);
 
   public float getX ()
@@ -134,6 +125,7 @@ public abstract class Actor
   
   public void addAnimation (String key){
     this.animations.put(key, this.world.getSpriteSheet(this.spriteSheetName).getAnimation(key));
+    this.setCurrentAnimation(key);
   }
 
   public void removeAnimation (String key)
