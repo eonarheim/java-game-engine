@@ -11,10 +11,9 @@ import com.isometric.toolkit.engine.Trigger;
 
 public class Level
 {
-  
-  
+
   static Logger logger = LoggerFactory.getLogger();
-  
+
   private String name = "Default Name";
 
   private List<Tile> backgroundLayer = new ArrayList<Tile>(); // This data
@@ -26,9 +25,10 @@ public class Level
                                                                 // to change
 
   private List<Trigger> triggers = new ArrayList<Trigger>();
-  
-  public Level(){
-    
+
+  public Level ()
+  {
+
   }
 
   public void update ()
@@ -95,4 +95,8 @@ public class Level
     this.name = name;
   }
 
+  public List<Actor> getObjectLayer ()
+  {
+    return this.objectLayer;
+  }
 }

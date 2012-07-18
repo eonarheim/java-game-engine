@@ -15,12 +15,15 @@ public abstract class Actor
   protected String type = "Actor";
 
   private float scale = 1.f;
-  
+
   protected float x;
   protected float y;
 
   protected float dx;
   protected float dy;
+
+  protected float width;
+  protected float height;
 
   protected HashMap<String, Animation> animations =
     new HashMap<String, Animation>();
@@ -38,6 +41,8 @@ public abstract class Actor
 
   private boolean isometric = false;
 
+  // TODO Eventually get rid of... we want to force an Actor to have a width and
+  // height
   protected Actor (World w, float x, float y, float dx, float dy)
   {
     this.world = w;
@@ -46,6 +51,19 @@ public abstract class Actor
     this.dx = dx;
     this.dy = dy;
   }
+
+  protected Actor (World w, float x, float y, float dx, float dy, float width,
+                   float height)
+  {
+    this.world = w;
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.width = width;
+    this.height = height;
+  }
+
 
 
   public static String getType ()
@@ -182,9 +200,12 @@ public abstract class Actor
   {
 
     this.scale = scale;
-    for(Animation a : this.animations.values()){
+    for (Animation a: this.animations.values()) {
       a.setScale(scale);
     }
+
+    this.width = this.width * scale;
+    this.height = this.height * scale;
   }
 
   public String getSpriteSheetName ()
@@ -197,4 +218,23 @@ public abstract class Actor
     this.spriteSheetName = spriteSheetName;
   }
 
+  public float getWidth ()
+  {
+    return this.width;
+  }
+
+  public void setWidth (float width)
+  {
+    this.width = width;
+  }
+
+  public float getHeight ()
+  {
+    return this.height;
+  }
+
+  public void setHeight (float height)
+  {
+    this.height = height;
+  }
 }

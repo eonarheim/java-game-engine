@@ -52,6 +52,15 @@ public class WorldBuilder
     player.setSpriteSheetName("TestPlayer");
     w.addActor(player);
     
+    Player testCollide = new Player(w, 100,100);
+    testCollide.setSpriteSheetName("TestPlayer");
+    testCollide.addAnimation("walkUp");
+    testCollide.addAnimation("walkDown");
+    testCollide.setScale(2.f);
+    
+    w.addActor(testCollide);
+    
+    
     Tile tile = new Tile(w, false, 0, 0);
     tile.setSpriteSheetName("BasicTileSet");
     tile.addAnimation("grass", tiles.createAnimation(0, 0, "grass", 2.f));
@@ -84,6 +93,7 @@ public class WorldBuilder
     Level newLevel = new Level();
     newLevel.addActor(player);
     newLevel.addTile(tile);
+    newLevel.addActor(testCollide);
     w.addLevel(newLevel);
     w.setCurrentLevel(newLevel);
     

@@ -7,6 +7,7 @@ import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 
 public class Player extends Actor
@@ -31,7 +32,17 @@ public class Player extends Actor
   @Override
   public void update ()
   {
-
+    // uh, right now checking all other actors
+    // for (Actor a: super.world.getActors())
+    //TODO improve collision detection logic
+    for (Actor a: super.world.getCurrentLevel().getObjectLayer())
+      if (this != a) {
+        if (this.collides(a))
+        {
+          Window.writeToDebug("Collides!");
+          a.setCurrentAnimation("walkUp"); //visual hack just to show collision
+        }
+      }
     for (int key: this.keyHooks.keySet()) {
       if (Keyboard.isKeyDown(key)) {
         String animation = keyHooks.get(key);
@@ -67,8 +78,15 @@ public class Player extends Actor
   @Override
   boolean collides (Actor a)
   {
-    // TODO Auto-generated method stub
-    return false;
+    // note: x,y coordinates for images start in upper left corner
+    // if (right1 < left2 || left1 > right2 || bot1 < top2 || top1 > bot2) then no way it collides
+    if ((this.getX() + this.getWidth()) < a.getX()
+        || this.getX() > (a.getX() + a.getWidth())
+        || (this.getY() + this.getHeight()) < a.getY()
+        || this.getY() > (a.getY() + a.getHeight()))
+      return false;
+
+    return true;
   }
 
 }
