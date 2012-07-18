@@ -10,10 +10,9 @@ import com.isometric.toolkit.LoggerFactory;
 
 public class Level
 {
-  
-  
+
   static Logger logger = LoggerFactory.getLogger();
-  
+
   private String name = "Default Name";
 
   private List<Float> backgroundLayer = new ArrayList<Float>(); // This data
@@ -25,18 +24,19 @@ public class Level
                                                                 // to change
 
   private List<Trigger> triggers = new ArrayList<Trigger>();
-  
-  public Level(){
-    
+
+  public Level ()
+  {
+
   }
 
   public void update ()
   {
-    if(objectLayer ==null){
+    if (objectLayer == null) {
       logger.error("Wuh? ObjectLayer is null!");
     }
     for (Actor a: objectLayer) {
-      if(a==null){
+      if (a == null) {
         logger.error("Actor is null!");
       }
       a.update();
@@ -83,4 +83,8 @@ public class Level
     this.name = name;
   }
 
+  public List<Actor> getObjectLayer ()
+  {
+    return this.objectLayer;
+  }
 }

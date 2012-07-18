@@ -95,5 +95,10 @@ public class World
   {
     this.currentLevel = currentLevel;
   }
+  
+  public List<Actor> getActors()
+  {
+    return this.actors;
+  }
 
 }
