@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.newdawn.slick.util.Log;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.engine.Trigger;
 
 public class Level
 {

@@ -33,6 +33,8 @@ public abstract class Actor
 
   protected String currentAnimation = "";
 
+  private String spriteSheetName = null;
+  
   protected SpriteSheet spriteSheet = null;
 
   public World world = null;
@@ -146,6 +148,10 @@ public abstract class Actor
   {
     this.animations.put(key, value);
   }
+  
+  public void addAnimation (String key){
+    this.animations.put(key, this.world.getSpriteSheet(this.spriteSheetName).getAnimation(key));
+  }
 
   public void removeAnimation (String key)
   {
@@ -207,6 +213,16 @@ public abstract class Actor
 
     this.width = this.width * scale;
     this.height = this.height * scale;
+  }
+
+  public String getSpriteSheetName ()
+  {
+    return spriteSheetName;
+  }
+
+  public void setSpriteSheetName (String spriteSheetName)
+  {
+    this.spriteSheetName = spriteSheetName;
   }
 
   public float getWidth ()

@@ -122,6 +122,10 @@ public class Image implements Drawable
     logger.info("Loading sprite. Vertical Offset(" + height + "): "
                 + verticalOffset + " Horizontal Offset(" + width + "): "
                 + horizontalOffset);
+    
+    if(image == null){
+      logger.error("Internal image "+ref+" failed to load!");      
+    }
     tmp =
       image.getSubimage((horizontalOffset) * width, verticalOffset * height,
                         width, height);
@@ -220,7 +224,7 @@ public class Image implements Drawable
   public static Image loadImage (String ref)
   {
     Image resultImage = new Image();
-
+    resultImage.setRef(ref);
     BufferedImage image = null;
     try {
       image =

@@ -14,6 +14,10 @@ public class SpriteSheet
   
   private Image internalImage;
   private String internalImagePath = "";
+  
+  private int horizontalCount = 0;
+  private int verticalCount = 0;
+  
   private List<Image> images = new ArrayList<Image>();
   //private List<Animation> animations = new ArrayList<Animation>();
   private HashMap<String, Animation> animations = new HashMap<String, Animation>();
@@ -22,6 +26,9 @@ public class SpriteSheet
   {
     setInternalImagePath(ref);
     internalImage = Image.loadImage(ref);
+    this.setHorizontalCount(horizontalCount);
+    this.setVerticalCount(verticalCount);
+    
     int w = internalImage.getWidth();
     int h = internalImage.getHeight();
     int verticalSpacing = (int) Math.floor(w / horizontalCount);
@@ -67,6 +74,26 @@ public class SpriteSheet
   public void setInternalImagePath (String internalImagePath)
   {
     this.internalImagePath = internalImagePath;
+  }
+
+  public int getHorizontalCount ()
+  {
+    return horizontalCount;
+  }
+
+  public void setHorizontalCount (int horizontalCount)
+  {
+    this.horizontalCount = horizontalCount;
+  }
+
+  public int getVerticalCount ()
+  {
+    return verticalCount;
+  }
+
+  public void setVerticalCount (int verticalCount)
+  {
+    this.verticalCount = verticalCount;
   }
 
 }
