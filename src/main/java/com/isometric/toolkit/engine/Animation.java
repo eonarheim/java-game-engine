@@ -70,6 +70,8 @@ public class Animation implements Drawable
   
   private float scale = 1.f;
   private int rotation = 0;
+  
+  private long oldTime = System.currentTimeMillis();
 
   public Animation (List<Image> images, float speed)
   {
@@ -85,11 +87,18 @@ public class Animation implements Drawable
 
   public void tick ()
   {
-
+    /* Old way, buggy when sharing animations
     if (ticker++ / 60.f > getSpeed()) {
       currIndex = (currIndex + 1) % maxIndex;
       ticker = 0;
     }
+    */
+    long newTime = System.currentTimeMillis();
+    if((newTime - oldTime)/1000.f > getSpeed()){
+      currIndex = (currIndex + 1) % maxIndex;
+      oldTime = newTime;
+    }
+    
   }
 
   public void draw (int x, int y)

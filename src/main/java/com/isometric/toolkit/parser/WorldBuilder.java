@@ -45,27 +45,27 @@ public class WorldBuilder
     w.addSpriteSheet("TestPlayer", ss);
     
     SpriteSheet tiles = new SpriteSheet("BasicTileSet.png",10,2);
-    tiles.createAnimation(0, 1, "grass", 2.f);
+    tiles.createAnimation(0, 0, "grass", 2.f);
     w.addSpriteSheet("BasicTileSet", tiles);
     
     Player player = new Player(w, 0, 0);
     player.setSpriteSheetName("TestPlayer");
+    player.setHeight(25.f);
+    player.setWidth(25.f);
     w.addActor(player);
     
     Player testCollide = new Player(w, 100,100);
     testCollide.setSpriteSheetName("TestPlayer");
     testCollide.addAnimation("walkUp");
     testCollide.addAnimation("walkDown");
+    testCollide.setHeight(35.f);
+    testCollide.setWidth(35.f);
+    
     testCollide.setScale(2.f);
     
     w.addActor(testCollide);
     
     
-    Tile tile = new Tile(w, false, 0, 0);
-    tile.setSpriteSheetName("BasicTileSet");
-    tile.addAnimation("grass", tiles.createAnimation(0, 0, "grass", 2.f));
-    tile.setCurrentAnimation("grass");
-    tile.setScale(2.0f);
     
     
     
@@ -92,7 +92,21 @@ public class WorldBuilder
     
     Level newLevel = new Level();
     newLevel.addActor(player);
-    newLevel.addTile(tile);
+    
+    for(int x=0; x < 20; x++){
+      for(int y=0; y < 20; y++){
+        Tile tile = new Tile(w, false, 0, 0);
+        tile.setSpriteSheetName("BasicTileSet");
+        tile.addAnimation("grass");
+        tile.setCurrentAnimation("grass");
+        tile.setScale(2.0f);
+        tile.setX(x*22*2.0f);
+        tile.setY(y*25*2.0f);
+        newLevel.addTile(tile);
+      }
+    }
+    
+    
     newLevel.addActor(testCollide);
     w.addLevel(newLevel);
     w.setCurrentLevel(newLevel);
