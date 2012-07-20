@@ -64,6 +64,8 @@ public class Level
     for (Actor a: foregroundLayer) {
       a.draw();
     }
+    
+    
   }
 
   public void addActor (Actor a)

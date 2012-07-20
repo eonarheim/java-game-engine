@@ -1,8 +1,11 @@
 package com.isometric.toolkit.entities;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.util.HashMap;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
@@ -34,7 +37,7 @@ public abstract class Actor
   protected String currentAnimation = "";
 
   private String spriteSheetName = null;
-  
+
   protected SpriteSheet spriteSheet = null;
 
   public World world = null;
@@ -64,8 +67,6 @@ public abstract class Actor
     this.height = height;
   }
 
-
-
   public static String getType ()
   {
     return Actor.class.toString();
@@ -74,7 +75,33 @@ public abstract class Actor
   abstract public void update ();
 
   abstract public void draw ();
+
   abstract boolean collides (Actor a);
+
+  protected void drawBoundingBox ()
+  {
+    glDisable(GL_TEXTURE_2D);
+    //glEnable(GL_COLOR_MATERIAL);
+
+    glBegin(GL_LINES);
+    glColor4f(1.f, 1.f, 0.0f,1f);
+    glVertex2f(this.x, this.y);
+    glVertex2f(this.x + width, this.y);
+
+    glVertex2f(this.x + width, this.y);
+    glVertex2f(this.x + width, this.y + height);
+
+    glVertex2f(this.x + width, this.y + height);
+    glVertex2f(this.x, this.y + height);
+
+    glVertex2f(this.x, this.y + height);
+    glVertex2f(this.x, this.y);
+    
+    glEnd();
+    glColor4f(1.f,1.f,1.f,1.f);
+    glEnable(GL_TEXTURE_2D);
+
+  }
 
   public float getX ()
   {
@@ -140,9 +167,11 @@ public abstract class Actor
   {
     this.animations.put(key, value);
   }
-  
-  public void addAnimation (String key){
-    this.animations.put(key, this.world.getSpriteSheet(this.spriteSheetName).getAnimation(key));
+
+  public void addAnimation (String key)
+  {
+    this.animations.put(key, this.world.getSpriteSheet(this.spriteSheetName)
+            .getAnimation(key));
     this.setCurrentAnimation(key);
   }
 

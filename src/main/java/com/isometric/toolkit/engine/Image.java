@@ -1,33 +1,6 @@
 package com.isometric.toolkit.engine;
 
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_NEAREST;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.GL_RGB;
-import static org.lwjgl.opengl.GL11.GL_RGBA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glBlendFunc;
-import static org.lwjgl.opengl.GL11.glDisable;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glGenTextures;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
-import static org.lwjgl.opengl.GL11.glTexImage2D;
-import static org.lwjgl.opengl.GL11.glTexParameteri;
-import static org.lwjgl.opengl.GL11.glTranslatef;
-import static org.lwjgl.opengl.GL11.glVertex2f;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glLoadIdentity;
-import static org.lwjgl.opengl.GL11.glScalef;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -339,7 +312,6 @@ public class Image implements Drawable
 
     // store the current model matrix
     glPushMatrix();
-
     // bind to the appropriate texture for this sprite
 
     float width = texture.getImageWidth() * scale;
@@ -373,6 +345,34 @@ public class Image implements Drawable
     glDisable(GL_BLEND);
     // restore the model view matrix to prevent contamination
     glPopMatrix();
+    if(Window.isDebug()){
+      drawBoundingBox(x,y);
+    }
+
+  }
+  
+  protected void drawBoundingBox (int x, int y)
+  {
+    glDisable(GL_TEXTURE_2D);
+    //glEnable(GL_COLOR_MATERIAL);
+
+    glBegin(GL_LINES);
+    glColor4f(0.f, 0.f, 1f,1f);
+    glVertex2f(x, y);
+    glVertex2f(x + width*scale, y);
+
+    glVertex2f(x + width*scale, y);
+    glVertex2f(x + width*scale, y + height*scale);
+
+    glVertex2f(x + width*scale, y + height*scale);
+    glVertex2f(x, y + height*scale);
+
+    glVertex2f(x, y + height*scale);
+    glVertex2f(x, y);
+    
+    glEnd();
+    glColor4f(1.f,1.f,1.f,1.f);
+    glEnable(GL_TEXTURE_2D);
 
   }
 

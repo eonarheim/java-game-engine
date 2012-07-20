@@ -68,10 +68,16 @@ public class Player extends Actor
   @Override
   public void draw ()
   {
+    
+    
     Animation a = null;
     if ((a = animations.get(this.getCurrentAnimation())) != null) {
       a.draw((int) this.getX(), (int) this.getY());
     }
+    if(Window.isDebug()){
+      this.drawBoundingBox();
+    }
+    
   }
 
 

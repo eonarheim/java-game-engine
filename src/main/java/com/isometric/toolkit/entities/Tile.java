@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.SpriteSheet;
+import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 
 public class Tile extends Actor
@@ -41,6 +42,10 @@ public class Tile extends Actor
     Animation a = null;
     if ((a = animations.get(this.getCurrentAnimation())) != null) {
       a.draw((int) this.getX(), (int) this.getY());
+    }
+    
+    if(Window.isDebug()){
+      this.drawBoundingBox();
     }
 
   }

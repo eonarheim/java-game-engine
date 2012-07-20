@@ -3,6 +3,7 @@ package com.isometric.toolkit.entities;
 import org.apache.log4j.Logger;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 
 
@@ -39,6 +40,9 @@ public class NonPlayer extends Actor
   {
     // TODO Auto-generated method stub
     
+    if(Window.isDebug()){
+      this.drawBoundingBox();
+    }
   }
 
   @Override

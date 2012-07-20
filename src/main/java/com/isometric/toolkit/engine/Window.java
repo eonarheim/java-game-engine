@@ -125,7 +125,7 @@ public class Window
         
       }
 
-       checkInput();
+      checkInput();
       Display.update();
       Display.sync(60);
 
