@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.log4j.Logger;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL13;
 
 import com.isometric.toolkit.LoggerFactory;
 
@@ -316,6 +317,9 @@ public class Image implements Drawable
 
     float width = texture.getImageWidth() * scale;
     float height = texture.getImageHeight() * scale;
+
+    glHint(GL13.GL_TEXTURE_COMPRESSION_HINT, GL_NICEST);
+    
     texture.bind();
 
     glEnable(GL_BLEND);
