@@ -46,7 +46,7 @@ public class WorldBuilder
     w.addSpriteSheet("TestPlayer", ss);
     
     SpriteSheet tiles = new SpriteSheet("BasicTileSet.png",10,2);
-    tiles.createAnimation(0, 0, "grass", 2.f);
+    tiles.createAnimation(0, 1, "grass", 1.f);
     w.addSpriteSheet("BasicTileSet", tiles);
     
     Player player = new Player(w, 0, 0);
