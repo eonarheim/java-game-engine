@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
 import com.isometric.toolkit.engine.KeyCombo;
@@ -66,6 +67,8 @@ public class WorldBuilder
     w.addActor(testCollide);
     
     
+    Camera c = new Camera(player,200f, 800, 600);
+    w.setCamera(c);
     
     
     
@@ -101,7 +104,7 @@ public class WorldBuilder
         tile.setCurrentAnimation("grass");
         tile.setScale(2.0f);
         tile.setX(x*22*2.0f);
-        tile.setY(y*25*2.0f);
+        tile.setY(y*24*2.0f);
         newLevel.addTile(tile);
       }
     }

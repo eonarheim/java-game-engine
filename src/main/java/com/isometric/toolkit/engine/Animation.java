@@ -52,6 +52,13 @@ import com.isometric.toolkit.ToolKitMain;
 public class Animation implements Drawable
 {
   static Logger logger = LoggerFactory.getLogger();
+  
+  
+  public enum Type {
+    CYCLE,
+    PING_PONG,
+    ONCE
+  }
 
   // Assumes a linear horizontal spriteshteed
   private int height; // Height of each individual sprite in the spritesheet

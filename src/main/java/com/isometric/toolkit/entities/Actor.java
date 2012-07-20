@@ -80,26 +80,32 @@ public abstract class Actor
 
   protected void drawBoundingBox ()
   {
+    
+    glPushMatrix();
     glDisable(GL_TEXTURE_2D);
     //glEnable(GL_COLOR_MATERIAL);
-
+    glTranslatef(x,y,0);
+    
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 0.0f,1f);
-    glVertex2f(this.x, this.y);
-    glVertex2f(this.x + width, this.y);
+    glVertex2f(0f, 0f);
+    glVertex2f(width, 0);
 
-    glVertex2f(this.x + width, this.y);
-    glVertex2f(this.x + width, this.y + height);
+    glVertex2f(width, 0);
+    glVertex2f(width, height);
 
-    glVertex2f(this.x + width, this.y + height);
-    glVertex2f(this.x, this.y + height);
+    glVertex2f(width, height);
+    glVertex2f(0, height);
 
-    glVertex2f(this.x, this.y + height);
-    glVertex2f(this.x, this.y);
+    glVertex2f(0, height);
+    glVertex2f(0, 0);
     
     glEnd();
     glColor4f(1.f,1.f,1.f,1.f);
     glEnable(GL_TEXTURE_2D);
+    glPopMatrix();
+
+    //glTranslatef((float)x,(float)y,0);
 
   }
 

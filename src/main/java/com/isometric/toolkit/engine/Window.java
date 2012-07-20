@@ -96,7 +96,7 @@ public class Window
     GL11.glMatrixMode(GL11.GL_MODELVIEW);
     GL11.glLoadIdentity();
     GL11.glViewport(0, 0, 800, 600);
-    GL11.glClearColor(0f, 1f, .2f, 1f);
+    GL11.glClearColor(0f, 0f, .0f, 1f);
 
     logger.info("Entering mainloop");
     

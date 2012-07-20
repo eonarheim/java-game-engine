@@ -11,6 +11,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.parser.WorldBuilder;
@@ -29,6 +30,8 @@ public class World
   
   
   private Level currentLevel = new Level(); 
+  
+  private Camera camera = null;
     
   
   private String worldName = "";
@@ -47,7 +50,12 @@ public class World
       Window.writeToDebug("Serializing world now!");
     }
     
+    camera.update();
+    
     currentLevel.update();
+    
+    
+    
     
   }
   
@@ -57,12 +65,24 @@ public class World
     // Clear the screen and depth buffer
     GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
     GL11.glMatrixMode(GL11.GL_MODELVIEW);
-    GL11.glLoadIdentity(); 
-        
- 
+    GL11.glLoadIdentity();
+    GL11.glPushMatrix();
+    //this.camera.applyTransform();
+   // GL11.glTranslatef(100f, 100f, 0);
+    // Apply camera transforms here!!!
+   // GL11.glScalef(.5f, .5f, 0.f);
+    camera.applyTransform();
     currentLevel.draw();
-    
+    GL11.glPopMatrix();
+
+     
   }
+  
+  public void applyTransformations(){
+    camera.applyTransform();
+  }
+  
+  
   
   public void addActor(Actor a){
     actors.add(a);
@@ -120,6 +140,20 @@ public class World
   public List<Actor> getActors()
   {
     return this.actors;
+  }
+
+
+
+  public Camera getCamera ()
+  {
+    return camera;
+  }
+
+
+
+  public void setCamera (Camera camera)
+  {
+    this.camera = camera;
   }
 
 }
