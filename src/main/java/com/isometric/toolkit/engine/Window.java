@@ -32,9 +32,15 @@ public class Window
   private World gameWorld = null;
   private boolean calledInit = false;
   private static boolean debug = true;
+  private static boolean console = false;
+  
+  private Console c = null;
 
   private Font font = new Font("HELVETICA", Font.PLAIN, 15);
   private UnicodeFont f = new UnicodeFont(font);
+  
+  public static Integer currentKey = null;
+  
 
   private long lastFrame;
 
@@ -57,6 +63,9 @@ public class Window
       f.addAsciiGlyphs();
       f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
       f.loadGlyphs();
+      
+      logger.info("Loading console");
+      c = new Console();
 
     }
     catch (LWJGLException e) {
@@ -108,7 +117,9 @@ public class Window
       
 
       updateFPS();
-      gameWorld.update();
+      if(!isConsole()){
+        gameWorld.update();
+      }
       gameWorld.draw();
       // Debug text
       if (isDebug()) {
@@ -119,13 +130,18 @@ public class Window
           f.drawString(10f, yoffset, s);
           yoffset += 15.f;
         }
-
         GL11.glDisable(GL11.GL_BLEND);
-        
         
       }
 
       checkInput();
+      
+      if(isConsole()){
+        //c.update();
+        c.draw();
+      }
+      
+      
       Display.update();
       Display.sync(60);
 
@@ -187,8 +203,10 @@ public class Window
   {
 
     while (Keyboard.next()) {
+      
+      c.update(Keyboard.getEventCharacter());
       if (Keyboard.getEventKeyState()) {
-        if (Keyboard.getEventKey() == Keyboard.KEY_D) {
+        if (Keyboard.getEventKey() == Keyboard.KEY_D && !isConsole()) {
           if(!isDebug()){
             System.out.println("Debug Enabled");
             logger.info("Debug enabled");
@@ -199,6 +217,17 @@ public class Window
             setDebug(false);
           }
         }
+        
+        if(Keyboard.getEventKey() == Keyboard.KEY_F1){
+          if(!isConsole()){
+            Window.writeToDebug("Jython Console Active");
+            setConsole(true);
+          }else{
+            Window.writeToDebug("Jython Console Disabled");
+            setConsole(false);            
+          }
+        }
+        
       }
       else {
         if (Keyboard.getEventKey() == Keyboard.KEY_D) {
@@ -220,6 +249,16 @@ public class Window
   public static void writeToDebug(String msg){
     debugList.add(msg);
     timerList.add(3);
+  }
+
+  public static boolean isConsole ()
+  {
+    return console;
+  }
+
+  public static void setConsole (boolean console)
+  {
+    Window.console = console;
   }
 
 }
