@@ -85,6 +85,7 @@ public class Window
     logger.info("Window initialized");
     this.calledInit = true;
     this.gameWorld = w;
+    Console.setWorld(w);
 
   }
 

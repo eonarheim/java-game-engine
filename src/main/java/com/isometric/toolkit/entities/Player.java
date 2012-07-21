@@ -1,7 +1,13 @@
 package com.isometric.toolkit.entities;
 
+import java.awt.Font;
+
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
+
+import static org.lwjgl.opengl.GL11.*;
 
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
@@ -14,6 +20,9 @@ public class Player extends Actor
 {
 
   static Logger logger = LoggerFactory.getLogger();
+  
+  protected Font font = new Font("Consolas", Font.BOLD, 10);
+  protected UnicodeFont f = new UnicodeFont(font);
 
   public static String getType ()
   {
@@ -22,12 +31,23 @@ public class Player extends Actor
 
   public Player (World w, float x, float y)
   {
-    super(w, x, y, 100, 100);
+    super(w, x, y, 0, 0);
+    
+    try {
+      f.addAsciiGlyphs();
+      f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
+      f.loadGlyphs();
+    }
+    catch (Exception e) {
+      logger.error("Console Failed to load glyphs!: " + e.getMessage());
+    }
 
     logger.info("Instantiated Player");
 
     // TODO Auto-generated constructor stub
   }
+  
+  
 
   @Override
   public void update ()
@@ -56,10 +76,16 @@ public class Player extends Actor
       if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
           && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
         Motion m = motionHooks.get(key);
-        this.x += m.getDx();
-        this.y += m.getDy();
+        this.dx += m.getDx();
+        this.dy += m.getDy();
       }
+      
     }
+    
+    this.x += this.dx;
+    this.y += this.dy;
+    this.dx = 0;
+    this.dy = 0;
 
     // TODO Auto-generated method stub
 
@@ -76,6 +102,12 @@ public class Player extends Actor
     }
     if(Window.isDebug()){
       this.drawBoundingBox();
+      glPushMatrix();
+      glTranslatef(x,y,0);
+      glEnable(GL_BLEND);
+      f.drawString(0, -10, "("+x+","+y+")");
+      glDisable(GL_BLEND);
+      glPopMatrix();
     }
     
   }

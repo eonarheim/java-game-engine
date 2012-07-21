@@ -1,25 +1,9 @@
 package com.isometric.toolkit.engine;
 
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_NICEST;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glBlendFunc;
-import static org.lwjgl.opengl.GL11.glColor4f;
-import static org.lwjgl.opengl.GL11.glDisable;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glHint;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
-import static org.lwjgl.opengl.GL11.glTranslatef;
-import static org.lwjgl.opengl.GL11.glVertex2f;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Font;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +13,18 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
+
 
 import com.isometric.toolkit.LoggerFactory;
 
 public class Console
 {
   private static Logger logger = LoggerFactory.getLogger();
+  private static Console single = null;
+  private static World world = null;
+  
   Integer eventKey = null;
   char eventChar = '~';
   boolean drawn = false;
@@ -43,14 +32,19 @@ public class Console
   private Font font = new Font("Consolas", Font.PLAIN, 15);
   private UnicodeFont f = new UnicodeFont(font);
 
+  private PythonInterpreter interpreter = null;
+  
+  
   // Cursor related variables
-  float cursorX = 200;
-  float cursorY = 50;
+  private float cursorX = 200;
+  private float cursorY = 500;
   int currentLine = 0;
   boolean blink = false;
   long oldTime = System.currentTimeMillis();
 
   List<String> lines = new ArrayList<String>();
+  List<String> output = new ArrayList<String>();
+  //PyObject out = new PyObject();
 
   public Console ()
   {
@@ -63,6 +57,13 @@ public class Console
       logger.error("Console Failed to load glyphs!: " + e.getMessage());
     }
     lines.add("");
+    interpreter = new PythonInterpreter();
+    interpreter.exec("from com.isometric.toolkit.engine import Console");
+    single = this;
+  }
+  
+  public static Console loadApi(){
+    return single;
   }
   
   private void tick ()
@@ -93,13 +94,30 @@ public class Console
                   lines.get(currentLine) + String.valueOf(eventChar));
       }
       // Handle backspace
-      if (eventChar == 8) {
+      if (eventChar == 8 && lines.get(currentLine).length() > 0) {
         String tmp = lines.get(currentLine);
         lines.set(currentLine, tmp.substring(0, tmp.length() - 1));
       }
       // Handle return
       if (eventChar == 13) {
         logger.info("Jython: " + lines.get(currentLine));
+        try {
+          
+          ByteArrayOutputStream out = new  ByteArrayOutputStream();
+          interpreter.setOut(out);
+          interpreter.exec(lines.get(currentLine));
+          if(out.toString().length()>0){
+            for(String s : out.toString().split("\n")){
+              lines.add(s);
+              currentLine++;
+            }
+          }
+        } catch (Exception e){
+            //Window.writeToDebug(e.getMessage());
+          lines.add("---Python syntax error---");
+          currentLine++;
+          logger.info(e.getMessage());       
+        }
         lines.add("");
         currentLine++;
       }
@@ -152,15 +170,45 @@ public class Console
     
     if(blink){
       
-      f.drawString(cursorX+f.getWidth(lines.get(currentLine)), cursorY, "|");
+      f.drawString(getCursorX()+f.getWidth(lines.get(currentLine)), getCursorY(), "|");
     }
     
-    float tmpY = cursorY;
+    float tmpY = getCursorY();
     for (int i = currentLine; i >= 0; i--) {
-      f.drawString(cursorX-20, tmpY, "%>");
-      f.drawString(cursorX, tmpY, lines.get(i));
+      f.drawString(getCursorX()-20, tmpY, "%>");
+      f.drawString(getCursorX(), tmpY, lines.get(i));
       tmpY -= 15f;
     }
     GL11.glDisable(GL11.GL_BLEND);
+  }
+
+  public float getCursorX ()
+  {
+    return cursorX;
+  }
+
+  public void setCursorX (float cursorX)
+  {
+    this.cursorX = cursorX;
+  }
+
+  public float getCursorY ()
+  {
+    return cursorY;
+  }
+
+  public void setCursorY (float cursorY)
+  {
+    this.cursorY = cursorY;
+  }
+
+  public static World getWorld ()
+  {
+    return world;
+  }
+
+  public static void setWorld (World world)
+  {
+    Console.world = world;
   }
 }

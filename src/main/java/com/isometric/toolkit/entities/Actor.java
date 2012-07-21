@@ -2,11 +2,16 @@ package com.isometric.toolkit.entities;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import java.awt.Font;
 import java.util.HashMap;
 
+import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
@@ -15,6 +20,7 @@ import com.isometric.toolkit.engine.World;
 
 public abstract class Actor
 {
+  private static Logger logger = LoggerFactory.getLogger();
   protected String type = "Actor";
 
   private float scale = 1.f;
@@ -44,6 +50,8 @@ public abstract class Actor
 
   private boolean isometric = false;
 
+ 
+  
   // TODO Eventually get rid of... we want to force an Actor to have a width and
   // height
   protected Actor (World w, float x, float y, float dx, float dy)
@@ -53,6 +61,8 @@ public abstract class Actor
     this.y = y;
     this.dx = dx;
     this.dy = dy;
+    
+   
   }
 
   protected Actor (World w, float x, float y, float dx, float dy, float width,
@@ -65,6 +75,7 @@ public abstract class Actor
     this.dy = dy;
     this.width = width;
     this.height = height;
+        
   }
 
   public static String getType ()
@@ -81,10 +92,14 @@ public abstract class Actor
   protected void drawBoundingBox ()
   {
     
+    
+    
     glPushMatrix();
     glDisable(GL_TEXTURE_2D);
     //glEnable(GL_COLOR_MATERIAL);
     glTranslatef(x,y,0);
+    
+   
     
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 0.0f,1f);
@@ -103,6 +118,10 @@ public abstract class Actor
     glEnd();
     glColor4f(1.f,1.f,1.f,1.f);
     glEnable(GL_TEXTURE_2D);
+    
+    //glEnable(GL_BLEND);
+    //f.drawString(0, 5, "("+x+","+y+")");
+    //glDisable(GL_BLEND);
     glPopMatrix();
 
     //glTranslatef((float)x,(float)y,0);
