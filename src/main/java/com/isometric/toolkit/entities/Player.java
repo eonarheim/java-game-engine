@@ -15,6 +15,7 @@ import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
+import com.isometric.toolkit.sound.SoundManager;
 
 public class Player extends Actor
 {
@@ -59,6 +60,7 @@ public class Player extends Actor
       if (this != a) {
         if (this.collides(a))
         {
+          SoundManager.playSound("ring");
           Window.writeToDebug("Collides!");
           a.setCurrentAnimation("walkUp"); //visual hack just to show collision
         }

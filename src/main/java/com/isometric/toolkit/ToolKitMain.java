@@ -7,6 +7,7 @@ import org.apache.log4j.PropertyConfigurator;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.parser.WorldBuilder;
+import com.isometric.toolkit.sound.Sound;
 
 public class ToolKitMain
 {
@@ -25,6 +26,12 @@ public class ToolKitMain
       System.exit(1);
     }
     
+    
+    Sound s = new Sound("digitallove.wav");
+   
+    s.play();
+    
+   
     
     logger.info("Starting Java RPG toolkit...");
     Window application = new Window();

@@ -24,6 +24,8 @@ import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.entities.NonPlayer;
 import com.isometric.toolkit.entities.Player;
 import com.isometric.toolkit.entities.Tile;
+import com.isometric.toolkit.sound.Sound;
+import com.isometric.toolkit.sound.SoundManager;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 //import com.isometric.toolkit.entities.Playable;
@@ -70,9 +72,9 @@ public class WorldBuilder
     Camera c = new Camera(player,200f, 800, 600);
     w.setCamera(c);
     
+    Sound s = new Sound("sonicring.wav");
     
-    
-    
+    SoundManager.addSound("ring", s);
     player.addAnimation("walkDown");
     player.addKeyHook(Keyboard.KEY_DOWN, "walkDown");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN,null), new Motion(0.f,1.f));

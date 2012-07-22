@@ -98,6 +98,11 @@ public class Console
         String tmp = lines.get(currentLine);
         lines.set(currentLine, tmp.substring(0, tmp.length() - 1));
       }
+      // Handle up arrow
+      //if (eventChar == 0 && Keyboard.getEventCharacter() != 0){
+       // lines.set(currentLine, currentLine>0?lines.get(currentLine):"");        
+      //}
+      
       // Handle return
       if (eventChar == 13) {
         logger.info("Jython: " + lines.get(currentLine));
@@ -118,9 +123,12 @@ public class Console
           currentLine++;
           logger.info(e.getMessage());       
         }
+        
         lines.add("");
         currentLine++;
       }
+
+      //Window.writeToDebug(String.valueOf((int)eventChar));
 
       if (Keyboard.getEventKeyState()) {
         drawn = false;
