@@ -21,7 +21,7 @@ public class Player extends Actor
 {
 
   static Logger logger = LoggerFactory.getLogger();
-  
+
   protected Font font = new Font("Consolas", Font.BOLD, 10);
   protected UnicodeFont f = new UnicodeFont(font);
 
@@ -33,7 +33,7 @@ public class Player extends Actor
   public Player (World w, float x, float y)
   {
     super(w, x, y, 0, 0);
-    
+
     try {
       f.addAsciiGlyphs();
       f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
@@ -47,79 +47,72 @@ public class Player extends Actor
 
     // TODO Auto-generated constructor stub
   }
-  
-  
 
   @Override
   public void update ()
   {
-    // uh, right now checking all other actors
-    // for (Actor a: super.world.getActors())
-    //TODO improve collision detection logic
-    for (Actor a: super.world.getCurrentLevel().getObjectLayer())
-      if (this != a) {
-        if (this.collides(a))
-        {
-          SoundManager.playSound("ring");
-          Window.writeToDebug("Collides!");
-          a.setCurrentAnimation("walkUp"); //visual hack just to show collision
-        }
-      }
+    // Set animation
     for (int key: this.keyHooks.keySet()) {
       if (Keyboard.isKeyDown(key)) {
         String animation = keyHooks.get(key);
         this.setCurrentAnimation(animation);
-
       }
     }
 
-    for (KeyCombo key: this.motionHooks.keySet()) {
+    // Set motion
+      for (KeyCombo key: this.motionHooks.keySet()) {
 
-      if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
-          && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
-        Motion m = motionHooks.get(key);
-        this.dx += m.getDx();
-        this.dy += m.getDy();
-      }
-      
-    }
-    
+        if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
+            && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
+          Motion m = motionHooks.get(key);
+          this.dx += m.getDx();
+          this.dy += m.getDy();
+        }
+      }    
+         
     this.x += this.dx;
     this.y += this.dy;
+     
+    // TODO improve collision detection logic, right now doing an n^2 check        
+      for (Actor a: super.world.getActors())
+      if (this != a) {
+        if (this.collides(a)) {
+          SoundManager.playSound("ring");          
+          this.x -= this.dx;
+          this.y -= this.dy;
+        }
+      }
+    
     this.dx = 0;
     this.dy = 0;
-
-    // TODO Auto-generated method stub
-
   }
 
   @Override
   public void draw ()
   {
-    
-    
+
     Animation a = null;
     if ((a = animations.get(this.getCurrentAnimation())) != null) {
       a.draw((int) this.getX(), (int) this.getY());
     }
-    if(Window.isDebug()){
+    if (Window.isDebug()) {
       this.drawBoundingBox();
       glPushMatrix();
-      glTranslatef(x,y,0);
+      glTranslatef(x, y, 0);
       glEnable(GL_BLEND);
-      f.drawString(0, -10, "("+x+","+y+")");
+      f.drawString(0, -10, "(" + x + "," + y + ")");
       glDisable(GL_BLEND);
       glPopMatrix();
     }
-    
-  }
 
+  }
 
   @Override
   boolean collides (Actor a)
   {
     // note: x,y coordinates for images start in upper left corner
-    // if (right1 < left2 || left1 > right2 || bot1 < top2 || top1 > bot2) then no way it collides
+    // if (right1 < left2 || left1 > right2 || bot1 < top2 || top1 > bot2) then
+    // no way it collides
     if ((this.getX() + this.getWidth()) < a.getX()
         || this.getX() > (a.getX() + a.getWidth())
         || (this.getY() + this.getHeight()) < a.getY()
