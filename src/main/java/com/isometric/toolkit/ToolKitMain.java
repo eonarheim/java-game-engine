@@ -27,9 +27,7 @@ public class ToolKitMain
     }
     
     
-    Sound s = new Sound("digitallove.wav");
-   
-    s.play();
+    
     
    
     

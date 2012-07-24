@@ -38,6 +38,9 @@ public class Console
   // Cursor related variables
   private float cursorX = 200;
   private float cursorY = 500;
+  private float width = 500;
+  private float height = 200;
+  
   int currentLine = 0;
   boolean blink = false;
   long oldTime = System.currentTimeMillis();
@@ -143,35 +146,28 @@ public class Console
       drawn = true;
     }
 
-    
-    //glPushMatrix();
-    // bind to the appropriate texture for this sprite
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPushMatrix();
 
+    GL11.glColor4f(0.f,0.f,1.f,.5f);
     
-    //glEnable(GL_BLEND);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     // translate to the right location and prepare to draw
 
-    //glTranslatef(cursorX-50,cursorY-200, 0);
-    //GL11.glColor4f(0.f,0.f,1.f,.5f);
+    glTranslatef(cursorX-30,cursorY-this.height+20, 0);
     // draw a quad textured to match the sprite
-    //glBegin(GL_QUADS);
-    //{
-     // glVertex2f(0, 0);
+    glBegin(GL_QUADS);
+    glVertex2f(0, 0);
+    glVertex2f(0, this.height);
+    glVertex2f(this.width, this.height);
+    glVertex2f(this.width, 0);
 
-    //  glVertex2f(0, 200);
-
-    //  glVertex2f(500, 200);
-
-   //   glVertex2f(500, 0);
-    //}
-    //glEnd();
-    //GL11.glColor4f(1.f,1.f,1.f,1.f);
-    //glDisable(GL_BLEND);
+    glEnd();
     // restore the model view matrix to prevent contamination
-    //glPopMatrix();
+    glPopMatrix();
+
+   // GL11.glColor4f(1.f,1.f,1.f,1.f);
     
-    GL11.glEnable(GL11.GL_BLEND);
     
     
     
@@ -218,5 +214,25 @@ public class Console
   public static void setWorld (World world)
   {
     Console.world = world;
+  }
+
+  public float getWidth ()
+  {
+    return width;
+  }
+
+  public void setWidth (float width)
+  {
+    this.width = width;
+  }
+
+  public float getHeight ()
+  {
+    return height;
+  }
+
+  public void setHeight (float height)
+  {
+    this.height = height;
   }
 }
