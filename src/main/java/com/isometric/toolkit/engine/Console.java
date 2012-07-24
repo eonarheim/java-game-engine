@@ -39,7 +39,7 @@ public class Console
   private float cursorX = 200;
   private float cursorY = 500;
   private float width = 500;
-  private float height = 200;
+  private float height = 400;
   
   int currentLine = 0;
   boolean blink = false;
@@ -146,11 +146,13 @@ public class Console
       drawn = true;
     }
 
+    glDisable(GL_TEXTURE_2D);
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glPushMatrix();
 
-    GL11.glColor4f(0.f,0.f,1.f,.5f);
+    GL11.glColor4f(0.23f,0.15f,.58f,.5f);
     
     // translate to the right location and prepare to draw
 
@@ -166,8 +168,7 @@ public class Console
     // restore the model view matrix to prevent contamination
     glPopMatrix();
 
-   // GL11.glColor4f(1.f,1.f,1.f,1.f);
-    
+    //GL11.glColor4f(1.f,1.f,1.f,1.f);
     
     
     
@@ -179,11 +180,16 @@ public class Console
     
     float tmpY = getCursorY();
     for (int i = currentLine; i >= 0; i--) {
+      if(tmpY < getCursorY()-getHeight()+20){
+        break;
+      }
       f.drawString(getCursorX()-20, tmpY, "%>");
       f.drawString(getCursorX(), tmpY, lines.get(i));
       tmpY -= 15f;
     }
     GL11.glDisable(GL11.GL_BLEND);
+    glEnable(GL_TEXTURE_2D);
+    
   }
 
   public float getCursorX ()
