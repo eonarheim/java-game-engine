@@ -178,6 +178,16 @@ public abstract class Actor
       motionQueueDeltas.add(m);
       motionQueueDestination.add(new Point(x,y));
       motionQueueAnimations.add(this.currentAnimation);
+    }else{
+      start = true;
+      motionQueueDeltas.clear();
+      motionQueueDestination.clear();
+      motionQueueAnimations.clear();
+      
+
+      motionQueueDeltas.add(m);
+      motionQueueDestination.add(new Point(x,y));
+      motionQueueAnimations.add(this.currentAnimation);
     }
     
     
@@ -188,6 +198,17 @@ public abstract class Actor
     
     if(!interrupt){
       start = true;
+      motionQueueDeltas.add(m);
+      motionQueueDestination.add(new Point(x,y));
+      motionQueueAnimations.add(animation);
+    }else{
+      start = true;
+
+      motionQueueDeltas.clear();
+      motionQueueDestination.clear();
+      motionQueueAnimations.clear();
+      
+
       motionQueueDeltas.add(m);
       motionQueueDestination.add(new Point(x,y));
       motionQueueAnimations.add(animation);
