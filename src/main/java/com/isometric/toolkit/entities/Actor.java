@@ -3,7 +3,9 @@ package com.isometric.toolkit.entities;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
@@ -15,6 +17,7 @@ import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.World;
 
@@ -39,6 +42,15 @@ public abstract class Actor
   protected HashMap<Integer, String> keyHooks = new HashMap<Integer, String>();
   protected HashMap<KeyCombo, Motion> motionHooks =
     new HashMap<KeyCombo, Motion>();
+  
+  // Motion stuff
+  protected List<Motion> motionQueueDeltas = new ArrayList<Motion>();
+  protected List<Point> motionQueueDestination = new ArrayList<Point>();
+  protected List<String> motionQueueAnimations = new ArrayList<String>();
+  
+  private float oldDistance = 99999f;
+  private long oldTime = System.currentTimeMillis();
+  private boolean start = true;
 
   protected String currentAnimation = "";
 
@@ -83,7 +95,35 @@ public abstract class Actor
     return Actor.class.toString();
   }
 
-  abstract public void update ();
+  protected void update (){
+    if(start){
+      oldTime = System.currentTimeMillis();
+      start = false;
+    }
+    if(motionQueueDeltas.size() > 0){
+      Motion m = motionQueueDeltas.get(0);
+      Point dest = motionQueueDestination.get(0);
+      logger.info("Distance to target: " + dest.distance(new Point(this.getX(), this.getY())));
+      float tmpDistance = dest.distance(new Point(this.getX(),this.getY()));
+      if(tmpDistance > oldDistance){
+        motionQueueDeltas.remove(0);
+        motionQueueDestination.remove(0);
+        motionQueueAnimations.remove(0);   
+        oldDistance = 999999f;
+        start=true;
+      }else if(!start){
+        oldDistance = tmpDistance;
+        //float elapsed = (System.currentTimeMillis() - oldTime)/1000.f;
+       
+        this.dx = m.getDx()*(1.f/60f);//*elapsed;
+        this.dy = m.getDy()*(1.f/60f);//*elapsed;
+        if(motionQueueAnimations.size()>0){
+          this.currentAnimation = motionQueueAnimations.get(0);
+        }
+        //oldTime = System.currentTimeMillis();
+      }
+    }
+  }
 
   abstract public void draw ();
 
@@ -126,6 +166,34 @@ public abstract class Actor
 
     //glTranslatef((float)x,(float)y,0);
 
+  }
+  
+  
+  
+  public void move(float x, float y, float time, boolean interrupt){
+    Motion m = new Motion((x-this.getX() )/time,(y -this.getY() )/time);
+    
+    if(!interrupt){
+      start = true;
+      motionQueueDeltas.add(m);
+      motionQueueDestination.add(new Point(x,y));
+      motionQueueAnimations.add(this.currentAnimation);
+    }
+    
+    
+  }
+  
+  public void move(float x, float y, float time, String animation, boolean interrupt){
+    Motion m = new Motion((x-this.getX() )/time,(y -this.getY() )/time);
+    
+    if(!interrupt){
+      start = true;
+      motionQueueDeltas.add(m);
+      motionQueueDestination.add(new Point(x,y));
+      motionQueueAnimations.add(animation);
+    }
+    
+    
   }
 
   public float getX ()

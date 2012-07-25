@@ -51,6 +51,7 @@ public class Player extends Actor
   @Override
   public void update ()
   {
+    super.update();
     // Set animation
     for (int key: this.keyHooks.keySet()) {
       if (Keyboard.isKeyDown(key)) {
@@ -60,29 +61,29 @@ public class Player extends Actor
     }
 
     // Set motion
-      for (KeyCombo key: this.motionHooks.keySet()) {
+    for (KeyCombo key: this.motionHooks.keySet()) {
 
-        if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
-            && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
-          Motion m = motionHooks.get(key);
-          this.dx += m.getDx();
-          this.dy += m.getDy();
-        }
-      }    
-         
+      if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
+          && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
+        Motion m = motionHooks.get(key);
+        this.dx += m.getDx();
+        this.dy += m.getDy();
+      }
+    }
+    
     this.x += this.dx;
     this.y += this.dy;
-     
-    // TODO improve collision detection logic, right now doing an n^2 check        
-      for (Actor a: super.world.getActors())
+
+    // TODO improve collision detection logic, right now doing an n^2 check
+    for (Actor a: super.world.getActors())
       if (this != a) {
         if (this.collides(a)) {
-          SoundManager.playSound("ring");          
+          SoundManager.playSound("ring");
           this.x -= this.dx;
           this.y -= this.dy;
         }
       }
-    
+
     this.dx = 0;
     this.dy = 0;
   }
