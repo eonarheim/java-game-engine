@@ -1,5 +1,6 @@
 package com.isometric.toolkit.engine;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,26 @@ public class SpriteSheet
   {
     setInternalImagePath(ref);
     internalImage = Image.loadImage(ref);
+    this.setHorizontalCount(horizontalCount);
+    this.setVerticalCount(verticalCount);
+    
+    int w = internalImage.getWidth();
+    int h = internalImage.getHeight();
+    int verticalSpacing = (int) Math.floor(w / horizontalCount);
+    int horizontalSpacing = (int) Math.floor(h / verticalCount);
+
+    for (int j = 0; j < verticalCount; j++) {
+      for (int i = 0; i < horizontalCount; i++) {
+        images.add(Image.loadSubimage(ref, verticalSpacing, horizontalSpacing,
+                                      i, j));
+      }
+    }
+  }
+  
+  public SpriteSheet (String ref, int horizontalCount, int verticalCount, InputStream foo)
+  {
+    setInternalImagePath(ref);
+    internalImage = Image.loadImage(ref, foo);
     this.setHorizontalCount(horizontalCount);
     this.setVerticalCount(verticalCount);
     

@@ -1,0 +1,8 @@
+Class = com.isometric.toolkit.entities.TestPlayer
+X = 0.0
+Y = 0.0
+Dx = 0.0
+Dy = 0.0
+SpriteRef = TestPlayer.png
+Height = 25
+Width = 21

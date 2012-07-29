@@ -1,0 +1,52 @@
+-Begin Actor-
+	name = TestPlayer
+	class = com.isometric.toolkit.entities.TestPlayer
+	x = 0.0
+	x = 0.0
+	dx = 0.0
+	dy = 0.0
+	spriteRef = TestPlayer2.png
+	height = 25
+	width = 21
+-End Actor-
+
+# Register animations for actor
+# Parameters "{Name} = {Image Offset} {Image Count} {Image Speed in seconds}
+-Begin Register Animations-
+	Up = 6 2 .2
+	Down = 1 2 .2
+	Left = 
+	Right = 
+	UpRightDiag = 
+	UpLeftDiag =
+	DownRightDiag = 
+	DownLeftDiag = 
+	IdleUp = 
+	IdleDown =
+	IdleLeft = 
+	IdleRight = 
+	IdleURDiag =
+	IdleULDiag =
+	IdleDRDiag =
+	IdleDLDiag =
+	Attack = 
+	Defend =
+	Damage = 
+-End Register Animations-
+
+-Begin Key Animation Bindings-
+	KEY_UP = Up
+	KEY_DOWN = Down
+	KEY_LEFT = Left
+	KEY_RIGHT = Right
+	KEY_A = Attack
+-End Key Animation Bindings-
+
+#If multipress is true the up and down make diagonal movement
+-Begin Key Movement Bindings-
+	MultiPress = true
+	KEY_UP = [y -.5]
+	KEY_DOWN = [y .5]
+	KEY_LEFT = [x -.5]
+	KEY_RIGHT = [x .5]
+-End Key Movement Bindings-

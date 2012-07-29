@@ -1,0 +1,5 @@
+WorldName = Test
+Camera = Orthographic
+IsMouseValid = true
+Playable = testPlayer.actor
+Levels = test.level
