@@ -6,11 +6,13 @@ import org.junit.Test;
 
 public class SoundTest
 {
-
+  
+  
   @Test
-  public void test ()
-  {
-    fail("Not yet implemented");
+  public void testConstructor(){
+    Sound s = new Sound("sonicring.wav");
+    assertNotNull(s);
+    assertEquals(s.getSoundPath(),"sonicring.wav");
   }
-
+  
 }

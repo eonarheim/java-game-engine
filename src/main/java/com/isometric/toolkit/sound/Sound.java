@@ -28,6 +28,7 @@ public class Sound
   
   private String soundPath = "";
   private boolean isLoaded = false;
+  private boolean played = false;
   WaveData waveFile = null;
   
   /** Buffers hold sound data. */
@@ -103,6 +104,7 @@ public class Sound
     // Do another error check and return.
     if (AL10.alGetError() == AL10.AL_NO_ERROR){
       logger.info("Loading sound once: " +soundPath);
+      //System.out.println(soundPath);
       isLoaded = true;
       return AL10.AL_TRUE;
     }
@@ -135,11 +137,11 @@ public class Sound
         // Load the wav data.
         if(loadALData() == AL10.AL_FALSE) {
           System.out.println("Error loading data.");
-          //return;
+          return;
         }
-        
+
+        played = true;
         AL10.alSourcePlay(source.get(0));
-        
         
         
         
@@ -175,6 +177,16 @@ public class Sound
   public void setSoundPath (String soundPath)
   {
     this.soundPath = soundPath;
+  }
+
+  public boolean isPlayed ()
+  {
+    return played;
+  }
+
+  public void setPlayed (boolean played)
+  {
+    this.played = played;
   }
   
 
