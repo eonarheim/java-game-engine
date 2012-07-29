@@ -27,7 +27,8 @@ public class Sound
   
   
   private String soundPath = "";
-  
+  private boolean isLoaded = false;
+  WaveData waveFile = null;
   
   /** Buffers hold sound data. */
   IntBuffer buffer = BufferUtils.createIntBuffer(1);
@@ -53,9 +54,15 @@ public class Sound
   
   public Sound(String soundPath){
     this.soundPath = soundPath;
+
+    waveFile = WaveData.create("sounds/"+soundPath);
   }  
   
   private int loadALData() {
+    if(isLoaded){
+      return AL10.AL_TRUE;
+    }
+    
     // Load wav data into a buffer.
     AL10.alGenBuffers(buffer);
 
@@ -77,10 +84,9 @@ public class Sound
     }*/
 
     //Loads the wave file from this class's package in your classpath
-    WaveData waveFile = WaveData.create("sounds/"+soundPath);
 
     AL10.alBufferData(buffer.get(0), waveFile.format, waveFile.data, waveFile.samplerate);
-    waveFile.dispose();
+    //waveFile.dispose();
 
     // Bind the buffer with the source.
     AL10.alGenSources(source);
@@ -95,8 +101,12 @@ public class Sound
     AL10.alSource (source.get(0), AL10.AL_VELOCITY, sourceVel     );
 
     // Do another error check and return.
-    if (AL10.alGetError() == AL10.AL_NO_ERROR)
+    if (AL10.alGetError() == AL10.AL_NO_ERROR){
+      logger.info("Loading sound once: " +soundPath);
+      isLoaded = true;
       return AL10.AL_TRUE;
+    }
+      
 
     return AL10.AL_FALSE;
   }
@@ -110,6 +120,7 @@ public class Sound
     new Thread(new Runnable() { // the wrapper thread is unnecessary, unless it blocks on the Clip finishing, see comments
       
       public void run() {
+        //System.out.println("Play sound");
         // OpenAL implementation
         try{
           if(!AL.isCreated()){
@@ -124,7 +135,7 @@ public class Sound
         // Load the wav data.
         if(loadALData() == AL10.AL_FALSE) {
           System.out.println("Error loading data.");
-          return;
+          //return;
         }
         
         AL10.alSourcePlay(source.get(0));
