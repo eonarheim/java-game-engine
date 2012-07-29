@@ -51,7 +51,7 @@ public class World
   
   public void update(){
     if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-      WorldBuilder.writeWorld(this);
+      WorldBuilder.writeWorldToLogger(this);
       Window.writeToDebug("Serializing world now!");
     }
     
