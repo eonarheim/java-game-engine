@@ -5,21 +5,21 @@ import java.util.Map;
 
 public class SoundManager
 {
-  private static Map<String, Sound> sounds = new HashMap<String,Sound>();
+  private Map<String, Sound> sounds = new HashMap<String,Sound>();
   
-  public static void addSound(String name, Sound sound){
+  public void addSound(String name, Sound sound){
     sounds.put(name, sound);
   }
   
-  public static Sound getSound(String name){
+  public Sound getSound(String name){
     return sounds.get(name);
   }
   
-  public static void playSound(String name){
+  public void playSound(String name){
     sounds.get(name).play();
   }
   
-  public static void removeSound(String name){
+  public void removeSound(String name){
     sounds.remove(name);
   }
   

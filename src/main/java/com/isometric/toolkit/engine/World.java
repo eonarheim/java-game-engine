@@ -15,12 +15,15 @@ import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.parser.WorldBuilder;
+import com.isometric.toolkit.sound.SoundManager;
 
 
 public class World
 {
   static Logger logger = LoggerFactory.getLogger();
   
+
+  private SoundManager soundManager = new SoundManager();
   
   private Map<String, SpriteSheet> spriteSheets = new HashMap<String, SpriteSheet>();
   
@@ -35,6 +38,8 @@ public class World
     
   
   private String worldName = "";
+
+
   
   
   public World(){
@@ -154,6 +159,20 @@ public class World
   public void setCamera (Camera camera)
   {
     this.camera = camera;
+  }
+
+
+
+  public SoundManager getSoundManager ()
+  {
+    return soundManager;
+  }
+
+
+
+  public void setSoundManager (SoundManager soundManager)
+  {
+    this.soundManager = soundManager;
   }
 
 }

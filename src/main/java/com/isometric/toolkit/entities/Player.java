@@ -16,14 +16,21 @@ import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.sound.SoundManager;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+@XStreamAlias("player")
 public class Player extends Actor
 {
 
+  
   static Logger logger = LoggerFactory.getLogger();
-
-  protected Font font = new Font("Consolas", Font.BOLD, 10);
-  protected UnicodeFont f = new UnicodeFont(font);
+  
+  @XStreamOmitField
+  protected Font font = null;//
+  
+  @XStreamOmitField
+  protected UnicodeFont f = null;//
 
   public static String getType ()
   {
@@ -34,14 +41,7 @@ public class Player extends Actor
   {
     super(w, x, y, 0, 0);
 
-    try {
-      f.addAsciiGlyphs();
-      f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
-      f.loadGlyphs();
-    }
-    catch (Exception e) {
-      logger.error("Console Failed to load glyphs!: " + e.getMessage());
-    }
+    
 
     logger.info("Instantiated Player");
 
@@ -78,7 +78,7 @@ public class Player extends Actor
     for (Actor a: super.world.getActors())
       if (this != a) {
         if (this.collides(a)) {
-          SoundManager.playSound("ring");
+          world.getSoundManager().playSound("ring");
           this.x -= this.dx;
           this.y -= this.dy;
         }
@@ -91,6 +91,22 @@ public class Player extends Actor
   @Override
   public void draw ()
   {
+    if(font==null){
+      font = new Font("Consolas", Font.BOLD, 10);      
+    }
+    
+    if(f==null){
+      f = new UnicodeFont(font);
+      try {
+        f.addAsciiGlyphs();
+        f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
+        f.loadGlyphs();
+      }
+      catch (Exception e) {
+        logger.error("Console Failed to load glyphs!: " + e.getMessage());
+      }
+    }
+    
 
     Animation a = null;
     if ((a = animations.get(this.getCurrentAnimation())) != null) {

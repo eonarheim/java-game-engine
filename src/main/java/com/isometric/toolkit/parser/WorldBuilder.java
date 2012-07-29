@@ -74,7 +74,7 @@ public class WorldBuilder
     
     Sound s = new Sound("sonicring.wav");
     
-    SoundManager.addSound("ring", s);
+    w.getSoundManager().addSound("ring", s);
     player.addAnimation("walkDown");
     player.addKeyHook(Keyboard.KEY_DOWN, "walkDown");
     player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN,null), new Motion(0.f,1.f));
@@ -234,11 +234,12 @@ public class WorldBuilder
   private static XStream setup(){
     
     XStream x = new XStream(new DomDriver());
-    
+    x.processAnnotations(Player.class);
+    x.autodetectAnnotations(true);
     // World Alias's
     x.alias("world", World.class);
     x.alias("actor", Actor.class);
-    x.alias("player", Player.class);
+    //x.alias("player", Player.class);
     x.alias("level", Level.class);
     x.alias("trigger", Trigger.class);
     x.alias("tile", Tile.class);
@@ -247,6 +248,7 @@ public class WorldBuilder
     x.alias("motion", Motion.class);
     x.alias("keyCombo", KeyCombo.class);
     x.alias("image", Image.class);
+    x.alias("sound", Sound.class);
     x.alias("animation", Animation.class);
     x.alias("spriteSheet", SpriteSheet.class);
     
@@ -256,7 +258,9 @@ public class WorldBuilder
     x.addImplicitCollection(Level.class, "backgroundLayer");
     x.addImplicitCollection(Level.class, "objectLayer");
     x.addImplicitCollection(Level.class, "foregroundLayer");*/
+    //x.registerConverter(new TileConverter());
     x.registerConverter(new ImageConverter());
+    x.registerConverter(new SoundConverter());
     //x.registerConverter(new SpriteSheetConverter());
     
     return x;
