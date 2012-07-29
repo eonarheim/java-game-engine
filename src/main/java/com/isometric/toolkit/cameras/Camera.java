@@ -52,8 +52,8 @@ public class Camera
   public void update(){
     
     //if(distance() > distanceToEdge){
-      transx = x - actorToFollow.getX();
-      transy = y - actorToFollow.getY();
+      transx = x - actorToFollow.getX() - actorToFollow.getWidth()/2.f;
+      transy = y - actorToFollow.getY() - actorToFollow.getHeight()/2.f;
     //}
   
     if(Keyboard.isKeyDown(Keyboard.KEY_ADD) || Keyboard.isKeyDown(Keyboard.KEY_EQUALS)){
