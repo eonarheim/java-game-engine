@@ -1,5 +1,6 @@
 package com.isometric.toolkit.engine;
 
+import static org.junit.Assert.fail;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Color;
@@ -11,6 +12,7 @@ import java.awt.image.DataBuffer;
 import java.awt.image.DataBufferByte;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -218,6 +220,8 @@ public class Image implements Drawable
     for(URL url: urls2){
    	 logger.info("AnimationClassLoaderClassPaths: " + url.getFile());
    }        
+    
+    
 
     try {
 //      image =
@@ -336,148 +340,6 @@ public class Image implements Drawable
 
   }
   
-  public static Image loadImage (String ref, InputStream foo)
-  {
-    Image resultImage = new Image();
-    resultImage.setRef(ref);
-    BufferedImage image = null;
-    
-    ClassLoader cl = ClassLoader.getSystemClassLoader();
-    
-    URL[] urls = ((URLClassLoader)cl).getURLs();
-
-    for(URL url: urls){
-    	 logger.info("ClassPath: " + url.getFile());
-    }
-    URL[] urls2 = ((URLClassLoader)Animation.class.getClassLoader()).getURLs();
-    for(URL url: urls2){
-   	 logger.info("AnimationClassLoaderClassPaths: " + url.getFile());
-   }
-    
-    if (foo == null)
-    {
-    	logger.info("foo equals null inside LoadImage");
-    }
-    else
-    {
-    	logger.info("foo equals not null inside LoadImage");
-    }
-    try {
-//      image =
-//        ImageIO.read(Animation.class.getClassLoader()
-//                .getResourceAsStream("images/" + ref));
-      image =
-    	        ImageIO.read(foo);
-      //InputStream foo = Animation.class.getClassLoader().getResourceAsStream("C:\\Users\\Jeff\\Documents\\GitHub\\java-game-engine\\target\\test-classes\\images\\" + ref);
-//      InputStream foo = Animation.class.getClassLoader().getResourceAsStream("C:\\Users\\Jeff\\Documents\\GitHub\\java-game-engine\\src\\test\\resources\\images\\" + ref);
-//      if (foo == null)
-//      {
-//    	  logger.error("foo equals null");
-//    	  logger.error("C:/Users/Jeff/Documents/GitHub/java-game-engine/target/test-classes/images/" + ref);    	  
-//      }
-//      else
-//      {
-//    	  logger.info(foo.toString());
-//      }
-//      image =
-//    	        ImageIO.read(Animation.class.getClassLoader()
-//    	                .getResourceAsStream("C:/Users/JeffDocuments/GitHub/java-game-engine/target/test-classes/images/" + ref));
-    }
-    catch (Exception e) {
-      logger.error("Failed to load spritesheet: " + ref + " Exception: " + e);
-    }
-
-    BufferedImage tmp = null;
-
-    logger.info("Sprite: " + ref + " is loading..");
-    tmp = image;// image.getSubimage((offset) * width, 0, width, height);
-
-    int srcPixelFormat;
-
-    int textureID = createTextureID();
-    Texture texture = new Texture(GL_TEXTURE_2D, textureID);
-
-    // bind this texture
-    glBindTexture(GL_TEXTURE_2D, textureID);
-
-    texture.setWidth(tmp.getWidth());
-    texture.setHeight(tmp.getHeight());
-
-    resultImage.setWidth(tmp.getWidth());
-    resultImage.setHeight(tmp.getHeight());
-
-    if (tmp.getColorModel().hasAlpha()) {
-      srcPixelFormat = GL_RGBA;
-    }
-    else {
-      srcPixelFormat = GL_RGB;
-    }
-
-    WritableRaster raster;
-    BufferedImage texImage;
-
-    int texWidth = 2;
-    int texHeight = 2;
-
-    // find the closest power of 2 for the width and height
-    // of the produced texture
-    while (texWidth < tmp.getWidth()) {
-      texWidth *= 2;
-    }
-    while (texHeight < tmp.getHeight()) {
-      texHeight *= 2;
-    }
-
-    texture.setTextureHeight(texHeight);
-    texture.setTextureWidth(texWidth);
-
-    if (tmp.getColorModel().hasAlpha()) {
-      raster =
-        Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texWidth,
-                                       texHeight, 4, null);
-      texImage =
-        new BufferedImage(glAlphaColorModel, raster, false, new Hashtable());
-    }
-    else {
-      raster =
-        Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE, texWidth,
-                                       texHeight, 3, null);
-      texImage =
-        new BufferedImage(glColorModel, raster, false, new Hashtable());
-    }
-
-    // copy the source image into the produced image
-    Graphics g = texImage.getGraphics();
-    g.setColor(new Color(0f, 0f, 0f, 0f));
-    g.fillRect(0, 0, texWidth, texHeight);
-    g.drawImage(tmp, 0, 0, null);
-
-    ByteBuffer textureBuffer = null;
-
-    byte[] data =
-      ((DataBufferByte) texImage.getRaster().getDataBuffer()).getData();
-
-    textureBuffer = ByteBuffer.allocateDirect(data.length);
-    textureBuffer.order(ByteOrder.nativeOrder());
-    textureBuffer.put(data, 0, data.length);
-    textureBuffer.flip();
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-    // produce a texture from the byte buffer
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, get2Fold(tmp.getWidth()),
-                 get2Fold(tmp.getHeight()), 0, srcPixelFormat,
-                 GL_UNSIGNED_BYTE, textureBuffer);
-
-    resultImage.setTexture(texture);
-    
-    
-
-    return resultImage;
-
-  }
-
   private static int createTextureID ()
   {
     glGenTextures(textureIDBuffer);

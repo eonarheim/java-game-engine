@@ -43,26 +43,6 @@ public class SpriteSheet
     }
   }
   
-  public SpriteSheet (String ref, int horizontalCount, int verticalCount, InputStream foo)
-  {
-    setInternalImagePath(ref);
-    internalImage = Image.loadImage(ref, foo);
-    this.setHorizontalCount(horizontalCount);
-    this.setVerticalCount(verticalCount);
-    
-    int w = internalImage.getWidth();
-    int h = internalImage.getHeight();
-    int verticalSpacing = (int) Math.floor(w / horizontalCount);
-    int horizontalSpacing = (int) Math.floor(h / verticalCount);
-
-    for (int j = 0; j < verticalCount; j++) {
-      for (int i = 0; i < horizontalCount; i++) {
-        images.add(Image.loadSubimage(ref, verticalSpacing, horizontalSpacing,
-                                      i, j));
-      }
-    }
-  }
-
   public Animation createAnimation (int fromImage, int toImage, String name, float speed)
   {
     Animation newAnimation =
