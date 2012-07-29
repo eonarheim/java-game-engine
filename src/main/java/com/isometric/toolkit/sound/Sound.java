@@ -3,6 +3,7 @@ package com.isometric.toolkit.sound;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -105,10 +106,13 @@ public class Sound
   
   public synchronized void play() {
     new Thread(new Runnable() { // the wrapper thread is unnecessary, unless it blocks on the Clip finishing, see comments
+      
       public void run() {
-        /* OpenAL implementation
+        // OpenAL implementation
         try{
-          AL.create();
+          if(!AL.isCreated()){
+            AL.create();
+          }
         } catch (Exception le) {
           le.printStackTrace();
           return;
@@ -121,26 +125,30 @@ public class Sound
           return;
         }
         
-        AL10.alSourcePlay(source.get(0));*/
+        AL10.alSourcePlay(source.get(0));
         
         
         
         
         
-        // Java implementation
+        // Java implementation *sigh*
+        /*
         try {
-          Clip clip = AudioSystem.getClip();
+          
+          
 
           logger.info("Attempting to play sound..."+soundPath);
-          AudioInputStream inputStream = AudioSystem.getAudioInputStream(Sound.class.getClassLoader().getResourceAsStream("sounds/"+soundPath));
           
+          AudioInputStream inputStream = AudioSystem.getAudioInputStream(Sound.class.getClassLoader().getResourceAsStream("sounds/"+soundPath));
+
+          Clip clip = AudioSystem.getClip();
           clip.open(inputStream);
           clip.start(); 
           logger.info("Playing sound..."+soundPath);
         } catch (Exception e) { 
           logger.error("Error playing sound: " + e.getStackTrace());
           e.printStackTrace();
-        }
+        }*/
       }
     }).start();
   }
