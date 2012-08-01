@@ -218,12 +218,12 @@
                 <image reference="../../../../../images/image"/>
                 <image reference="../../../../../images/image[2]"/>
               </sprites>
-              <currIndex>1</currIndex>
+              <currIndex>0</currIndex>
               <maxIndex>2</maxIndex>
               <ticker>0</ticker>
               <scale>2.0</scale>
               <rotation>0</rotation>
-              <oldTime>1343581840045</oldTime>
+              <oldTime>1343779807134</oldTime>
             </animation>
           </entry>
         </animations>
@@ -352,7 +352,7 @@
               <ticker>0</ticker>
               <scale>2.0</scale>
               <rotation>0</rotation>
-              <oldTime>1343581836836</oldTime>
+              <oldTime>1343779807053</oldTime>
             </animation>
           </entry>
           <entry>
@@ -370,7 +370,7 @@
               <ticker>0</ticker>
               <scale>2.0</scale>
               <rotation>0</rotation>
-              <oldTime>1343581836836</oldTime>
+              <oldTime>1343779807053</oldTime>
             </animation>
           </entry>
           <entry>
@@ -388,7 +388,7 @@
               <ticker>0</ticker>
               <scale>2.0</scale>
               <rotation>0</rotation>
-              <oldTime>1343581836836</oldTime>
+              <oldTime>1343779807053</oldTime>
             </animation>
           </entry>
           <entry>
@@ -401,12 +401,12 @@
                 <image reference="../../../../../images/image[2]"/>
                 <image reference="../../../../../images/image[3]"/>
               </sprites>
-              <currIndex>1</currIndex>
+              <currIndex>0</currIndex>
               <maxIndex>2</maxIndex>
               <ticker>0</ticker>
               <scale>2.0</scale>
               <rotation>0</rotation>
-              <oldTime>1343581840306</oldTime>
+              <oldTime>1343779807924</oldTime>
             </animation>
           </entry>
         </animations>
@@ -462,20 +462,20 @@
       <motionHooks>
         <entry>
           <keyCombo>
+            <key1>200</key1>
+          </keyCombo>
+          <motion>
+            <dx>0.0</dx>
+            <dy>-1.0</dy>
+          </motion>
+        </entry>
+        <entry>
+          <keyCombo>
             <key1>208</key1>
           </keyCombo>
           <motion>
             <dx>0.0</dx>
             <dy>1.0</dy>
-          </motion>
-        </entry>
-        <entry>
-          <keyCombo>
-            <key1>203</key1>
-          </keyCombo>
-          <motion>
-            <dx>-1.0</dx>
-            <dy>0.0</dy>
           </motion>
         </entry>
         <entry>
@@ -489,11 +489,11 @@
         </entry>
         <entry>
           <keyCombo>
-            <key1>200</key1>
+            <key1>203</key1>
           </keyCombo>
           <motion>
-            <dx>0.0</dx>
-            <dy>-1.0</dy>
+            <dx>-1.0</dx>
+            <dy>0.0</dy>
           </motion>
         </entry>
       </motionHooks>
@@ -501,12 +501,17 @@
       <motionQueueDestination/>
       <motionQueueAnimations/>
       <oldDistance>99999.0</oldDistance>
-      <oldTime>1343581837041</oldTime>
+      <oldTime>1343779807161</oldTime>
       <start>false</start>
       <currentAnimation>walkDown</currentAnimation>
       <spriteSheetName>TestPlayer</spriteSheetName>
       <world reference="../../.."/>
       <isometric>false</isometric>
+      <health>0.0</health>
+      <mana>0.0</mana>
+      <attack>0.0</attack>
+      <defense>0.0</defense>
+      <inventory/>
     </player>
     <player>
       <type>Actor</type>
@@ -533,12 +538,17 @@
       <motionQueueDestination/>
       <motionQueueAnimations/>
       <oldDistance>99999.0</oldDistance>
-      <oldTime>1343581837041</oldTime>
+      <oldTime>1343779807161</oldTime>
       <start>false</start>
       <currentAnimation>walkDown</currentAnimation>
       <spriteSheetName>TestPlayer</spriteSheetName>
       <world reference="../../.."/>
       <isometric>false</isometric>
+      <health>0.0</health>
+      <mana>0.0</mana>
+      <attack>0.0</attack>
+      <defense>0.0</defense>
+      <inventory/>
     </player>
   </actors>
   <levels>
@@ -566,7 +576,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -595,7 +605,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -624,7 +634,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -653,7 +663,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -682,7 +692,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -711,7 +721,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -740,7 +750,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -769,7 +779,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -798,7 +808,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -827,7 +837,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -856,7 +866,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -885,7 +895,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -914,7 +924,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -943,7 +953,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -972,7 +982,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1001,7 +1011,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1030,7 +1040,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1059,7 +1069,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1088,7 +1098,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1117,7 +1127,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1146,7 +1156,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1175,7 +1185,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1204,7 +1214,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1233,7 +1243,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1262,7 +1272,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1291,7 +1301,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1320,7 +1330,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1349,7 +1359,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1378,7 +1388,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1407,7 +1417,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1436,7 +1446,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1465,7 +1475,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1494,7 +1504,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1523,7 +1533,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1552,7 +1562,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1581,7 +1591,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1610,7 +1620,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1639,7 +1649,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1668,7 +1678,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807158</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1697,7 +1707,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1726,7 +1736,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1755,7 +1765,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837035</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1784,7 +1794,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1813,7 +1823,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1842,7 +1852,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1871,7 +1881,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1900,7 +1910,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1929,7 +1939,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1958,7 +1968,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -1987,7 +1997,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2016,7 +2026,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2045,7 +2055,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2074,7 +2084,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2103,7 +2113,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2132,7 +2142,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2161,7 +2171,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2190,7 +2200,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2219,7 +2229,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2248,7 +2258,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2277,7 +2287,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2306,7 +2316,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2335,7 +2345,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2364,7 +2374,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2393,7 +2403,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2422,7 +2432,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2451,7 +2461,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2480,7 +2490,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2509,7 +2519,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2538,7 +2548,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2567,7 +2577,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2596,7 +2606,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2625,7 +2635,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2654,7 +2664,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2683,7 +2693,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2712,7 +2722,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2741,7 +2751,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2770,7 +2780,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2799,7 +2809,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2828,7 +2838,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2857,7 +2867,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2886,7 +2896,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2915,7 +2925,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2944,7 +2954,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -2973,7 +2983,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3002,7 +3012,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3031,7 +3041,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3060,7 +3070,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3089,7 +3099,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3118,7 +3128,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3147,7 +3157,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3176,7 +3186,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3205,7 +3215,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3234,7 +3244,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3263,7 +3273,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3292,7 +3302,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3321,7 +3331,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3350,7 +3360,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3379,7 +3389,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3408,7 +3418,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3437,7 +3447,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3466,7 +3476,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3495,7 +3505,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3524,7 +3534,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3553,7 +3563,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3582,7 +3592,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3611,7 +3621,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3640,7 +3650,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3669,7 +3679,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3698,7 +3708,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3727,7 +3737,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3756,7 +3766,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3785,7 +3795,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3814,7 +3824,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3843,7 +3853,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3872,7 +3882,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3901,7 +3911,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3930,7 +3940,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3959,7 +3969,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -3988,7 +3998,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4017,7 +4027,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4046,7 +4056,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4075,7 +4085,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4104,7 +4114,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4133,7 +4143,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4162,7 +4172,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837036</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4191,7 +4201,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4220,7 +4230,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4249,7 +4259,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4278,7 +4288,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4307,7 +4317,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4336,7 +4346,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4365,7 +4375,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4394,7 +4404,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4423,7 +4433,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4452,7 +4462,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4481,7 +4491,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4510,7 +4520,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4539,7 +4549,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4568,7 +4578,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4597,7 +4607,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4626,7 +4636,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4655,7 +4665,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4684,7 +4694,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4713,7 +4723,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4742,7 +4752,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4771,7 +4781,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4800,7 +4810,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4829,7 +4839,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4858,7 +4868,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4887,7 +4897,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4916,7 +4926,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4945,7 +4955,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -4974,7 +4984,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5003,7 +5013,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5032,7 +5042,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5061,7 +5071,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5090,7 +5100,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5119,7 +5129,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5148,7 +5158,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5177,7 +5187,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5206,7 +5216,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5235,7 +5245,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5264,7 +5274,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5293,7 +5303,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5322,7 +5332,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5351,7 +5361,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5380,7 +5390,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5409,7 +5419,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5438,7 +5448,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5467,7 +5477,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5496,7 +5506,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5525,7 +5535,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5554,7 +5564,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5583,7 +5593,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5612,7 +5622,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5641,7 +5651,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5670,7 +5680,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5699,7 +5709,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5728,7 +5738,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5757,7 +5767,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5786,7 +5796,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5815,7 +5825,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5844,7 +5854,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5873,7 +5883,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5902,7 +5912,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5931,7 +5941,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5960,7 +5970,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -5989,7 +5999,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6018,7 +6028,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6047,7 +6057,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6076,7 +6086,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6105,7 +6115,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6134,7 +6144,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6163,7 +6173,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6192,7 +6202,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6221,7 +6231,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6250,7 +6260,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6279,7 +6289,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6308,7 +6318,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6337,7 +6347,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6366,7 +6376,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6395,7 +6405,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6424,7 +6434,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6453,7 +6463,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6482,7 +6492,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6511,7 +6521,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6540,7 +6550,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837037</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6569,7 +6579,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6598,7 +6608,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6627,7 +6637,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6656,7 +6666,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6685,7 +6695,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6714,7 +6724,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6743,7 +6753,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6772,7 +6782,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6801,7 +6811,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6830,7 +6840,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6859,7 +6869,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6888,7 +6898,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6917,7 +6927,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6946,7 +6956,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -6975,7 +6985,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7004,7 +7014,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7033,7 +7043,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7062,7 +7072,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7091,7 +7101,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7120,7 +7130,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807159</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7149,7 +7159,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7178,7 +7188,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7207,7 +7217,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7236,7 +7246,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7265,7 +7275,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7294,7 +7304,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7323,7 +7333,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7352,7 +7362,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7381,7 +7391,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7410,7 +7420,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7439,7 +7449,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7468,7 +7478,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7497,7 +7507,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7526,7 +7536,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7555,7 +7565,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7584,7 +7594,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7613,7 +7623,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7642,7 +7652,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7671,7 +7681,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7700,7 +7710,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7729,7 +7739,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7758,7 +7768,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7787,7 +7797,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7816,7 +7826,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7845,7 +7855,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7874,7 +7884,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7903,7 +7913,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7932,7 +7942,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7961,7 +7971,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -7990,7 +8000,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8019,7 +8029,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8048,7 +8058,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8077,7 +8087,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8106,7 +8116,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8135,7 +8145,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8164,7 +8174,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8193,7 +8203,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8222,7 +8232,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8251,7 +8261,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8280,7 +8290,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8309,7 +8319,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8338,7 +8348,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8367,7 +8377,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8396,7 +8406,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8425,7 +8435,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8454,7 +8464,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8483,7 +8493,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8512,7 +8522,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8541,7 +8551,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8570,7 +8580,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8599,7 +8609,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8628,7 +8638,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8657,7 +8667,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8686,7 +8696,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8715,7 +8725,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8744,7 +8754,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8773,7 +8783,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8802,7 +8812,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8831,7 +8841,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8860,7 +8870,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8889,7 +8899,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8918,7 +8928,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8947,7 +8957,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -8976,7 +8986,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837038</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9005,7 +9015,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9034,7 +9044,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9063,7 +9073,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9092,7 +9102,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9121,7 +9131,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9150,7 +9160,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9179,7 +9189,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9208,7 +9218,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9237,7 +9247,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9266,7 +9276,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9295,7 +9305,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9324,7 +9334,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9353,7 +9363,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9382,7 +9392,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9411,7 +9421,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9440,7 +9450,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9469,7 +9479,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9498,7 +9508,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9527,7 +9537,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9556,7 +9566,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9585,7 +9595,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9614,7 +9624,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9643,7 +9653,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9672,7 +9682,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9701,7 +9711,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9730,7 +9740,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9759,7 +9769,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9788,7 +9798,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9817,7 +9827,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9846,7 +9856,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9875,7 +9885,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9904,7 +9914,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9933,7 +9943,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9962,7 +9972,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -9991,7 +10001,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10020,7 +10030,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10049,7 +10059,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10078,7 +10088,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10107,7 +10117,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10136,7 +10146,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10165,7 +10175,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10194,7 +10204,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10223,7 +10233,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10252,7 +10262,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10281,7 +10291,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10310,7 +10320,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10339,7 +10349,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10368,7 +10378,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10397,7 +10407,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10426,7 +10436,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10455,7 +10465,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10484,7 +10494,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10513,7 +10523,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10542,7 +10552,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10571,7 +10581,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10600,7 +10610,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10629,7 +10639,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10658,7 +10668,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10687,7 +10697,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10716,7 +10726,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10745,7 +10755,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10774,7 +10784,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10803,7 +10813,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10832,7 +10842,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10861,7 +10871,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10890,7 +10900,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10919,7 +10929,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10948,7 +10958,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -10977,7 +10987,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11006,7 +11016,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11035,7 +11045,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11064,7 +11074,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11093,7 +11103,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11122,7 +11132,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11151,7 +11161,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11180,7 +11190,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11209,7 +11219,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11238,7 +11248,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11267,7 +11277,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11296,7 +11306,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11325,7 +11335,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11354,7 +11364,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837039</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11383,7 +11393,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11412,7 +11422,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11441,7 +11451,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11470,7 +11480,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11499,7 +11509,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11528,7 +11538,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11557,7 +11567,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11586,7 +11596,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11615,7 +11625,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11644,7 +11654,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11673,7 +11683,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11702,7 +11712,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11731,7 +11741,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11760,7 +11770,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11789,7 +11799,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11818,7 +11828,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11847,7 +11857,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11876,7 +11886,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11905,7 +11915,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11934,7 +11944,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11963,7 +11973,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -11992,7 +12002,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -12021,7 +12031,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -12050,7 +12060,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -12079,7 +12089,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -12108,7 +12118,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -12137,7 +12147,7 @@
           <motionQueueDestination/>
           <motionQueueAnimations/>
           <oldDistance>99999.0</oldDistance>
-          <oldTime>1343581837040</oldTime>
+          <oldTime>1343779807160</oldTime>
           <start>true</start>
           <currentAnimation>grass</currentAnimation>
           <spriteSheetName>BasicTileSet</spriteSheetName>
@@ -12157,16 +12167,26 @@
   <currentLevel reference="../levels/level"/>
   <camera>
     <actorToFollow class="player" reference="../../actors/player"/>
-    <distanceToEdge>200.0</distanceToEdge>
-    <x>412.5</x>
-    <y>287.5</y>
+    <distanceFromCenter>200.0</distanceFromCenter>
+    <pos>
+      <x>0.0</x>
+      <y>0.0</y>
+    </pos>
+    <shift>
+      <dx>412.5</dx>
+      <dy>287.5</dy>
+    </shift>
+    <trans>
+      <dx>0.0</dx>
+      <dy>0.0</dy>
+    </trans>
     <width>800.0</width>
     <height>600.0</height>
     <scale>1.0</scale>
-    <transx>412.5</transx>
-    <transy>287.5</transy>
-    <shiftx>412.5</shiftx>
-    <shifty>287.5</shifty>
+    <transx>0.0</transx>
+    <transy>0.0</transy>
+    <shiftx>0.0</shiftx>
+    <shifty>0.0</shifty>
     <rotate>0.0</rotate>
   </camera>
   <worldName>Default World</worldName>
