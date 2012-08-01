@@ -183,7 +183,7 @@ public class Console
       if(tmpY < getCursorY()-getHeight()+20){
         break;
       }
-      f.drawString(getCursorX()-20, tmpY, "%>");
+      f.drawString(getCursorX()-f.getWidth("%>"), tmpY, "%>");
       f.drawString(getCursorX(), tmpY, lines.get(i));
       tmpY -= 15f;
     }
