@@ -58,10 +58,11 @@ public class Camera
     
     //System.out.println("Distance: " + pos.distance(actorToFollow.getPos()) + " Threshold: "+ distanceFromCenter + " Camera Pos: ("+pos.getX()+","+pos.getY()+")");
     float distance = 0.0f;
-    if((distance = pos.distance(actorToFollow.getPos())) > distanceFromCenter){
+    if((distance = pos.manhattanDistance(actorToFollow.getPos())) > distanceFromCenter){
       Motion m = pos.sub(actorToFollow.getPos());
       m.normalize();
       m.scale(distance-distanceFromCenter);
+      
       //m.scale(distance);
       pos.sub(m);
     }

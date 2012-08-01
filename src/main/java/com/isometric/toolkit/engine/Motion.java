@@ -55,5 +55,10 @@ public class Motion implements Comparable<Motion>
     this.dx *= scale;
     this.dy *= scale;
   }
+  
+  public float maxComponent(){
+    return Math.max(Math.abs(dx), Math.abs(dx));
+  }
+  
 
 }

@@ -30,6 +30,12 @@ public class Point
     return (float) Math.sqrt( Math.pow(Math.abs(p.getX() - this.getX()),2) + Math.pow(Math.abs(p.getY() - this.getY()),2)); 
   }
   
+  public float manhattanDistance(Point p){
+    return Math.max(Math.abs(p.getX() - this.getX()), Math.abs(p.getY() - this.getY()));
+    
+  }
+  
+  
   public void add(Motion m){
     this.x += m.getDx();
     this.y += m.getDy();
