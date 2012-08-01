@@ -29,4 +29,20 @@ public class Point
   public float distance(Point p){
     return (float) Math.sqrt( Math.pow(Math.abs(p.getX() - this.getX()),2) + Math.pow(Math.abs(p.getY() - this.getY()),2)); 
   }
+  
+  public void add(Motion m){
+    this.x += m.getDx();
+    this.y += m.getDy();
+  }
+  
+  public void sub(Motion m){
+    this.x -= m.getDx();
+    this.y -= m.getDy();
+    
+  }
+  
+  public Motion sub(Point p){
+    return new Motion(this.x - p.getX(),this.y - p.getY());
+  }
+  
 }

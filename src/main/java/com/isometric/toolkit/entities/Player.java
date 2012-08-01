@@ -20,7 +20,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @XStreamAlias("player")
-public class Player extends Actor
+public class Player extends CombatActor
 {
 
   
@@ -125,7 +125,7 @@ public class Player extends Actor
   }
 
   @Override
-  boolean collides (Actor a)
+  public boolean collides (Actor a)
   {
     // note: x,y coordinates for images start in upper left corner
     // if (right1 < left2 || left1 > right2 || bot1 < top2 || top1 > bot2) then

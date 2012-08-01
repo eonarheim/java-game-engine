@@ -124,6 +124,14 @@ public abstract class Actor
       }
     }
   }
+  
+  public Point getPos(){
+    return new Point(this.x,this.y);
+  }
+  
+  public Motion getMotion(){
+    return new Motion(this.dx,this.dy);
+  }
 
   abstract public void draw ();
 

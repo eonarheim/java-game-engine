@@ -43,5 +43,17 @@ public class Motion implements Comparable<Motion>
   {
     this.dy = dy;
   }
+  
+  public void normalize(){
+    Point tmp = new Point(dx,dy);
+    float magnitude = tmp.distance(new Point(0f,0f));
+    this.dx = this.dx/ magnitude;
+    this.dy = this.dy/ magnitude;
+  }
+  
+  public void scale(float scale){
+    this.dx *= scale;
+    this.dy *= scale;
+  }
 
 }
