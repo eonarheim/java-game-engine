@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,7 +57,18 @@ public class WorldBuilderTest {
        
 		String worldFile = WorldBuilder.writeWorld(w);		
 		World ww = WorldBuilder.parseWorld(worldFile);
-		assertEquals(w, ww);
+		String worldFile2 = WorldBuilder.writeWorld(ww);
+		if (ww.equals(w))
+		{
+			Assert.assertTrue(true);//("Hell yeah, hell yeah!";)
+		}
+		else
+		{
+			fail("Yep, not equal");
+		}
+		//assertEquals(w, ww);
+		//assert(w.equals(ww));		
+		//assertEquals(worldFile, worldFile2);
    }
   
    /**
