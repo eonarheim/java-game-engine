@@ -54,7 +54,7 @@ public class WorldBuilderTest {
              //Pretty sure the best way is to serialize and then deserialize. Right now, when you add a property to a class (at least one that doesn't
              //have a converter), it'll automatically get serialized and deserialized. I think since this automation is in there, it is fine if we test
              //those two at once, that way we don't have to create xml files that will become stale (that part is for the version compatibility!)
-       
+		fail("Not yet implemented comletely"); // TODO
 		String worldFile = WorldBuilder.writeWorld(w);		
 		World ww = WorldBuilder.parseWorld(worldFile);
 		String worldFile2 = WorldBuilder.writeWorld(ww);
