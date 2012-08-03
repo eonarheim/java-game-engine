@@ -110,6 +110,9 @@ public class Window
 
     logger.info("Entering mainloop");
     
+    //com.isometric.toolkit.editor.Editor foo = new com.isometric.toolkit.editor.Editor();
+    com.isometric.toolkit.editor.Editor.start();
+    
     getDelta(); // call once before loop to initialise lastFrame
     lastFPS = getTime(); // call before loop to initialise fps timer
     while (!Display.isCloseRequested()
