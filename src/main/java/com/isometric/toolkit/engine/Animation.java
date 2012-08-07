@@ -79,6 +79,10 @@ public class Animation implements Drawable
   private int rotation = 0;
   
   private long oldTime = System.currentTimeMillis();
+  
+  private Type animationType = Type.CYCLE;
+  private boolean done = false;
+  private int step = 1;
 
   public Animation (List<Image> images, float speed)
   {
@@ -92,17 +96,35 @@ public class Animation implements Drawable
     this.speed = speed;
   }
 
+  
+  
   public void tick ()
   {
-    /* Old way, buggy when sharing animations
-    if (ticker++ / 60.f > getSpeed()) {
-      currIndex = (currIndex + 1) % maxIndex;
-      ticker = 0;
-    }
-    */
+    
     long newTime = System.currentTimeMillis();
     if((newTime - oldTime)/1000.f > getSpeed()){
-      currIndex = (currIndex + 1) % maxIndex;
+      
+      
+      if(animationType==Type.CYCLE){
+        currIndex = (currIndex + 1) % maxIndex;
+      }else if (animationType==Type.ONCE){
+        if(currIndex>= maxIndex-1){
+          done = true;
+        }else{
+          currIndex++;
+        }
+      }else if (animationType==Type.PING_PONG){
+        
+        currIndex += step;
+        if(currIndex>= maxIndex){
+          step *= -1;
+          currIndex += step;
+        }else if (currIndex < 0){
+          step *= -1;
+          currIndex += step;
+        }
+        
+      }
       oldTime = newTime;
     }
     
@@ -110,8 +132,10 @@ public class Animation implements Drawable
 
   public void draw (int x, int y)
   {
-    tick();
-    sprites[currIndex].draw(x, y);
+    if(!done){
+      tick();
+      sprites[currIndex].draw(x, y);
+    }
   }
 
   public float getSpeed ()
@@ -148,6 +172,20 @@ public class Animation implements Drawable
     for (Image i: sprites) {
       i.setRotation(rotation);
     }
+  }
+
+
+
+  public Type getAnimationType ()
+  {
+    return animationType;
+  }
+
+
+
+  public void setAnimationType (Type animationType)
+  {
+    this.animationType = animationType;
   }
 
 }
