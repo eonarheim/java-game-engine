@@ -76,12 +76,13 @@ public class Editor {
 //
 //		f.add(myPanel);
 		
-		
+		final int gridRowCount = 5;
+		final int gridColCount = 8;
 		//Wtf, how do I force a minimum number of grids
-		//Border border = new BorderFactory.createEmptyBorder();// EmptyBorder(1, 1, 1, 1);
-		JPanel myPanel2 = new JPanel(new GridLayout(5, 8));
+		//Border border = new BorderFactory.createEmptyBorder();// EmptyBorder(1, 1, 1, 1);		
+		final JPanel myPanel2 = new JPanel(new GridLayout(gridRowCount, gridColCount));
 		//myPanel2.setBorder(new EmptyBorder(1, 1, 1, 1));
-		for (int i = 0; i < 40; i++)
+		for (int i = 0; i < (gridRowCount * gridColCount); i++)
 		{
 			myPanel2.add(new JLabel());
 		}
@@ -96,6 +97,8 @@ public class Editor {
 		for (Component j: myPanel2.getComponents())
 		{
 			((JLabel)j).setBorder(new LineBorder(Color.YELLOW));
+			((JLabel)j).setOpaque(true);
+			((JLabel)j).setBackground(Color.BLACK);
 		}
 		
 		f.add(myPanel2);
@@ -170,6 +173,23 @@ public class Editor {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("you clicked my panel ~ x:" + e.getX()
 						+ " y: " + e.getY());
+				System.out.println("Panel Width: " + myPanel2.getWidth() +
+						" Panel Height: " + myPanel2.getHeight());
+				double rowHeight = myPanel2.getHeight() / gridRowCount;
+				double colWidth = myPanel2.getWidth() / gridColCount;
+				double rowClicked = Math.floor((e.getY() / rowHeight));
+				double colClicked = Math.floor((e.getX() / colWidth));//why do i have to make rowcounts final? 
+				System.out.println("Cell: " + rowClicked + "," + colClicked);						
+				JLabel clickedLabel = (JLabel)myPanel2.getComponent((int) ((rowClicked * gridColCount) + colClicked));
+				
+				if (clickedLabel.getBackground() == Color.BLACK)
+					clickedLabel.setBackground(Color.RED);
+				else
+					clickedLabel.setBackground(Color.BLACK);
+				
+				//clickedLabel.setOpaque(true);
+				//clickedLabel.setForeground(Color.GREEN);
+				//clickedLabel.setText("c");
 			}
 		});
 
