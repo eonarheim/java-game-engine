@@ -1,13 +1,21 @@
 package com.isometric.toolkit.editor;
 
+import static org.junit.Assert.fail;
+
 import java.awt.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+
 import com.sun.awt.*;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -15,10 +23,20 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import java.awt.Graphics; 
+import java.awt.image.BufferedImage; 
+
+import com.isometric.toolkit.engine.Animation;
+import com.isometric.toolkit.engine.Image;
+
 //Following this naming covention:
 //JFC (Java Swing) variables should be suffixed by the element type.
 //http://geosoft.no/development/javastyle.html
 public class Editor {
+	private Icon imageIcon;
 	public void display() {
 		final JFrame f = new JFrame("Swing Editor");
 		f.setSize(500, 500);
@@ -80,7 +98,13 @@ public class Editor {
 		final int gridColCount = 8;
 		//Wtf, how do I force a minimum number of grids
 		//Border border = new BorderFactory.createEmptyBorder();// EmptyBorder(1, 1, 1, 1);		
-		final JPanel myPanel2 = new JPanel(new GridLayout(gridRowCount, gridColCount));
+		final JPanel myPanel2 = new JPanel(new GridLayout(gridRowCount, gridColCount)) ;
+//		{
+//			public void paintComponent (Graphics g) {
+//		        g.drawImage(image, 0, 0, null);
+//		        super.paintComponent(g);
+//		      }
+//		};
 		//myPanel2.setBorder(new EmptyBorder(1, 1, 1, 1));
 		for (int i = 0; i < (gridRowCount * gridColCount); i++)
 		{
@@ -161,7 +185,14 @@ public class Editor {
 		myBut.setSize(100, 50);
 		myBut.setLocation(50, 25);
 		//myPanel.add(myBut);
-
+		  try {                 
+			  BufferedImage image = ImageIO.read(Animation.class.getClassLoader()
+  	                .getSystemResourceAsStream("images/TestPlayer.png"));
+			  imageIcon = new ImageIcon(image);
+	      } catch (IOException ex) { 
+	            //TODO handle exception... 
+	       }     
+		
 		myBut.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("you clicked my button ~ x:" + e.getX()
@@ -182,10 +213,14 @@ public class Editor {
 				System.out.println("Cell: " + rowClicked + "," + colClicked);						
 				JLabel clickedLabel = (JLabel)myPanel2.getComponent((int) ((rowClicked * gridColCount) + colClicked));
 				
-				if (clickedLabel.getBackground() == Color.BLACK)
-					clickedLabel.setBackground(Color.RED);
+				if (clickedLabel.getIcon() != imageIcon)
+				{ 
+					clickedLabel.setIcon(imageIcon); //if imageIcon is null, it just shows nothing
+				}
 				else
-					clickedLabel.setBackground(Color.BLACK);
+					clickedLabel.setIcon(null);
+					//clickedLabel.setBackground(Color.BLACK);
+				
 				
 				//clickedLabel.setOpaque(true);
 				//clickedLabel.setForeground(Color.GREEN);
@@ -199,9 +234,9 @@ public class Editor {
 						+ " y: " + e.getY());
 			}
 		});
-
 	}
-
+	
+	
 	// Test code:
 	JPanel visiblePanel = new JPanel(new FlowLayout()); // is the default, but
 														// showing it set
