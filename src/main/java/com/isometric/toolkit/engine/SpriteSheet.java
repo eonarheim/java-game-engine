@@ -37,7 +37,7 @@ public class SpriteSheet
 
     for (int j = 0; j < verticalCount; j++) {
       for (int i = 0; i < horizontalCount; i++) {
-        images.add(Image.loadSubimage(ref, verticalSpacing, horizontalSpacing,
+        images.add(Image.loadSubImage(ref, verticalSpacing, horizontalSpacing,
                                       i, j));
       }
     }

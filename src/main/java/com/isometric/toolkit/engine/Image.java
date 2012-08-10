@@ -72,7 +72,7 @@ public class Image implements Drawable
     this.texture = texture;
   }
 
-  public static Image loadSubimage (String ref, int width, int height,
+  public static Image loadSubImage (String ref, int width, int height,
                                     int horizontalOffset, int verticalOffset)
   {
     Image resultImage = new Image();

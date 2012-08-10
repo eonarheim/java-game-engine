@@ -16,7 +16,9 @@ import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import com.sun.awt.*;
 import javax.swing.*;
@@ -155,7 +157,30 @@ public class Editor {
 							.getSystemResourceAsStream(resourceFolder
 									+ objectComboBox.getSelectedItem()
 											.toString()));
-					imageIcon = new ImageIcon(image);
+					// Should I read these in from a textbox somewhere?
+					int horizontalCount = 10;
+					int verticalCount = 1;
+
+					int w = image.getWidth();
+					int h = image.getHeight();
+					int verticalSpacing = (int) Math.floor(w / horizontalCount);
+					int horizontalSpacing = (int) Math.floor(h / verticalCount);
+
+					List<BufferedImage> images = new ArrayList<BufferedImage>();
+					for (int j = 0; j < verticalCount; j++) {
+						for (int i = 0; i < horizontalCount; i++) {
+							images.add(image.getSubimage((i) * verticalSpacing,
+									j * horizontalSpacing, verticalSpacing,
+									horizontalSpacing));
+						}
+					}
+					BufferedImage tmp = null;
+					if (image == null) {
+						// logger.error("Internal image "+ref+" failed to load!");
+					} else
+						tmp = images.get(0);
+
+					imageIcon = new ImageIcon(tmp);
 				} catch (IOException ex) {
 					// TODO handle exception...
 					ex.printStackTrace();
