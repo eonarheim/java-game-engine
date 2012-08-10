@@ -39,6 +39,7 @@ import com.isometric.toolkit.engine.Image;
 //http://geosoft.no/development/javastyle.html
 public class Editor {
 	private Icon imageIcon;
+	private String resourceFolder = "images/";
 
 	public void display() {
 		final JFrame f = new JFrame("Swing Editor");
@@ -68,7 +69,8 @@ public class Editor {
 		String[] objectList = null;
 		File dir = null;
 		try {
-			dir = new File(ClassLoader.getSystemResource("images/").toURI());
+			dir = new File(ClassLoader.getSystemResource(resourceFolder)
+					.toURI());
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -77,7 +79,8 @@ public class Editor {
 		// Set combo box list - do some checking on it
 		objectList = dir.list();
 		if (objectList == null)
-			System.out.println("No resource files found"); // TODO Change these to log file
+			System.out.println("No resource files found"); // TODO Change these
+															// to log file
 		else if (objectList.length == 0)
 			System.out.println("No resource files found");
 
@@ -125,15 +128,6 @@ public class Editor {
 		myBut.setSize(100, 50);
 		myBut.setLocation(50, 25);
 
-		try {
-			BufferedImage image = ImageIO.read(Animation.class.getClassLoader()
-					.getSystemResourceAsStream("images/TestPlayer.png"));
-			imageIcon = new ImageIcon(image);
-		} catch (IOException ex) {
-			// TODO handle exception...
-			ex.printStackTrace();
-		}
-
 		myBut.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("you clicked my button ~ x:" + e.getX()
@@ -150,20 +144,26 @@ public class Editor {
 				double rowHeight = myPanel.getHeight() / gridRowCount;
 				double colWidth = myPanel.getWidth() / gridColCount;
 				double rowClicked = Math.floor((e.getY() / rowHeight));
-				double colClicked = Math.floor((e.getX() / colWidth));// why do
-																		// i
-																		// have
-																		// to
-																		// make
-																		// rowcounts
-																		// final?
+				double colClicked = Math.floor((e.getX() / colWidth));
+				// why do i have to make rowcounts final?
 				System.out.println("Cell: " + rowClicked + "," + colClicked);
 				JLabel clickedLabel = (JLabel) myPanel
 						.getComponent((int) ((rowClicked * gridColCount) + colClicked));
 
+				try {
+					BufferedImage image = ImageIO.read(ClassLoader
+							.getSystemResourceAsStream(resourceFolder
+									+ objectComboBox.getSelectedItem()
+											.toString()));
+					imageIcon = new ImageIcon(image);
+				} catch (IOException ex) {
+					// TODO handle exception...
+					ex.printStackTrace();
+				}
+
+				// if imageIcon is null, it just shows nothing
 				if (clickedLabel.getIcon() != imageIcon)
-					clickedLabel.setIcon(imageIcon); // if imageIcon is null, it
-														// just shows nothing
+					clickedLabel.setIcon(imageIcon);
 				else
 					clickedLabel.setIcon(null);
 				// clickedLabel.setBackground(Color.BLACK);
