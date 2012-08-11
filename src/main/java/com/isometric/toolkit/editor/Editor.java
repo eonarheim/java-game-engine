@@ -48,6 +48,8 @@ public class Editor {
 	private JTextField columnCountText = new JTextField("10");
 	private JLabel imagePreviewer = new JLabel();
 	private JComboBox<String> objectComboBox = new JComboBox<String>();
+	// can i not have a combobox of type int?
+	private JComboBox<String> selectedImageComboBox = new JComboBox<String>();
 
 	// Should I read these in from a textbox somewhere?
 	// private int horizontalCount;
@@ -86,8 +88,8 @@ public class Editor {
 		rowCountText.setSize(30, 20);
 		rowCountText.setMinimumSize(new Dimension(30, 25));
 		rowCountText.setPreferredSize(new Dimension(30, 25));
-		//rowCountText.setMaximumSize(new Dimension(Short.MAX_VALUE,
-			//	Short.MAX_VALUE));
+		// rowCountText.setMaximumSize(new Dimension(Short.MAX_VALUE,
+		// Short.MAX_VALUE));
 		rowCountText.setMaximumSize(new Dimension(50, 30));
 
 		System.out.println("max width/height: ");
@@ -109,27 +111,63 @@ public class Editor {
 		f.add(columnCountLabel);
 		f.add(columnCountText);
 
-		// horizontalCount = Integer.parseInt(columnCountText.getText());
-		// verticalCount = Integer.parseInt(rowCountText.getText());
+		f.add(new JLabel("Place image:"));
+		f.add(selectedImageComboBox);
 
 		rowCountText.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// verticalCount = Integer.parseInt(rowCountText.getText());
-				System.out.println("row count changed: "
-						+ rowCountText.getText());
-				updateUI();
+				int verticalCount = Integer.parseInt(rowCountText.getText());
+				int horizontalCount = Integer.parseInt(columnCountText
+						.getText());
+				Object selectedImage = selectedImageComboBox.getSelectedItem();	
+				selectedImageComboBox.removeAllItems();	
+				System.out.println("I need to figure out a way to not trigger this update UI. It is wasteful:"); //So
+				//^^^ happens on first .addItem				
+				for (int i = 0; i < (verticalCount * horizontalCount); i++) {
+					//selectedImageComboBox.removeActionListener(selectedImageComboBox.getActionListeners()[0]);
+					selectedImageComboBox.addItem(Integer.toString(i));	
+				}				
+				selectedImageComboBox.setSelectedItem(selectedImage);
+				//updateUI();
 			}
 		});
 
 		columnCountText.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// horizontalCount =
-				// Integer.parseInt(columnCountText.getText());
-				System.out.println("col count changed: "
-						+ columnCountText.getText());
+				int verticalCount = Integer.parseInt(rowCountText.getText());
+				int horizontalCount = Integer.parseInt(columnCountText
+						.getText());
+				Object selectedImage = selectedImageComboBox.getSelectedItem();
+				selectedImageComboBox.removeAllItems();
+				System.out.println("I need to figure out a way to not trigger this update UI. It is wasteful:"); //So
+				//^^^ happens on first .addItem								
+				for (int i = 0; i < (verticalCount * horizontalCount); i++)
+					selectedImageComboBox.addItem(Integer.toString(i));
+				selectedImageComboBox.setSelectedItem(selectedImage);
+				//updateUI();
+			}
+		});
+
+		// TODO - refactor this updating of the selectedImageComboBox into a
+		// method
+		int verticalCount = Integer.parseInt(rowCountText.getText());
+		int horizontalCount = Integer.parseInt(columnCountText.getText());
+		System.out.println("row " + rowCountText.getText() + " col: "
+				+ columnCountText.getText());
+		for (int i = 0; i < (verticalCount * horizontalCount); i++)
+			selectedImageComboBox.addItem(Integer.toString(i));
+		selectedImageComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// if (selectedImageComboBox.getItemCount() > 1)
+				System.out.println("selected image changed");
 				updateUI();
 			}
 		});
+		selectedImageComboBox.setSize(30, 20);
+		selectedImageComboBox.setMinimumSize(new Dimension(30, 25));
+		selectedImageComboBox.setPreferredSize(new Dimension(30, 25));
+		selectedImageComboBox.setMaximumSize(new Dimension(50, 30));
+		f.add(selectedImageComboBox);
 
 		// Create/Add combo box - load files from "images/" folder
 		String[] objectList = null;
@@ -156,8 +194,8 @@ public class Editor {
 
 		objectComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(f, "Item Selected: "
-						+ objectComboBox.getSelectedItem().toString());
+				// JOptionPane.showMessageDialog(f, "Item Selected: "
+				// + objectComboBox.getSelectedItem().toString());
 				updateUI();
 
 			}
@@ -266,13 +304,18 @@ public class Editor {
 							horizontalSpacing, i, j));
 				}
 			}
-			BufferedImage tmp = null;
-			if (image == null) {
-				// logger.error("Internal image "+ref+" failed to load!");
-			} else
-				tmp = images.get(0);
 
-			imageIcon = new ImageIcon(tmp);
+			BufferedImage tmp = null;
+			if (image == null || selectedImageComboBox.getSelectedIndex() < 0) {
+				// logger.error("Internal image "+ref+" failed to load!");
+				System.out
+						.println("Image equals null or selectedImageComboBox < 0");
+			} else {
+				tmp = images.get(Integer.parseInt(selectedImageComboBox
+						.getSelectedItem().toString()));
+
+				imageIcon = new ImageIcon(tmp);
+			}
 		} catch (IOException ex) {
 			// TODO handle exception...
 			ex.printStackTrace();
