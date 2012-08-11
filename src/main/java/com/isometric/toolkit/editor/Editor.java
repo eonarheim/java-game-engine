@@ -6,6 +6,8 @@ import java.awt.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -42,6 +44,14 @@ import com.isometric.toolkit.engine.Image;
 public class Editor {
 	private Icon imageIcon;
 	private String resourceFolder = "images/";
+	private JTextField rowCountText = new JTextField("1");
+	private JTextField columnCountText = new JTextField("10");
+	private JLabel imagePreviewer = new JLabel();
+	private JComboBox<String> objectComboBox = new JComboBox<String>();
+
+	// Should I read these in from a textbox somewhere?
+	// private int horizontalCount;
+	// private int verticalCount;
 
 	public void display() {
 		final JFrame f = new JFrame("Swing Editor");
@@ -67,6 +77,60 @@ public class Editor {
 		// f.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 		f.add(buttonPanel);
 
+		f.add(imagePreviewer);
+
+		// Add row count label / textbox
+		JLabel rowCountLabel = new JLabel("Number of Rows");
+		// final JTextField rowCountText = new JTextField("1");
+		// So some combination of things work here... I need to investigate this
+		rowCountText.setSize(30, 20);
+		rowCountText.setMinimumSize(new Dimension(30, 25));
+		rowCountText.setPreferredSize(new Dimension(30, 25));
+		//rowCountText.setMaximumSize(new Dimension(Short.MAX_VALUE,
+			//	Short.MAX_VALUE));
+		rowCountText.setMaximumSize(new Dimension(50, 30));
+
+		System.out.println("max width/height: ");
+		System.out.println(rowCountText.getMaximumSize().getWidth());
+		System.out.println(rowCountText.getMaximumSize().getHeight());
+		System.out.println("width/height: ");
+		System.out.println(rowCountText.getWidth());
+		System.out.println(rowCountText.getHeight());
+		f.add(rowCountLabel);
+		f.add(rowCountText);
+
+		// Add column count label / textbox
+		JLabel columnCountLabel = new JLabel("Number of Columns");
+		// final JTextField columnCountText = new JTextField("10");
+		columnCountText.setSize(30, 20);
+		columnCountText.setMinimumSize(new Dimension(30, 25));
+		columnCountText.setPreferredSize(new Dimension(30, 25));
+		columnCountText.setMaximumSize(new Dimension(50, 30));
+		f.add(columnCountLabel);
+		f.add(columnCountText);
+
+		// horizontalCount = Integer.parseInt(columnCountText.getText());
+		// verticalCount = Integer.parseInt(rowCountText.getText());
+
+		rowCountText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// verticalCount = Integer.parseInt(rowCountText.getText());
+				System.out.println("row count changed: "
+						+ rowCountText.getText());
+				updateUI();
+			}
+		});
+
+		columnCountText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// horizontalCount =
+				// Integer.parseInt(columnCountText.getText());
+				System.out.println("col count changed: "
+						+ columnCountText.getText());
+				updateUI();
+			}
+		});
+
 		// Create/Add combo box - load files from "images/" folder
 		String[] objectList = null;
 		File dir = null;
@@ -85,12 +149,17 @@ public class Editor {
 															// to log file
 		else if (objectList.length == 0)
 			System.out.println("No resource files found");
+		else {
+			for (String file : objectList)
+				objectComboBox.addItem(file);
+		}
 
-		final JComboBox objectComboBox = new JComboBox(objectList);
 		objectComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(f, "Item Selected: "
 						+ objectComboBox.getSelectedItem().toString());
+				updateUI();
+
 			}
 		});
 		f.add(objectComboBox);
@@ -100,19 +169,19 @@ public class Editor {
 		// Wtf, how do I force a minimum number of grids - I need to create a
 		// label for each one
 
-		final JPanel myPanel = new JPanel(new GridLayout(gridRowCount,
+		final JPanel levelGrid = new JPanel(new GridLayout(gridRowCount,
 				gridColCount));
 		for (int i = 0; i < (gridRowCount * gridColCount); i++) {
 			JLabel j = new JLabel();
 			j.setBorder(new LineBorder(Color.YELLOW));
 			j.setOpaque(true);
 			j.setBackground(Color.BLACK);
-			myPanel.add(j);
+			levelGrid.add(j);
 		}
-		myPanel.setSize(50, 50); // currently doesn't seem to do anything
-		myPanel.setOpaque(true);
-		myPanel.setDoubleBuffered(false);
-		myPanel.setBackground(new Color(0, 0, 0));
+		levelGrid.setSize(50, 50); // currently doesn't seem to do anything
+		levelGrid.setOpaque(true);
+		levelGrid.setDoubleBuffered(false);
+		levelGrid.setBackground(new Color(0, 0, 0));
 
 		// for (Component j: myPanel2.getComponents())
 		// {
@@ -120,7 +189,7 @@ public class Editor {
 		// ((JLabel)j).setOpaque(true);
 		// ((JLabel)j).setBackground(Color.BLACK);
 		// }
-		f.add(myPanel);
+		f.add(levelGrid);
 
 		final JButton myBut = new JButton();
 		myBut.setFont(new Font("arial", Font.BOLD, 10));
@@ -130,6 +199,8 @@ public class Editor {
 		myBut.setSize(100, 50);
 		myBut.setLocation(50, 25);
 
+		updateUI();
+
 		myBut.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("you clicked my button ~ x:" + e.getX()
@@ -137,54 +208,20 @@ public class Editor {
 			}
 		});
 
-		myPanel.addMouseListener(new MouseAdapter() {
+		levelGrid.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("you clicked my panel ~ x:" + e.getX()
 						+ " y: " + e.getY());
-				System.out.println("Panel Width: " + myPanel.getWidth()
-						+ " Panel Height: " + myPanel.getHeight());
-				double rowHeight = myPanel.getHeight() / gridRowCount;
-				double colWidth = myPanel.getWidth() / gridColCount;
+				System.out.println("Panel Width: " + levelGrid.getWidth()
+						+ " Panel Height: " + levelGrid.getHeight());
+				double rowHeight = levelGrid.getHeight() / gridRowCount;
+				double colWidth = levelGrid.getWidth() / gridColCount;
 				double rowClicked = Math.floor((e.getY() / rowHeight));
 				double colClicked = Math.floor((e.getX() / colWidth));
 				// why do i have to make rowcounts final?
 				System.out.println("Cell: " + rowClicked + "," + colClicked);
-				JLabel clickedLabel = (JLabel) myPanel
+				JLabel clickedLabel = (JLabel) levelGrid
 						.getComponent((int) ((rowClicked * gridColCount) + colClicked));
-
-				try {
-					BufferedImage image = ImageIO.read(ClassLoader
-							.getSystemResourceAsStream(resourceFolder
-									+ objectComboBox.getSelectedItem()
-											.toString()));
-					// Should I read these in from a textbox somewhere?
-					int horizontalCount = 10;
-					int verticalCount = 1;
-
-					int w = image.getWidth();
-					int h = image.getHeight();
-					int verticalSpacing = (int) Math.floor(w / horizontalCount);
-					int horizontalSpacing = (int) Math.floor(h / verticalCount);
-
-					List<BufferedImage> images = new ArrayList<BufferedImage>();
-					for (int j = 0; j < verticalCount; j++) {
-						for (int i = 0; i < horizontalCount; i++) {
-							images.add(image.getSubimage((i) * verticalSpacing,
-									j * horizontalSpacing, verticalSpacing,
-									horizontalSpacing));
-						}
-					}
-					BufferedImage tmp = null;
-					if (image == null) {
-						// logger.error("Internal image "+ref+" failed to load!");
-					} else
-						tmp = images.get(0);
-
-					imageIcon = new ImageIcon(tmp);
-				} catch (IOException ex) {
-					// TODO handle exception...
-					ex.printStackTrace();
-				}
 
 				// if imageIcon is null, it just shows nothing
 				if (clickedLabel.getIcon() != imageIcon)
@@ -204,6 +241,44 @@ public class Editor {
 						+ " y: " + e.getY());
 			}
 		});
+	}
+
+	public void updateUI() {
+		System.out.println("UpdateUI called");
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(ClassLoader
+					.getSystemResourceAsStream(resourceFolder
+							+ objectComboBox.getSelectedItem().toString()));
+
+			int verticalCount = Integer.parseInt(rowCountText.getText());
+			int horizontalCount = Integer.parseInt(columnCountText.getText());
+
+			int w = image.getWidth();
+			int h = image.getHeight();
+			int verticalSpacing = (int) Math.floor(w / horizontalCount);
+			int horizontalSpacing = (int) Math.floor(h / verticalCount);
+
+			List<BufferedImage> images = new ArrayList<BufferedImage>();
+			for (int j = 0; j < verticalCount; j++) {
+				for (int i = 0; i < horizontalCount; i++) {
+					images.add(Image.loadSubImage(image, verticalSpacing,
+							horizontalSpacing, i, j));
+				}
+			}
+			BufferedImage tmp = null;
+			if (image == null) {
+				// logger.error("Internal image "+ref+" failed to load!");
+			} else
+				tmp = images.get(0);
+
+			imageIcon = new ImageIcon(tmp);
+		} catch (IOException ex) {
+			// TODO handle exception...
+			ex.printStackTrace();
+		}
+
+		imagePreviewer.setIcon(new ImageIcon(image));
 	}
 
 	// Test code:

@@ -99,7 +99,7 @@ public class ImageConverter implements Converter
     reader.moveUp();
     
     
-    Image image = Image.loadSubImage(ref, width, height, horizontalOffset, verticalOffset);
+    Image image = Image.loadSubImageWithTexture(ref, width, height, horizontalOffset, verticalOffset);
     image.setScale(scale);
     image.setRotation(rotation);
     
