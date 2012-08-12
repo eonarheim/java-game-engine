@@ -200,6 +200,10 @@ public class Editor {
 
 			}
 		});
+		objectComboBox.setSize(200, 20);
+		objectComboBox.setMinimumSize(new Dimension(200, 25));
+		objectComboBox.setPreferredSize(new Dimension(200, 25));
+		objectComboBox.setMaximumSize(new Dimension(250, 30));
 		f.add(objectComboBox);
 
 		final int gridRowCount = 5;
@@ -216,7 +220,12 @@ public class Editor {
 			j.setBackground(Color.BLACK);
 			levelGrid.add(j);
 		}
-		levelGrid.setSize(50, 50); // currently doesn't seem to do anything
+
+		//levelGrid.setSize(100, 100);
+		//levelGrid.setMinimumSize(new Dimension(100, 100));
+		levelGrid.setPreferredSize(new Dimension(100, 100));
+		//levelGrid.setMaximumSize(new Dimension(150, 150));
+		
 		levelGrid.setOpaque(true);
 		levelGrid.setDoubleBuffered(false);
 		levelGrid.setBackground(new Color(0, 0, 0));
