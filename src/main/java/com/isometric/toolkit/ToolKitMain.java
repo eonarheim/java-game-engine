@@ -3,7 +3,9 @@ package com.isometric.toolkit;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.lwjgl.opengl.Display;
 
+import com.isometric.toolkit.editor.GLEditor;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.parser.WorldBuilder;
@@ -27,10 +29,25 @@ public class ToolKitMain
     }
     
     
+    System.setProperty("org.lwjgl.input.Mouse.allowNegativeMouseCoords", "true");
+    System.setProperty("sun.java2d.noddraw", "true");
+    System.setProperty("sun.java2d.opengl", "false");
+    
+    final int desktopWidth = Display.getDesktopDisplayMode().getWidth();
+    final int desktopHeight = Display.getDesktopDisplayMode().getHeight();
+    // final Preferences prefs = Preferences.userNodeForPackage(c)
+
+    
+    final GLEditor editor = new GLEditor();
+    editor.setFocusTraversalKeysEnabled(false);
+    editor.setSize(desktopWidth, desktopHeight);
+
+    editor.setVisible(true);
+    editor.run(args);
     
     
    
-    
+    /*
     logger.info("Starting Java RPG toolkit...");
     Window application = new Window();
     
@@ -49,6 +66,7 @@ public class ToolKitMain
     application.init(gameWorld);
     application.start();
     logger.info("Stopping Java RPG toolkit...");
+   */ 
   }
 
 }

@@ -221,7 +221,7 @@ public class WorldBuilder {
 		return serializeWorld(w);
 	}
 
-	private static String serializeWorld(World w) {
+	public static String serializeWorld(World w) {
 		XStream x = setup();
 		return x.toXML(w);
 	}

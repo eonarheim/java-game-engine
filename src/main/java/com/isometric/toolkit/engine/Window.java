@@ -111,7 +111,7 @@ public class Window
     logger.info("Entering mainloop");
     
     //com.isometric.toolkit.editor.Editor foo = new com.isometric.toolkit.editor.Editor();
-    com.isometric.toolkit.editor.Editor.start();
+    //com.isometric.toolkit.editor.Editor.start();
     
     getDelta(); // call once before loop to initialise lastFrame
     lastFPS = getTime(); // call before loop to initialise fps timer
@@ -130,6 +130,8 @@ public class Window
         float yoffset = 25.f;
         GL11.glEnable(GL11.GL_BLEND);
         f.drawString(10f, 10f, "FPS: " + finalFps);
+        f.drawString(80f, 10f, "Memory Usage: " + (Runtime.getRuntime().totalMemory()/1024 - Runtime.getRuntime().freeMemory()/1024) + "K");
+        f.drawString(250f, 10f, "CPUs: " + Runtime.getRuntime().availableProcessors());
         for(String s : debugList){
           f.drawString(10f, yoffset, s);
           yoffset += 15.f;
