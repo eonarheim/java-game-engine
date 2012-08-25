@@ -132,5 +132,14 @@ public class Camera
   {
     this.pos.setY(y);
   }
+  
+  public void setScale(float scale){
+    this.scale = scale;
+  }
+  
+  public float getScale(){
+    return this.scale;
+    
+  }
 
 }

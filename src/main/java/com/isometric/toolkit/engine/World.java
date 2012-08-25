@@ -31,10 +31,7 @@ public class World {
 	private String worldName = "";
 
 	public void update() {
-		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			WorldBuilder.writeWorldToLogger(this);
-			Window.writeToDebug("Serializing world now!");
-		}
+		
 
 		camera.update();
 

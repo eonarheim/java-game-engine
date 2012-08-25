@@ -44,10 +44,10 @@ public class ToolKitMain
 
     editor.setVisible(true);
     editor.run(args);
-    
+    /*
     
    
-    /*
+    
     logger.info("Starting Java RPG toolkit...");
     Window application = new Window();
     
@@ -66,7 +66,7 @@ public class ToolKitMain
     application.init(gameWorld);
     application.start();
     logger.info("Stopping Java RPG toolkit...");
-   */ 
+   */
   }
 
 }

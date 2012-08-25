@@ -19,13 +19,14 @@ import org.newdawn.slick.font.effects.ColorEffect;
 
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
+import com.isometric.toolkit.parser.WorldBuilder;
 
 public class Window
 {
 
   static Logger logger = LoggerFactory.getLogger();
   Vector<Integer> keyPress = new Vector<Integer>();
-  
+
   private static List<String> debugList = new ArrayList<String>();
   private static List<Integer> timerList = new ArrayList<Integer>();
 
@@ -33,14 +34,13 @@ public class Window
   private boolean calledInit = false;
   private static boolean debug = true;
   private static boolean console = false;
-  
+
   private Console c = null;
 
   private Font font = new Font("HELVETICA", Font.PLAIN, 15);
   private UnicodeFont f = new UnicodeFont(font);
-  
+
   public static Integer currentKey = null;
-  
 
   private long lastFrame;
 
@@ -63,7 +63,7 @@ public class Window
       f.addAsciiGlyphs();
       f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
       f.loadGlyphs();
-      
+
       logger.info("Loading console");
       c = new Console();
 
@@ -109,19 +109,18 @@ public class Window
     GL11.glClearColor(0f, 0f, .0f, 1f);
 
     logger.info("Entering mainloop");
-    
-    //com.isometric.toolkit.editor.Editor foo = new com.isometric.toolkit.editor.Editor();
-    //com.isometric.toolkit.editor.Editor.start();
-    
+
+    // com.isometric.toolkit.editor.Editor foo = new
+    // com.isometric.toolkit.editor.Editor();
+    // com.isometric.toolkit.editor.Editor.start();
+
     getDelta(); // call once before loop to initialise lastFrame
     lastFPS = getTime(); // call before loop to initialise fps timer
     while (!Display.isCloseRequested()
            && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
-      
-
       updateFPS();
-      if(!isConsole()){
+      if (!isConsole()) {
         gameWorld.update();
       }
       gameWorld.draw();
@@ -130,24 +129,28 @@ public class Window
         float yoffset = 25.f;
         GL11.glEnable(GL11.GL_BLEND);
         f.drawString(10f, 10f, "FPS: " + finalFps);
-        f.drawString(80f, 10f, "Memory Usage: " + (Runtime.getRuntime().totalMemory()/1024 - Runtime.getRuntime().freeMemory()/1024) + "K");
-        f.drawString(250f, 10f, "CPUs: " + Runtime.getRuntime().availableProcessors());
-        for(String s : debugList){
+        f.drawString(80f,
+                     10f,
+                     "Memory Usage: "
+                             + (Runtime.getRuntime().totalMemory() / 1024 - Runtime
+                                     .getRuntime().freeMemory() / 1024) + "K");
+        f.drawString(250f, 10f, "CPUs: "
+                                + Runtime.getRuntime().availableProcessors());
+        for (String s: debugList) {
           f.drawString(10f, yoffset, s);
           yoffset += 15.f;
         }
         GL11.glDisable(GL11.GL_BLEND);
-        
+
       }
 
       checkInput();
-      
-      if(isConsole()){
-        //c.update();
+
+      if (isConsole()) {
+        // c.update();
         c.draw();
       }
-      
-      
+
       Display.update();
       Display.sync(60);
 
@@ -162,21 +165,20 @@ public class Window
   {
     return (Sys.getTime() * 1000) / Sys.getTimerResolution();
   }
-  
+
   public void tick ()
   {
-    
-    
-    if(ticker++/60.f>1.f){
-      for(int i=0; i<timerList.size();i++){
+
+    if (ticker++ / 60.f > 1.f) {
+      for (int i = 0; i < timerList.size(); i++) {
         Integer tmp = timerList.get(i);
         timerList.set(i, tmp - 1);
-        if(tmp<=0){
+        if (tmp <= 0) {
           timerList.remove(i);
-          debugList.remove(i);          
+          debugList.remove(i);
         }
       }
-      ticker=0;
+      ticker = 0;
     }
   }
 
@@ -187,7 +189,7 @@ public class Window
   {
     tick();
     if (getTime() - lastFPS > 1000) {
-      //Display.setTitle("FPS: " + fps);
+      // Display.setTitle("FPS: " + fps);
       finalFps = fps;
       fps = 0;
       lastFPS += 1000;
@@ -204,36 +206,43 @@ public class Window
     return delta;
   }
 
-  
   public void checkInput ()
   {
 
     while (Keyboard.next()) {
-      
+
       c.update(Keyboard.getEventCharacter());
       if (Keyboard.getEventKeyState()) {
+        if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+          String w = WorldBuilder.writeWorld(gameWorld);
+          
+          Window.writeToDebug("Serializing world now!");
+        }
+
         if (Keyboard.getEventKey() == Keyboard.KEY_D && !isConsole()) {
-          if(!isDebug()){
+          if (!isDebug()) {
             System.out.println("Debug Enabled");
             logger.info("Debug enabled");
             setDebug(true);
-          }else{
+          }
+          else {
             System.out.println("Debug Disabled");
             logger.info("Debug Disabled");
             setDebug(false);
           }
         }
-        
-        if(Keyboard.getEventKey() == Keyboard.KEY_F1){
-          if(!isConsole()){
+
+        if (Keyboard.getEventKey() == Keyboard.KEY_F1) {
+          if (!isConsole()) {
             Window.writeToDebug("Jython Console Active");
             setConsole(true);
-          }else{
+          }
+          else {
             Window.writeToDebug("Jython Console Disabled");
-            setConsole(false);            
+            setConsole(false);
           }
         }
-        
+
       }
       else {
         if (Keyboard.getEventKey() == Keyboard.KEY_D) {
@@ -246,13 +255,14 @@ public class Window
   {
     return debug;
   }
-  
-  private void setDebug(boolean b){
+
+  public static void setDebug (boolean b)
+  {
     debug = b;
   }
-  
-  
-  public static void writeToDebug(String msg){
+
+  public static void writeToDebug (String msg)
+  {
     debugList.add(msg);
     timerList.add(3);
   }

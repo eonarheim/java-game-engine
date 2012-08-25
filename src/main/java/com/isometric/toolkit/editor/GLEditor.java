@@ -1,26 +1,45 @@
 package com.isometric.toolkit.editor;
 
+import static org.lwjgl.opengl.GL11.GL_LINES;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glColor4f;
+import static org.lwjgl.opengl.GL11.glDisable;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glTranslatef;
+import static org.lwjgl.opengl.GL11.glVertex2f;
+
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.prefs.Preferences;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.LWJGLUtil;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
+import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
 import com.isometric.toolkit.engine.SpriteSheet;
+import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.parser.WorldBuilder;
 
@@ -28,6 +47,7 @@ public class GLEditor extends JFrame
 {
   
   volatile boolean closeRequested;
+  private World w;
 
   public static void main (String[] args) throws Exception
   {
@@ -80,6 +100,39 @@ public class GLEditor extends JFrame
     
     
   }
+  
+  public void drawGrid(){
+    glPushMatrix();
+    glDisable(GL_TEXTURE_2D);
+    
+    int height = 32;
+    int width = 32;
+    
+    glBegin(GL_LINES);
+    glColor4f(1.f, 1.f, 1.0f,1f);
+    
+    //Draw horizontal lines
+    w.getCamera().applyTransform();
+    for(int i = 0; i<canvas.getHeight(); i+=height){
+      glVertex2f(0f, i);
+      glVertex2f(canvas.getWidth(), i);
+    }
+    
+    //Draw vertical lines
+    for(int i = 0; i<canvas.getWidth(); i+=width){
+      glVertex2f(i,0f);
+      glVertex2f(i,canvas.getHeight());
+    }    
+    
+    glEnd();
+    //glColor4f(1.f,1.f,1.f,1.f);
+    glEnable(GL_TEXTURE_2D);
+    
+    //glEnable(GL_BLEND);
+    //f.drawString(0, 5, "("+x+","+y+")");
+    //glDisable(GL_BLEND);
+    glPopMatrix();
+  }
 
   public void run (String[] args)
   {
@@ -98,20 +151,61 @@ public class GLEditor extends JFrame
       GL11.glMatrixMode(GL11.GL_MODELVIEW);
       GL11.glLoadIdentity();
       GL11.glViewport(0, 0, canvas.getWidth(), canvas.getHeight());
-      GL11.glClearColor(0f, 0f, .5f, 1f);
+      GL11.glClearColor(0f, 0f, 0f, 1f);
       
       GL11.glScalef(4f, 4f, 4f);
+      w = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      Camera c = w.getCamera();
       
-      
-      World w = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      Window.setDebug(false);
       jTextArea1.setText(WorldBuilder.serializeWorld(w));
       
       while (!Display.isCloseRequested()
              && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !closeRequested) {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         //a.draw(50, 50);
-        w.update();
+        //w.update();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+
         w.draw();
+        drawGrid();
+        
+        // Capture click events
+        if(Mouse.isButtonDown(0)){
+          int x = Mouse.getX();
+          int y = Mouse.getY();
+          System.out.println("Click! X:"+x+" Y:"+y);
+          
+        }
+        
+        while (Keyboard.next()) {
+          if(Keyboard.getEventKey() == Keyboard.KEY_LEFT){
+            c.setX(c.getX()-10);
+            //c.applyTransform();
+          }
+          if(Keyboard.getEventKey() == Keyboard.KEY_UP){
+            c.setY(c.getY()-10);
+            //c.applyTransform();
+          }
+          if(Keyboard.getEventKey() == Keyboard.KEY_RIGHT){
+            c.setX(c.getX()+10);
+            //c.applyTransform();
+          }
+          if(Keyboard.getEventKey() == Keyboard.KEY_DOWN){
+            c.setY(c.getY()+10);
+            //c.applyTransform();
+          }
+          
+          if(Keyboard.getEventKey() == Keyboard.KEY_ADD){
+            c.setScale(c.getScale() + .1f);
+          }
+          
+          if(Keyboard.getEventKey() == Keyboard.KEY_SUBTRACT){
+            c.setScale(c.getScale() - .1f);
+          }
+          
+        }
+        
         Display.update();
         Display.sync(60);
 
@@ -212,6 +306,25 @@ public class GLEditor extends JFrame
           jScrollPane1.setViewportView(jTextArea1);
 
           jTabbedPane1.addTab("[Source View]", jScrollPane1);
+          
+          jTabbedPane1.addChangeListener(new ChangeListener() {         
+
+            @Override
+            public void stateChanged (ChangeEvent evt)
+            {
+              JTabbedPane pane = (JTabbedPane)evt.getSource();
+
+              // Get current tab
+              int sel = pane.getSelectedIndex();
+              System.out.println("State changed event: " + sel);
+              if(sel == 0){
+                System.out.println(jTextArea1.getText());
+                w = WorldBuilder.parseWorld(jTextArea1.getText());
+              }
+              
+              
+            }
+        });
 
           jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
