@@ -107,21 +107,22 @@ public class GLEditor extends JFrame
     
     int height = 32;
     int width = 32;
-    
+
+    w.getCamera().applyTransform();
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 1.0f,1f);
     
     //Draw horizontal lines
-    w.getCamera().applyTransform();
     for(int i = 0; i<canvas.getHeight(); i+=height){
+      
       glVertex2f(0f, i);
-      glVertex2f(canvas.getWidth(), i);
+      glVertex2f(canvas.getWidth()+w.getCamera().getX(), i);
     }
     
     //Draw vertical lines
     for(int i = 0; i<canvas.getWidth(); i+=width){
       glVertex2f(i,0f);
-      glVertex2f(i,canvas.getHeight());
+      glVertex2f(i,canvas.getHeight()+w.getCamera().getY());
     }    
     
     glEnd();
@@ -131,6 +132,7 @@ public class GLEditor extends JFrame
     //glEnable(GL_BLEND);
     //f.drawString(0, 5, "("+x+","+y+")");
     //glDisable(GL_BLEND);
+
     glPopMatrix();
   }
 
