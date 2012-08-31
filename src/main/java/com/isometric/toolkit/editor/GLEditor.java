@@ -38,6 +38,7 @@ import org.lwjgl.opengl.GL11;
 import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
+import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
@@ -109,21 +110,30 @@ public class GLEditor extends JFrame
     int width = 32;
 
     w.getCamera().applyTransform();
+    Motion shift = w.getCamera().getShift();
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 1.0f,1f);
     
+    float leftRight = (float) Math.floor((w.getCamera().getX()-shift.getDx())/width);
+    float upDown = (float) Math.floor((w.getCamera().getY()-shift.getDy())/height);
+    //System.out.println(leftRight);
+    //System.out.println(upDown);
+    
+    
     //Draw horizontal lines
-    for(int i = 0; i<canvas.getHeight(); i+=height){
+    for(float i = 0-shift.getDy()+upDown*-1*width; i<canvas.getHeight(); i+=height){
       
-      glVertex2f(0f, i);
-      glVertex2f(canvas.getWidth()+w.getCamera().getX(), i);
+      glVertex2f(0f-shift.getDx()+leftRight*width, i+upDown*width);
+      glVertex2f(canvas.getWidth()+w.getCamera().getX(), i+upDown*width);
     }
     
+    System.out.println(0-shift.getDy()+leftRight*-1*height);
     //Draw vertical lines
-    for(int i = 0; i<canvas.getWidth(); i+=width){
-      glVertex2f(i,0f);
+    for(float i = 0-shift.getDy()+leftRight*height; i<canvas.getWidth(); i+=width){
+     
+      glVertex2f(i,0f-shift.getDy());
       glVertex2f(i,canvas.getHeight()+w.getCamera().getY());
-    }    
+    }
     
     glEnd();
     //glColor4f(1.f,1.f,1.f,1.f);

@@ -43,6 +43,10 @@ public class Camera
         
   }
   
+  public Motion getShift(){
+    return shift;
+  }
+  
   public void applyTransform(){
     glTranslatef(shift.getDx(),shift.getDy(),0);
     glScalef(scale,scale,0);
