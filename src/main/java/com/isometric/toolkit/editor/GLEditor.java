@@ -1,6 +1,8 @@
 package com.isometric.toolkit.editor;
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
+import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.GL_BLEND;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor4f;
@@ -114,6 +116,8 @@ public class GLEditor extends JFrame
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 1.0f,1f);
     
+    // I apologize for what follows
+    // Begin shame
     float leftRight = (float) Math.floor((w.getCamera().getX()-shift.getDx())/width)+1;
     float upDown = (float) Math.floor((w.getCamera().getY()-shift.getDy())/height)+1;
     
@@ -131,16 +135,59 @@ public class GLEditor extends JFrame
       glVertex2f(i,0f-shift.getDy()+w.getCamera().getY());
       glVertex2f(i,canvas.getHeight()+w.getCamera().getY());
     }
+    // End shame
     
     glEnd();
-    //glColor4f(1.f,1.f,1.f,1.f);
+    
     glEnable(GL_TEXTURE_2D);
     
-    //glEnable(GL_BLEND);
-    //f.drawString(0, 5, "("+x+","+y+")");
-    //glDisable(GL_BLEND);
 
     glPopMatrix();
+  }
+  
+  public void drawSelection(){
+    
+    
+  }
+  
+  public void drawCursor(){
+    int height = 48;
+    int width = 44;
+
+    glPushMatrix();
+    glDisable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    
+    //w.getCamera().applyTransform();
+    Camera c = w.getCamera();
+    Motion shift = c.getShift();
+    // I apologize for what follows
+    // Begin shame
+    float leftRight = (float) Math.floor((w.getCamera().getX()-shift.getDx())/width)+1;
+    float upDown = (float) Math.floor((w.getCamera().getY()-shift.getDy())/height)+1;
+    
+    float left = (float) Math.floor(Mouse.getX()/width)*width-(c.getX()-shift.getDx())-3*width;//*(1/canvas.getWidth())*leftRight;
+    float top = (float) Math.floor((canvas.getHeight()-Mouse.getY())/height)*height-(c.getY()-shift.getDy())-2*height;//*(1/canvas.getHeight())*upDown;
+    
+    
+    
+    glBegin(GL_QUADS);
+    glColor4f(0.f, 0.f, 1.0f,.2f);
+    glVertex2f(left,top);
+    glVertex2f(left,top+height);
+    glVertex2f(left+width, top+height);
+    glVertex2f(left+width, top);
+    
+    
+    glEnd();
+
+    glColor4f(1.f, 1.f, 1.0f,1f);
+    glDisable(GL_BLEND);
+    glEnable(GL_TEXTURE_2D);
+    glPopMatrix();
+    
+    
+    
   }
 
   public void run (String[] args)
@@ -178,6 +225,8 @@ public class GLEditor extends JFrame
 
         w.draw();
         drawGrid();
+        drawSelection();
+        drawCursor();
         
         // Capture click events
         if(Mouse.isButtonDown(0)){
