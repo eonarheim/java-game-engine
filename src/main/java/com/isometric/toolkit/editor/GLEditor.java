@@ -106,32 +106,29 @@ public class GLEditor extends JFrame
     glPushMatrix();
     glDisable(GL_TEXTURE_2D);
     
-    int height = 32;
-    int width = 32;
+    int height = 48;
+    int width = 44;
 
     w.getCamera().applyTransform();
     Motion shift = w.getCamera().getShift();
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 1.0f,1f);
     
-    float leftRight = (float) Math.floor((w.getCamera().getX()-shift.getDx())/width);
-    float upDown = (float) Math.floor((w.getCamera().getY()-shift.getDy())/height);
-    //System.out.println(leftRight);
-    //System.out.println(upDown);
-    
+    float leftRight = (float) Math.floor((w.getCamera().getX()-shift.getDx())/width)+1;
+    float upDown = (float) Math.floor((w.getCamera().getY()-shift.getDy())/height)+1;
     
     //Draw horizontal lines
-    for(float i = 0-shift.getDy()+upDown*-1*width; i<canvas.getHeight(); i+=height){
+    for(float i = 0+upDown*height; i<canvas.getHeight()+upDown*height+1; i+=height){
       
-      glVertex2f(0f-shift.getDx()+leftRight*width, i+upDown*width);
-      glVertex2f(canvas.getWidth()+w.getCamera().getX(), i+upDown*width);
+      glVertex2f(0f-shift.getDx()+w.getCamera().getX(), i);
+      glVertex2f(canvas.getWidth()+w.getCamera().getX(), i);
     }
     
-    System.out.println(0-shift.getDy()+leftRight*-1*height);
+    
     //Draw vertical lines
-    for(float i = 0-shift.getDy()+leftRight*height; i<canvas.getWidth(); i+=width){
+    for(float i = 0+leftRight*width; i<canvas.getWidth()+leftRight*width+1; i+=width){
      
-      glVertex2f(i,0f-shift.getDy());
+      glVertex2f(i,0f-shift.getDy()+w.getCamera().getY());
       glVertex2f(i,canvas.getHeight()+w.getCamera().getY());
     }
     
