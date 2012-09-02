@@ -52,6 +52,18 @@ public class GLEditor extends JFrame
   volatile boolean closeRequested;
   private World w;
 
+  
+  
+  
+  private int clickX = 0;
+  private int clickY = 0;
+  
+  private int upX = 0;
+  private int upY = 0;
+  
+  float oldX = 0;
+  float oldY = 0;
+  
   public static void main (String[] args) throws Exception
   {
 
@@ -168,8 +180,8 @@ public class GLEditor extends JFrame
     
     float left = (float) Math.floor((Mouse.getX() +c.getX()-shift.getDx())/c.getScale()/width)*width;//*(1/canvas.getWidth())*leftRight;
     float top = (float) Math.floor(((canvas.getHeight()-Mouse.getY())+c.getY()-shift.getDy())/c.getScale()/height)*height;//*(1/canvas.getHeight())*upDown;
-    System.out.println("X:"+Mouse.getX());
-    System.out.println("Y:"+(canvas.getHeight()-Mouse.getY()));
+    //System.out.println("X:"+Mouse.getX());
+    //System.out.println("Y:"+(canvas.getHeight()-Mouse.getY()));
     
     
     glBegin(GL_QUADS);
@@ -229,11 +241,25 @@ public class GLEditor extends JFrame
         drawSelection();
         drawCursor();
         
+        
         // Capture click events
         if(Mouse.isButtonDown(0)){
-          int x = Mouse.getX();
-          int y = Mouse.getY();
-          System.out.println("Click! X:"+x+" Y:"+y);
+             
+          clickX = Mouse.getX();
+          clickY = Mouse.getY(); 
+           
+          System.out.println("Old Click! X:"+oldX+" Y:"+oldY);
+          System.out.println("Click! X:"+clickX+" Y:"+clickY);
+          
+          c.setX(c.getX() + oldX - clickX);
+          c.setY(c.getY() - oldY + clickY);
+
+          oldX = clickX;
+          oldY = clickY;
+        }
+        if(!Mouse.isButtonDown(0)){
+          oldX = Mouse.getX();
+          oldY = Mouse.getY();
           
         }
         
