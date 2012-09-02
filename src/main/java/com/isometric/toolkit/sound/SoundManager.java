@@ -23,4 +23,8 @@ public class SoundManager
     sounds.remove(name);
   }
   
+  public Map<String, Sound> getSounds(){
+    return sounds;
+  }
+  
 }

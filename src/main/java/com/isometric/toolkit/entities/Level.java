@@ -91,6 +91,10 @@ public class Level
   {
     return name;
   }
+  @Override
+  public String toString(){
+    return name;    
+  }
 
   public void setName (String name)
   {

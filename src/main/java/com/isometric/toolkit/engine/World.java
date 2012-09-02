@@ -103,6 +103,10 @@ public class World {
 	public Level getCurrentLevel() {
 		return currentLevel;
 	}
+	public List<Level> getLevels(){
+	  return levels;
+	  
+	}
 
 	public void setCurrentLevel(Level currentLevel) {
 		this.currentLevel = currentLevel;
@@ -126,6 +130,15 @@ public class World {
 
 	public void setSoundManager(SoundManager soundManager) {
 		this.soundManager = soundManager;
+	}
+	
+	public Map<String,SpriteSheet> getSpriteSheets(){
+	  return this.spriteSheets;
+	}
+	
+	@Override
+	public String toString(){
+	  return this.worldName;
 	}
 
 //	@Override

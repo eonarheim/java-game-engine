@@ -56,6 +56,10 @@ public class SpriteSheet
   {
     return animations.get(name);
   }
+  
+  public HashMap<String,Animation> getAnimations(){
+    return animations;
+  }
 
   public List<Image> getImages (int from, int to)
   {

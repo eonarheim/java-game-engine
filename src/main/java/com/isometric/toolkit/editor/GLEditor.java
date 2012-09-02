@@ -214,7 +214,136 @@ public class GLEditor extends JFrame
     glPopMatrix();
 
   }
+  public void load(){
+    jTree1.setModel(new TreeModel() {
 
+      @Override
+      public Object getRoot ()
+      {
+        // TODO Auto-generated method stub
+        return w;
+      }
+
+      @Override
+      public Object getChild (Object parent, int index)
+      {
+        
+        if(parent instanceof String){
+          String p = (String) parent;
+          if(p.compareToIgnoreCase("Levels")==0){
+            return w.getLevels().get(index);
+          }else if(p.compareToIgnoreCase("Actors")==0){
+            return w.getActors().get(index);
+          }else if(p.compareToIgnoreCase("Sprite Sheets")==0){
+            return w.getSpriteSheets().keySet().toArray()[index];
+          }else if(w.getSpriteSheets().keySet().contains(p)){
+            return w.getSpriteSheets().get(p).getAnimations().keySet().toArray()[index];
+          }else if(p.compareToIgnoreCase("Sounds")==0){
+            return w.getSoundManager().getSounds().keySet().toArray()[index];
+          }
+        }
+        
+        // TODO Auto-generated method stub
+        if(parent instanceof World && index==0){
+          return "Levels";
+        }else if(parent instanceof World && index==1){
+          return "Actors";
+        }else if(parent instanceof World && index==2){
+          return "Sprite Sheets";
+        }else if(parent instanceof World && index==3){
+          return "Sounds";
+        }else{
+          return "not implemented";
+        }
+        
+        
+        
+      }
+
+      @Override
+      public int getChildCount (Object parent)
+      {
+        if(parent instanceof String){
+          String p = (String) parent;
+          if(p.compareToIgnoreCase("Levels")==0){
+            return w.getLevels().size();
+          }else if(p.compareToIgnoreCase("Actors")==0){
+            return w.getActors().size();
+          }else if(p.compareToIgnoreCase("Sprite Sheets")==0){
+            return w.getSpriteSheets().keySet().size();
+          }else if(w.getSpriteSheets().keySet().contains(p)){
+              return w.getSpriteSheet(p).getAnimations().keySet().size();
+          }else if(p.compareToIgnoreCase("Sounds")==0){
+            return w.getSoundManager().getSounds().keySet().size();
+          }
+        }
+        
+        
+        if(parent instanceof World){
+          return 4;
+        }else{
+          return 1;          
+        }
+      }
+
+      @Override
+      public boolean isLeaf (Object node)
+      {
+        if(node instanceof String){
+          String p = (String) node;
+          if(p.compareToIgnoreCase("Levels")==0){
+            return false;
+          }else if(p.compareToIgnoreCase("Actors")==0){
+            return false;
+          }else if(p.compareToIgnoreCase("Sprite Sheets")==0){
+            return false;
+          }else if(w.getSpriteSheets().keySet().contains(p)){
+            return false;
+          }else if(p.compareToIgnoreCase("Sounds")==0){
+            return false;
+          }
+        }
+        
+        
+        if(node instanceof World){
+          return false;
+        }else{
+          return true;      
+        }
+        
+      }
+
+      @Override
+      public void valueForPathChanged (TreePath path, Object newValue)
+      {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public int getIndexOfChild (Object parent, Object child)
+      {
+        // TODO Auto-generated method stub
+        return 0;
+      }
+
+      @Override
+      public void addTreeModelListener (TreeModelListener l)
+      {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void removeTreeModelListener (TreeModelListener l)
+      {
+        // TODO Auto-generated method stub
+
+      }
+
+    });
+  }
+  
   public void run (String[] args)
   {
     try {
@@ -236,6 +365,7 @@ public class GLEditor extends JFrame
 
       GL11.glScalef(4f, 4f, 4f);
       w = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      load();
       jList1.setModel(new javax.swing.DefaultListModel<ImageIcon>() {
 
         /**
@@ -482,7 +612,7 @@ public class GLEditor extends JFrame
                                       .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                       .addComponent(jScrollPane2,
                                                     javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                    396,
+                                                    500,
                                                     javax.swing.GroupLayout.PREFERRED_SIZE)
                                       .addContainerGap()));
 
@@ -516,65 +646,7 @@ public class GLEditor extends JFrame
       }
     });
 
-    jTree1.setModel(new TreeModel() {
-
-      @Override
-      public Object getRoot ()
-      {
-        // TODO Auto-generated method stub
-        return "root";
-      }
-
-      @Override
-      public Object getChild (Object parent, int index)
-      {
-        // TODO Auto-generated method stub
-        return "Child";
-      }
-
-      @Override
-      public int getChildCount (Object parent)
-      {
-        // TODO Auto-generated method stub
-        return 1;
-      }
-
-      @Override
-      public boolean isLeaf (Object node)
-      {
-        // TODO Auto-generated method stub
-        return false;
-      }
-
-      @Override
-      public void valueForPathChanged (TreePath path, Object newValue)
-      {
-        // TODO Auto-generated method stub
-
-      }
-
-      @Override
-      public int getIndexOfChild (Object parent, Object child)
-      {
-        // TODO Auto-generated method stub
-        return 0;
-      }
-
-      @Override
-      public void addTreeModelListener (TreeModelListener l)
-      {
-        // TODO Auto-generated method stub
-
-      }
-
-      @Override
-      public void removeTreeModelListener (TreeModelListener l)
-      {
-        // TODO Auto-generated method stub
-
-      }
-
-    });
+    
     jScrollPane3.setViewportView(jTree1);
 
     javax.swing.GroupLayout jPanel2Layout =
