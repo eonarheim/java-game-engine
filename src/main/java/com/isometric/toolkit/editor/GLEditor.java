@@ -158,7 +158,7 @@ public class GLEditor extends JFrame
     glDisable(GL_TEXTURE_2D);
     glEnable(GL_BLEND);
     
-    //w.getCamera().applyTransform();
+    w.getCamera().applyTransform();
     Camera c = w.getCamera();
     Motion shift = c.getShift();
     // I apologize for what follows
@@ -166,9 +166,10 @@ public class GLEditor extends JFrame
     float leftRight = (float) Math.floor((w.getCamera().getX()-shift.getDx())/width)+1;
     float upDown = (float) Math.floor((w.getCamera().getY()-shift.getDy())/height)+1;
     
-    float left = (float) Math.floor(Mouse.getX()/width)*width-(c.getX()-shift.getDx())-3*width;//*(1/canvas.getWidth())*leftRight;
-    float top = (float) Math.floor((canvas.getHeight()-Mouse.getY())/height)*height-(c.getY()-shift.getDy())-2*height;//*(1/canvas.getHeight())*upDown;
-    
+    float left = (float) Math.floor((Mouse.getX() +c.getX()-shift.getDx())/c.getScale()/width)*width;//*(1/canvas.getWidth())*leftRight;
+    float top = (float) Math.floor(((canvas.getHeight()-Mouse.getY())+c.getY()-shift.getDy())/c.getScale()/height)*height;//*(1/canvas.getHeight())*upDown;
+    System.out.println("X:"+Mouse.getX());
+    System.out.println("Y:"+(canvas.getHeight()-Mouse.getY()));
     
     
     glBegin(GL_QUADS);
