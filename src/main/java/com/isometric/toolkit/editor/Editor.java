@@ -42,7 +42,7 @@ import com.isometric.toolkit.engine.Image;
 //JFC (Java Swing) variables should be suffixed by the element type.
 //http://geosoft.no/development/javastyle.html
 public class Editor {
-/*	private Icon imageIcon;
+	private Icon imageIcon;
 	private String resourceFolder = "images/";
 	private JTextField rowCountText = new JTextField("1");
 	private JTextField columnCountText = new JTextField("10");
@@ -377,5 +377,5 @@ public class Editor {
 			}
 		});
 	}
-*/
+
 }

@@ -1,10 +1,13 @@
 package com.isometric.toolkit;
 
 
+import javax.swing.UnsupportedLookAndFeelException;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.lwjgl.opengl.Display;
 
+import com.isometric.toolkit.editor.Editor;
 import com.isometric.toolkit.editor.GLEditor;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
@@ -29,6 +32,27 @@ public class ToolKitMain
     }
     
     
+    try {
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+    }
+    catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    catch (InstantiationException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    catch (IllegalAccessException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    catch (UnsupportedLookAndFeelException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    
     System.setProperty("org.lwjgl.input.Mouse.allowNegativeMouseCoords", "true");
     System.setProperty("sun.java2d.noddraw", "true");
     System.setProperty("sun.java2d.opengl", "false");
@@ -44,6 +68,7 @@ public class ToolKitMain
 
     editor.setVisible(true);
     editor.run(args);
+    
     /*
     
    
