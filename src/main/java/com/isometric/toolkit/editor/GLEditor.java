@@ -29,6 +29,9 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.LWJGLUtil;
@@ -451,6 +454,65 @@ public class GLEditor extends JFrame
       }
     });
 
+    jTree1.setModel(new TreeModel(){
+
+      @Override
+      public Object getRoot ()
+      {
+        // TODO Auto-generated method stub
+        return "root";
+      }
+
+      @Override
+      public Object getChild (Object parent, int index)
+      {
+        // TODO Auto-generated method stub
+        return "Child";
+      }
+
+      @Override
+      public int getChildCount (Object parent)
+      {
+        // TODO Auto-generated method stub
+        return 1;
+      }
+
+      @Override
+      public boolean isLeaf (Object node)
+      {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public void valueForPathChanged (TreePath path, Object newValue)
+      {
+        // TODO Auto-generated method stub
+        
+      }
+
+      @Override
+      public int getIndexOfChild (Object parent, Object child)
+      {
+        // TODO Auto-generated method stub
+        return 0;
+      }
+
+      @Override
+      public void addTreeModelListener (TreeModelListener l)
+      {
+        // TODO Auto-generated method stub
+        
+      }
+
+      @Override
+      public void removeTreeModelListener (TreeModelListener l)
+      {
+        // TODO Auto-generated method stub
+        
+      }
+      
+    });
     jScrollPane3.setViewportView(jTree1);
 
     javax.swing.GroupLayout jPanel2Layout =
