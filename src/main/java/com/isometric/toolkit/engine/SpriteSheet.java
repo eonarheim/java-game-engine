@@ -67,6 +67,31 @@ public class SpriteSheet
 
   }
   
+  public Image getImage(int i){
+    int j = 0;
+    for (String key : animations.keySet()){
+      if(i==j){
+        return animations.get(key).getImage(0);
+      }
+      j++;
+    }
+    return null;
+  }
+  
+  public String getName(int i){
+    int j = 0;
+    for (String key : animations.keySet()){
+      if(i==j){
+        return key;
+      }
+      j++;
+    }
+    return null;
+  }
+  
+  public int getNumImages(){
+    return this.animations.size();
+  }
 
   public String getInternalImagePath ()
   {

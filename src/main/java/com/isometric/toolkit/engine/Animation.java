@@ -96,6 +96,9 @@ public class Animation implements Drawable
     this.speed = speed;
   }
 
+  public Image getImage(int i){
+    return sprites[i];
+  }
   
   
   public void tick ()

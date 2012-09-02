@@ -16,7 +16,9 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
+import java.awt.Component;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -24,14 +26,17 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.prefs.Preferences;
 
+import javax.swing.AbstractListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ListDataListener;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
+import javax.swing.ImageIcon;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.LWJGLUtil;
@@ -231,6 +236,40 @@ public class GLEditor extends JFrame
 
       GL11.glScalef(4f, 4f, 4f);
       w = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      jList1.setModel(new javax.swing.DefaultListModel<ImageIcon>() {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
+
+        public int getSize ()
+        {
+          return w == null? 0: w.getSpriteSheet("TestPlayer").getNumImages();
+        }
+
+        public ImageIcon getElementAt (int i)
+        {
+          new ImageIcon() {
+
+          };
+
+          return w == null? null: new ImageIcon(w.getSpriteSheet("TestPlayer")
+                  .getImage(i).getBufferedImage()) {
+
+            @Override
+            public void paintIcon (Component c, Graphics g, int x, int y)
+            {
+              g.drawImage(getImage(), x + c.getWidth() / 4, y,
+                          c.getHeight() / 2, c.getHeight() / 2, c);
+            }
+
+          };
+
+        }
+      });
+      jList1.setFixedCellHeight(100);
+      jList1.repaint(10);
       Camera c = w.getCamera();
 
       Window.setDebug(false);
@@ -382,17 +421,36 @@ public class GLEditor extends JFrame
       new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
 
-    jList1.setModel(new javax.swing.AbstractListModel<String>() {
-      String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+    jList1.setModel(new javax.swing.ListModel<ImageIcon>() {
+
+      /**
+       * 
+       */
+      private static final long serialVersionUID = 1L;
 
       public int getSize ()
       {
-        return strings.length;
+        return w == null? 0: w.getSpriteSheet("BasicTileSet").getNumImages();
       }
 
-      public String getElementAt (int i)
+      public ImageIcon getElementAt (int i)
       {
-        return strings[i];
+        return w == null? null: new ImageIcon(w.getSpriteSheet("BasicTileSet")
+                .getImage(i).getBufferedImage());
+      }
+
+      @Override
+      public void addListDataListener (ListDataListener l)
+      {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void removeListDataListener (ListDataListener l)
+      {
+        // TODO Auto-generated method stub
+
       }
     });
     jScrollPane2.setViewportView(jList1);
@@ -400,29 +458,33 @@ public class GLEditor extends JFrame
     jScrollPane2.setViewportView(jList1);
 
     jPanel1.setLayout(jPanel1Layout);
+    jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout
             .setHorizontalGroup(jPanel1Layout
+                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout
+                                      .createSequentialGroup()
+                                      .addContainerGap()
+                                      .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jScrollPane2,
+                                                                      javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                      273,
+                                                                      Short.MAX_VALUE))
+                                      .addContainerGap()));
+    jPanel1Layout
+            .setVerticalGroup(jPanel1Layout
                     .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                               jPanel1Layout
                                       .createSequentialGroup()
                                       .addContainerGap()
-                                      .addComponent(jScrollPane2,
-                                                    javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                    176, Short.MAX_VALUE)
-                                      .addContainerGap()));
-    jPanel1Layout
-            .setVerticalGroup(jPanel1Layout
-                    .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout
-                                      .createSequentialGroup()
-                                      .addGap(22, 22, 22)
+                                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                       .addComponent(jScrollPane2,
                                                     javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                    282,
+                                                    396,
                                                     javax.swing.GroupLayout.PREFERRED_SIZE)
-                                      .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                       Short.MAX_VALUE)));
+                                      .addContainerGap()));
 
     jTabbedPane1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
     jTabbedPane1.setMinimumSize(new java.awt.Dimension(600, 500));
@@ -454,7 +516,7 @@ public class GLEditor extends JFrame
       }
     });
 
-    jTree1.setModel(new TreeModel(){
+    jTree1.setModel(new TreeModel() {
 
       @Override
       public Object getRoot ()
@@ -488,7 +550,7 @@ public class GLEditor extends JFrame
       public void valueForPathChanged (TreePath path, Object newValue)
       {
         // TODO Auto-generated method stub
-        
+
       }
 
       @Override
@@ -502,16 +564,16 @@ public class GLEditor extends JFrame
       public void addTreeModelListener (TreeModelListener l)
       {
         // TODO Auto-generated method stub
-        
+
       }
 
       @Override
       public void removeTreeModelListener (TreeModelListener l)
       {
         // TODO Auto-generated method stub
-        
+
       }
-      
+
     });
     jScrollPane3.setViewportView(jTree1);
 
