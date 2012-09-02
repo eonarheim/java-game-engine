@@ -404,7 +404,9 @@ public class GLEditor extends JFrame
 
       Window.setDebug(false);
       jTextArea1.setText(WorldBuilder.serializeWorld(w));
-
+      edit.setFont(new java.awt.Font("Consolas", 1, 14));
+      edit.setEditorKit(new XMLEditor());
+      edit.setText(WorldBuilder.serializeWorld(w));
       while (!Display.isCloseRequested()
              && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !closeRequested) {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
@@ -507,6 +509,7 @@ public class GLEditor extends JFrame
     jScrollPane2 = new javax.swing.JScrollPane();
     jScrollPane3 = new javax.swing.JScrollPane();
     jTextArea1 = new javax.swing.JTextArea();
+    edit = new javax.swing.JEditorPane();
     jPanel2 = new javax.swing.JPanel();
     jProgressBar1 = new javax.swing.JProgressBar();
     jMenuBar1 = new javax.swing.JMenuBar();
@@ -624,7 +627,7 @@ public class GLEditor extends JFrame
     jTextArea1.setFont(new java.awt.Font("Consolas", 1, 14));
     jTextArea1.setColumns(20);
     jTextArea1.setRows(5);
-    jScrollPane1.setViewportView(jTextArea1);
+    jScrollPane1.setViewportView(edit); // was jTextArea1
 
     jTabbedPane1.addTab("[Source View]", jScrollPane1);
 
@@ -904,6 +907,7 @@ public class GLEditor extends JFrame
   private javax.swing.JScrollPane jScrollPane2;
   private javax.swing.JScrollPane jScrollPane3;
   private javax.swing.JTextArea jTextArea1;
+  private javax.swing.JEditorPane edit;
   private javax.swing.JToolBar jToolBar1;
 
   private javax.swing.JTree jTree1;
