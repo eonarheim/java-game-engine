@@ -365,6 +365,12 @@ public class GLEditor extends JFrame
 
       GL11.glScalef(4f, 4f, 4f);
       w = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      /*try {
+		w = WorldBuilder.newWorld();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
       load();
       jList1.setModel(new javax.swing.DefaultListModel<ImageIcon>() {
 
@@ -466,6 +472,9 @@ public class GLEditor extends JFrame
             c.setScale(c.getScale() - .1f);
           }
 
+          if (Keyboard.getEventKey() == Keyboard.KEY_S) {
+             WorldBuilder.writeWorldToLogger(w);
+            }          
         }
 
         Display.update();

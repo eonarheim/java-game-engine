@@ -34,9 +34,6 @@ public abstract class Actor
   protected float dx;
   protected float dy;
 
-  protected float width;
-  protected float height;
-
   protected HashMap<String, Animation> animations =
     new HashMap<String, Animation>();
   protected HashMap<Integer, String> keyHooks = new HashMap<Integer, String>();
@@ -62,10 +59,6 @@ public abstract class Actor
 
   private boolean isometric = false;
 
- 
-  
-  // TODO Eventually get rid of... we want to force an Actor to have a width and
-  // height
   protected Actor (World w, float x, float y, float dx, float dy)
   {
     this.world = w;
@@ -73,22 +66,18 @@ public abstract class Actor
     this.y = y;
     this.dx = dx;
     this.dy = dy;
-    
-   
   }
 
-  protected Actor (World w, float x, float y, float dx, float dy, float width,
-                   float height)
-  {
-    this.world = w;
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.width = width;
-    this.height = height;
-        
-  }
+//TODO Eventually get rid of... we want to force an Actor to have a width and
+ // height of what is dicated by the World/Scale
+//  protected Actor (World w, float x, float y, float dx, float dy)
+//  {
+//    this.world = w;
+//    this.x = x;
+//    this.y = y;
+//    this.dx = dx;
+//    this.dy = dy;
+//  }
 
   public static String getType ()
   {
@@ -152,15 +141,15 @@ public abstract class Actor
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 0.0f,1f);
     glVertex2f(0f, 0f);
-    glVertex2f(width, 0);
+    glVertex2f(this.getWidth(), 0);
 
-    glVertex2f(width, 0);
-    glVertex2f(width, height);
+    glVertex2f(this.getWidth(), 0);
+    glVertex2f(this.getWidth(), this.getHeight());
 
-    glVertex2f(width, height);
-    glVertex2f(0, height);
+    glVertex2f(this.getWidth(), this.getHeight());
+    glVertex2f(0, this.getHeight());
 
-    glVertex2f(0, height);
+    glVertex2f(0, this.getHeight());
     glVertex2f(0, 0);
     
     glEnd();
@@ -220,9 +209,7 @@ public abstract class Actor
       motionQueueDeltas.add(m);
       motionQueueDestination.add(new Point(x,y));
       motionQueueAnimations.add(animation);
-    }
-    
-    
+    }   
   }
 
   public float getX ()
@@ -329,7 +316,7 @@ public abstract class Actor
 
   public void setSpriteSheet (SpriteSheet spriteSheet)
   {
-    this.spriteSheet = spriteSheet;
+    this.spriteSheet = spriteSheet;    
   }
 
   public boolean isIsometric ()
@@ -349,14 +336,10 @@ public abstract class Actor
 
   public void setScale (float scale)
   {
-
     this.scale = scale;
     for (Animation a: this.animations.values()) {
       a.setScale(scale);
     }
-
-    this.width = this.width * scale;
-    this.height = this.height * scale;
   }
 
   public String getSpriteSheetName ()
@@ -371,21 +354,11 @@ public abstract class Actor
 
   public float getWidth ()
   {
-    return this.width;
-  }
-
-  public void setWidth (float width)
-  {
-    this.width = width;
+    return this.scale * this.world.getSpriteWidth();
   }
 
   public float getHeight ()
   {
-    return this.height;
-  }
-
-  public void setHeight (float height)
-  {
-    this.height = height;
+    return this.scale * this.world.getSpriteHeight();
   }
 }

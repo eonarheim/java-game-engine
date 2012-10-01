@@ -16,9 +16,9 @@ public abstract class CombatActor extends Actor
 
   private List<Item> inventory = new ArrayList<Item>();
 
-  protected CombatActor (World w, float x, float y, float width, float height)
+  protected CombatActor (World w, float x, float y)
   {
-    super(w, x, y, 0, 0, width, height);
+    super(w, x, y, 0, 0);
     // TODO Auto-generated constructor stub
   }
 

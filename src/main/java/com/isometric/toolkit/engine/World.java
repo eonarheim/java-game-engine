@@ -29,7 +29,16 @@ public class World {
 	private Level currentLevel = new Level();
 	private Camera camera = null;
 	private String worldName = "";
-
+	private int spriteWidth = 20;
+	private int spriteHeight = 20;
+	
+	//TODO - Hard coding this for now...
+	public World()
+	{
+		this.spriteWidth = 22;//22
+		this.spriteHeight = 25;//25
+	}
+	
 	public void update() {
 		
 
@@ -141,6 +150,23 @@ public class World {
 	  return this.worldName;
 	}
 
+
+	public int getSpriteWidth() {
+		return spriteWidth;
+	}
+
+	public void setSpriteWidth(int spriteWidth) {
+		this.spriteWidth = spriteWidth;
+	}
+	
+	public int getSpriteHeight() {
+		return spriteHeight;
+	}
+
+	public void setSpriteHeight(int spriteHeight) {
+		this.spriteHeight = spriteHeight;
+	}
+	
 //	@Override
 //	public boolean equals(Object obj) { 
 //		//return true;

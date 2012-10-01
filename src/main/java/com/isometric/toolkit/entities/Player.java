@@ -39,7 +39,7 @@ public class Player extends CombatActor
 
   public Player (World w, float x, float y)
   {
-    super(w, x, y, 0, 0);
+    super(w, x, y);
 
     
 

@@ -62,16 +62,16 @@ public class WorldBuilder {
 
 		Player player = new Player(w, 0, 0);
 		player.setSpriteSheetName("TestPlayer");
-		player.setHeight(25.f);
-		player.setWidth(25.f);
+		//player.setHeight(25.f);
+		//player.setWidth(25.f);
 		w.addActor(player);
 
 		Player testCollide = new Player(w, 100, 100);
 		testCollide.setSpriteSheetName("TestPlayer");
 		testCollide.addAnimation("walkUp");
 		testCollide.addAnimation("walkDown");
-		testCollide.setHeight(35.f);
-		testCollide.setWidth(35.f);
+		//testCollide.setHeight(35.f);
+		//testCollide.setWidth(35.f);
 
 		testCollide.setScale(2.f);
 
@@ -253,7 +253,7 @@ public class WorldBuilder {
 		// World Alias's
 		x.alias("world", World.class);
 		x.alias("actor", Actor.class);
-		// x.alias("player", Player.class);
+		//x.alias("player", Player.class);
 		x.alias("level", Level.class);
 		x.alias("trigger", Trigger.class);
 		x.alias("tile", Tile.class);
