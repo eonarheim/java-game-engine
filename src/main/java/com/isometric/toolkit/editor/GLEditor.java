@@ -38,6 +38,10 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.ImageIcon;
 
+import org.apache.log4j.Logger;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.LWJGLUtil;
 import org.lwjgl.input.Keyboard;
@@ -45,6 +49,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
+import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
@@ -56,15 +61,58 @@ import com.isometric.toolkit.parser.WorldBuilder;
 
 public class GLEditor extends JFrame
 {
+  // Get Logger
+  Logger log = LoggerFactory.getLogger();
 
+  // UI Variable Declarations
+
+  private java.awt.Canvas canvas;
+  private javax.swing.JList jList1;
+  private javax.swing.JMenu editorMenu;
+  private javax.swing.JMenu editMenu;
+  private javax.swing.JMenu buildMenu;
+  private javax.swing.JMenu helpMenuItem;
+  private javax.swing.JMenuBar menuBar;
+  private javax.swing.JMenuItem openWorldMenuItem;
+  private javax.swing.JMenuItem importMenuItem;
+  private javax.swing.JMenuItem runMenuItem;
+  private javax.swing.JMenuItem packageMenuItem;
+  private javax.swing.JMenuItem exportMenuItem;
+  private javax.swing.JMenuItem documentationMenuItem;
+  private javax.swing.JMenuItem saveWorldMenuItem;
+  private javax.swing.JMenuItem saveAsWorldMenuItem;
+  private javax.swing.JMenuItem cutMenuItem;
+  private javax.swing.JMenuItem copyMenuItem;
+  private javax.swing.JMenuItem checkErrorsMenuItem;
+  private javax.swing.JMenuItem aboutMenuItem;
+  private javax.swing.JMenuItem quitMenuItem;
+  private javax.swing.JMenuItem pasteMenuItem;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JPanel jPanel2;
+  private javax.swing.JProgressBar jProgressBar1;
+  private javax.swing.JTabbedPane editorTabs;
+
+  private javax.swing.JTree projectTree;
+
+  // Xml Editor Controls
+  private RSyntaxTextArea xmlEditorTextArea;
+  private RTextScrollPane xmlEditorScrollPane;
+
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JTextArea jTextArea1;
+  private javax.swing.JToolBar jToolBar1;
+
+ 
+
+  // End UI Variable Declarations
+
+  // Logic Variable Declarations
   volatile boolean closeRequested;
   private World w;
 
   private int clickX = 0;
   private int clickY = 0;
-
-  private int upX = 0;
-  private int upY = 0;
 
   float oldX = 0;
   float oldY = 0;
@@ -94,6 +142,9 @@ public class GLEditor extends JFrame
   public GLEditor ()
   {
 
+    
+    // Initializes all JSwing UI elements
+    log.info("Initializing UI elements");
     initComponents();
 
     canvas.setFocusTraversalKeysEnabled(false);
@@ -119,6 +170,7 @@ public class GLEditor extends JFrame
 
   }
 
+  // TODO: Refactor this code into a custom control
   public void drawGrid ()
   {
     glPushMatrix();
@@ -168,6 +220,7 @@ public class GLEditor extends JFrame
 
   }
 
+  // Todo Refactor this code into a custom control
   public void drawCursor ()
   {
     int height = 48;
@@ -214,8 +267,10 @@ public class GLEditor extends JFrame
     glPopMatrix();
 
   }
-  public void load(){
-    jTree1.setModel(new TreeModel() {
+
+  public void load ()
+  {
+    projectTree.setModel(new TreeModel() {
 
       @Override
       public Object getRoot ()
@@ -227,90 +282,105 @@ public class GLEditor extends JFrame
       @Override
       public Object getChild (Object parent, int index)
       {
-        
-        if(parent instanceof String){
+
+        if (parent instanceof String) {
           String p = (String) parent;
-          if(p.compareToIgnoreCase("Levels")==0){
+          if (p.compareToIgnoreCase("Levels") == 0) {
             return w.getLevels().get(index);
-          }else if(p.compareToIgnoreCase("Actors")==0){
+          }
+          else if (p.compareToIgnoreCase("Actors") == 0) {
             return w.getActors().get(index);
-          }else if(p.compareToIgnoreCase("Sprite Sheets")==0){
+          }
+          else if (p.compareToIgnoreCase("Sprite Sheets") == 0) {
             return w.getSpriteSheets().keySet().toArray()[index];
-          }else if(w.getSpriteSheets().keySet().contains(p)){
-            return w.getSpriteSheets().get(p).getAnimations().keySet().toArray()[index];
-          }else if(p.compareToIgnoreCase("Sounds")==0){
+          }
+          else if (w.getSpriteSheets().keySet().contains(p)) {
+            return w.getSpriteSheets().get(p).getAnimations().keySet()
+                    .toArray()[index];
+          }
+          else if (p.compareToIgnoreCase("Sounds") == 0) {
             return w.getSoundManager().getSounds().keySet().toArray()[index];
           }
         }
-        
+
         // TODO Auto-generated method stub
-        if(parent instanceof World && index==0){
+        if (parent instanceof World && index == 0) {
           return "Levels";
-        }else if(parent instanceof World && index==1){
+        }
+        else if (parent instanceof World && index == 1) {
           return "Actors";
-        }else if(parent instanceof World && index==2){
+        }
+        else if (parent instanceof World && index == 2) {
           return "Sprite Sheets";
-        }else if(parent instanceof World && index==3){
+        }
+        else if (parent instanceof World && index == 3) {
           return "Sounds";
-        }else{
+        }
+        else {
           return "not implemented";
         }
-        
-        
-        
+
       }
 
       @Override
       public int getChildCount (Object parent)
       {
-        if(parent instanceof String){
+        if (parent instanceof String) {
           String p = (String) parent;
-          if(p.compareToIgnoreCase("Levels")==0){
+          if (p.compareToIgnoreCase("Levels") == 0) {
             return w.getLevels().size();
-          }else if(p.compareToIgnoreCase("Actors")==0){
+          }
+          else if (p.compareToIgnoreCase("Actors") == 0) {
             return w.getActors().size();
-          }else if(p.compareToIgnoreCase("Sprite Sheets")==0){
+          }
+          else if (p.compareToIgnoreCase("Sprite Sheets") == 0) {
             return w.getSpriteSheets().keySet().size();
-          }else if(w.getSpriteSheets().keySet().contains(p)){
-              return w.getSpriteSheet(p).getAnimations().keySet().size();
-          }else if(p.compareToIgnoreCase("Sounds")==0){
+          }
+          else if (w.getSpriteSheets().keySet().contains(p)) {
+            return w.getSpriteSheet(p).getAnimations().keySet().size();
+          }
+          else if (p.compareToIgnoreCase("Sounds") == 0) {
             return w.getSoundManager().getSounds().keySet().size();
           }
         }
-        
-        
-        if(parent instanceof World){
+
+        if (parent instanceof World) {
           return 4;
-        }else{
-          return 1;          
+        }
+        else {
+          return 1;
         }
       }
 
       @Override
       public boolean isLeaf (Object node)
       {
-        if(node instanceof String){
+        if (node instanceof String) {
           String p = (String) node;
-          if(p.compareToIgnoreCase("Levels")==0){
+          if (p.compareToIgnoreCase("Levels") == 0) {
             return false;
-          }else if(p.compareToIgnoreCase("Actors")==0){
+          }
+          else if (p.compareToIgnoreCase("Actors") == 0) {
             return false;
-          }else if(p.compareToIgnoreCase("Sprite Sheets")==0){
+          }
+          else if (p.compareToIgnoreCase("Sprite Sheets") == 0) {
             return false;
-          }else if(w.getSpriteSheets().keySet().contains(p)){
+          }
+          else if (w.getSpriteSheets().keySet().contains(p)) {
             return false;
-          }else if(p.compareToIgnoreCase("Sounds")==0){
+          }
+          else if (p.compareToIgnoreCase("Sounds") == 0) {
             return false;
           }
         }
-        
-        
-        if(node instanceof World){
+
+        if (node instanceof World) {
           return false;
-        }else{
-          return true;      
         }
-        
+        else {
+          return true;
+        }
+
       }
 
       @Override
@@ -347,9 +417,9 @@ public class GLEditor extends JFrame
   public void run (String[] args)
   {
     try {
+
+      // Setup Display and OpenGL properties
       Display.setParent(canvas);
-      // System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL",
-      // "true");
       Display.create();
       Display.setVSyncEnabled(true);
 
@@ -365,13 +435,9 @@ public class GLEditor extends JFrame
 
       GL11.glScalef(4f, 4f, 4f);
       w = WorldBuilder.parseWorldFromFile("worlds/world.xml");
-      /*try {
-		w = WorldBuilder.newWorld();
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}*/
       load();
+
+      // TODO: This code is in the wrong spot.
       jList1.setModel(new javax.swing.DefaultListModel<ImageIcon>() {
 
         /**
@@ -406,13 +472,20 @@ public class GLEditor extends JFrame
       });
       jList1.setFixedCellHeight(100);
       jList1.repaint(10);
-      Camera c = w.getCamera();
 
+      Camera c = w.getCamera();
       Window.setDebug(false);
-      jTextArea1.setText(WorldBuilder.serializeWorld(w));
-      edit.setFont(new java.awt.Font("Consolas", 1, 14));
-      edit.setEditorKit(new XMLEditor());
-      edit.setText(WorldBuilder.serializeWorld(w));
+
+      // Setup the XML editor for the world file
+
+      xmlEditorTextArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
+      xmlEditorTextArea.setText(WorldBuilder.serializeWorld(w));
+      xmlEditorTextArea.setCodeFoldingEnabled(true);
+      xmlEditorTextArea.setAntiAliasingEnabled(true);
+
+      xmlEditorScrollPane.setFoldIndicatorEnabled(true);
+
+      // Handle World Events
       while (!Display.isCloseRequested()
              && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE) && !closeRequested) {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
@@ -473,8 +546,8 @@ public class GLEditor extends JFrame
           }
 
           if (Keyboard.getEventKey() == Keyboard.KEY_S) {
-             WorldBuilder.writeWorldToLogger(w);
-            }          
+            WorldBuilder.writeWorldToLogger(w);
+          }
         }
 
         Display.update();
@@ -494,11 +567,6 @@ public class GLEditor extends JFrame
 
   }
 
-  /**
-   * This method is called from within the constructor to initialize the form.
-   * WARNING: Do NOT modify this code. The content of this method is always
-   * regenerated by the Form Editor.
-   */
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private
@@ -506,50 +574,45 @@ public class GLEditor extends JFrame
   {
 
     jToolBar1 = new javax.swing.JToolBar();
-    menuBar1 = new java.awt.MenuBar();
-    menu1 = new java.awt.Menu();
-    menu2 = new java.awt.Menu();
     jPanel1 = new javax.swing.JPanel();
-    jTabbedPane1 = new javax.swing.JTabbedPane();
-    jTree1 = new javax.swing.JTree();
+    editorTabs = new javax.swing.JTabbedPane();
+    projectTree = new javax.swing.JTree();
     jList1 = new javax.swing.JList<String>();
     canvas = new java.awt.Canvas();
-    jScrollPane1 = new javax.swing.JScrollPane();
     jScrollPane2 = new javax.swing.JScrollPane();
     jScrollPane3 = new javax.swing.JScrollPane();
     jTextArea1 = new javax.swing.JTextArea();
-    edit = new javax.swing.JEditorPane();
+
+    // Xml Editor Control init
+    xmlEditorTextArea = new RSyntaxTextArea(20, 60);
+    xmlEditorScrollPane = new RTextScrollPane(xmlEditorTextArea);
+
     jPanel2 = new javax.swing.JPanel();
     jProgressBar1 = new javax.swing.JProgressBar();
-    jMenuBar1 = new javax.swing.JMenuBar();
-    jMenu1 = new javax.swing.JMenu();
-    jMenuItem10 = new javax.swing.JMenuItem();
-    jMenuItem13 = new javax.swing.JMenuItem();
-    jMenuItem1 = new javax.swing.JMenuItem();
-    jMenuItem2 = new javax.swing.JMenuItem();
-    jMenuItem3 = new javax.swing.JMenuItem();
-    jMenuItem8 = new javax.swing.JMenuItem();
-    jMenu2 = new javax.swing.JMenu();
-    jMenuItem4 = new javax.swing.JMenuItem();
-    jMenuItem5 = new javax.swing.JMenuItem();
-    jMenuItem9 = new javax.swing.JMenuItem();
-    jMenu5 = new javax.swing.JMenu();
-    jMenuItem6 = new javax.swing.JMenuItem();
-    jMenuItem11 = new javax.swing.JMenuItem();
-    jMenuItem12 = new javax.swing.JMenuItem();
-    jMenu6 = new javax.swing.JMenu();
-    jMenuItem14 = new javax.swing.JMenuItem();
-    jMenuItem7 = new javax.swing.JMenuItem();
+    menuBar = new javax.swing.JMenuBar();
+    editorMenu = new javax.swing.JMenu();
+    importMenuItem = new javax.swing.JMenuItem();
+    exportMenuItem = new javax.swing.JMenuItem();
+    openWorldMenuItem = new javax.swing.JMenuItem();
+
+    saveWorldMenuItem = new javax.swing.JMenuItem();
+    saveAsWorldMenuItem = new javax.swing.JMenuItem();
+    quitMenuItem = new javax.swing.JMenuItem();
+    editMenu = new javax.swing.JMenu();
+    cutMenuItem = new javax.swing.JMenuItem();
+    copyMenuItem = new javax.swing.JMenuItem();
+    pasteMenuItem = new javax.swing.JMenuItem();
+    buildMenu = new javax.swing.JMenu();
+    checkErrorsMenuItem = new javax.swing.JMenuItem();
+    runMenuItem = new javax.swing.JMenuItem();
+    packageMenuItem = new javax.swing.JMenuItem();
+    helpMenuItem = new javax.swing.JMenu();
+    documentationMenuItem = new javax.swing.JMenuItem();
+    aboutMenuItem = new javax.swing.JMenuItem();
 
     jToolBar1.setRollover(true);
 
-    menuBar1.setName("");
-
-    menu1.setLabel("File");
-    menuBar1.add(menu1);
-
-    menu2.setLabel("Edit");
-    menuBar1.add(menu2);
+    
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("The Yet To Be Name Jave 2D Game Editor");
@@ -564,10 +627,6 @@ public class GLEditor extends JFrame
     jPanel1.setLayout(jPanel1Layout);
 
     jList1.setModel(new javax.swing.ListModel<ImageIcon>() {
-
-      /**
-       * 
-       */
       private static final long serialVersionUID = 1L;
 
       public int getSize ()
@@ -595,6 +654,7 @@ public class GLEditor extends JFrame
 
       }
     });
+    
     jScrollPane2.setViewportView(jList1);
 
     jScrollPane2.setViewportView(jList1);
@@ -627,21 +687,21 @@ public class GLEditor extends JFrame
                                                     500,
                                                     javax.swing.GroupLayout.PREFERRED_SIZE)
                                       .addContainerGap()));
+    
+    
 
-    jTabbedPane1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-    jTabbedPane1.setMinimumSize(new java.awt.Dimension(600, 500));
 
+    // Set the default canvas color to black 
     canvas.setBackground(new java.awt.Color(0, 0, 0));
-    jTabbedPane1.addTab("[Design View]", canvas);
-    jTextArea1.setFont(new java.awt.Font("Consolas", 1, 14));
-    jTextArea1.setColumns(20);
-    jTextArea1.setRows(5);
-    jScrollPane1.setViewportView(edit); // was jTextArea1
-
-    jTabbedPane1.addTab("[Source View]", jScrollPane1);
-
-    jTabbedPane1.addChangeListener(new ChangeListener() {
-
+    
+    // Initialize Editor Tabs
+    editorTabs.setFont(new java.awt.Font("Consolas", 1, 14)); 
+    editorTabs.setMinimumSize(new java.awt.Dimension(600, 500));
+    editorTabs.addTab("[Design View]", canvas);
+    editorTabs.addTab("[Source View]", xmlEditorScrollPane);
+    
+    // Parse back to world file
+    editorTabs.addChangeListener(new ChangeListener() {
       @Override
       public void stateChanged (ChangeEvent evt)
       {
@@ -649,17 +709,23 @@ public class GLEditor extends JFrame
 
         // Get current tab
         int sel = pane.getSelectedIndex();
-        System.out.println("State changed event: " + sel);
+        log.info("Tab Selections Changed: " + sel);
+        
         if (sel == 0) {
-          System.out.println(jTextArea1.getText());
-          w = WorldBuilder.parseWorld(jTextArea1.getText());
+          try{
+            log.info("Reading world from text area...");
+            w = WorldBuilder.parseWorld(xmlEditorTextArea.getText());
+          }catch(Exception e){
+            log.error("Could not parse world");
+          }
+        } else if (sel == 1){
+         
         }
 
       }
     });
 
-    
-    jScrollPane3.setViewportView(jTree1);
+    jScrollPane3.setViewportView(projectTree);
 
     javax.swing.GroupLayout jPanel2Layout =
       new javax.swing.GroupLayout(jPanel2);
@@ -679,106 +745,106 @@ public class GLEditor extends JFrame
             .addGroup(jPanel2Layout.createSequentialGroup().addContainerGap()
                               .addComponent(jScrollPane3).addContainerGap()));
 
-    jMenu1.setText("File");
+    editorMenu.setText("File");
 
-    jMenuItem10.setText("Import...");
-    jMenu1.add(jMenuItem10);
+    importMenuItem.setText("Import...");
+    editorMenu.add(importMenuItem);
 
-    jMenuItem13.setText("Export...");
-    jMenu1.add(jMenuItem13);
+    exportMenuItem.setText("Export...");
+    editorMenu.add(exportMenuItem);
 
-    jMenuItem1.setAccelerator(javax.swing.KeyStroke
+    openWorldMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_O,
                           java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem1.setText("Open World");
-    jMenu1.add(jMenuItem1);
+    openWorldMenuItem.setText("Open World");
+    editorMenu.add(openWorldMenuItem);
 
-    jMenuItem2.setAccelerator(javax.swing.KeyStroke
+    saveWorldMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_S,
                           java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem2.setText("Save World");
-    jMenu1.add(jMenuItem2);
+    saveWorldMenuItem.setText("Save World");
+    editorMenu.add(saveWorldMenuItem);
 
-    jMenuItem3.setAccelerator(javax.swing.KeyStroke
+    saveAsWorldMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_S,
                           java.awt.event.InputEvent.ALT_MASK
                                   | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem3.setText("Save World As...");
-    jMenuItem3.setToolTipText("");
-    jMenu1.add(jMenuItem3);
+    saveAsWorldMenuItem.setText("Save World As...");
+    saveAsWorldMenuItem.setToolTipText("");
+    editorMenu.add(saveAsWorldMenuItem);
 
-    jMenuItem8.setText("Quit");
-    jMenu1.add(jMenuItem8);
+    quitMenuItem.setText("Quit");
+    editorMenu.add(quitMenuItem);
 
-    jMenuBar1.add(jMenu1);
+    menuBar.add(editorMenu);
 
-    jMenu2.setText("Edit");
+    editMenu.setText("Edit");
 
-    jMenuItem4.setAccelerator(javax.swing.KeyStroke
+    cutMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_X,
                           java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem4.setText("Cut");
-    jMenuItem4.setToolTipText("");
-    jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+    cutMenuItem.setText("Cut");
+    cutMenuItem.setToolTipText("");
+    cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed (java.awt.event.ActionEvent evt)
       {
         jMenuItem4ActionPerformed(evt);
       }
     });
-    jMenu2.add(jMenuItem4);
+    editMenu.add(cutMenuItem);
 
-    jMenuItem5.setAccelerator(javax.swing.KeyStroke
+    copyMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_C,
                           java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem5.setText("Copy");
-    jMenu2.add(jMenuItem5);
+    copyMenuItem.setText("Copy");
+    editMenu.add(copyMenuItem);
 
-    jMenuItem9.setAccelerator(javax.swing.KeyStroke
+    pasteMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_V,
                           java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem9.setText("Paste");
-    jMenu2.add(jMenuItem9);
+    pasteMenuItem.setText("Paste");
+    editMenu.add(pasteMenuItem);
 
-    jMenuBar1.add(jMenu2);
+    menuBar.add(editMenu);
 
-    jMenu5.setText("Build");
+    buildMenu.setText("Build");
 
-    jMenuItem6.setAccelerator(javax.swing.KeyStroke
+    checkErrorsMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-    jMenuItem6.setText("Check for Errors");
-    jMenuItem6.setToolTipText("");
-    jMenu5.add(jMenuItem6);
+    checkErrorsMenuItem.setText("Check for Errors");
+    checkErrorsMenuItem.setToolTipText("");
+    buildMenu.add(checkErrorsMenuItem);
 
-    jMenuItem11.setAccelerator(javax.swing.KeyStroke
+    runMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-    jMenuItem11.setText("Run ");
-    jMenu5.add(jMenuItem11);
+    runMenuItem.setText("Run ");
+    buildMenu.add(runMenuItem);
 
-    jMenuItem12.setAccelerator(javax.swing.KeyStroke
+    packageMenuItem.setAccelerator(javax.swing.KeyStroke
             .getKeyStroke(java.awt.event.KeyEvent.VK_F5,
                           java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem12.setText("Package for Redistrbution");
-    jMenu5.add(jMenuItem12);
+    packageMenuItem.setText("Package for Redistrbution");
+    buildMenu.add(packageMenuItem);
 
-    jMenuBar1.add(jMenu5);
+    menuBar.add(buildMenu);
 
-    jMenu6.setText("Help");
+    helpMenuItem.setText("Help");
 
-    jMenuItem14.setText("Documentation");
-    jMenu6.add(jMenuItem14);
+    documentationMenuItem.setText("Documentation");
+    helpMenuItem.add(documentationMenuItem);
 
-    jMenuItem7.setText("About");
-    jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+    aboutMenuItem.setText("About");
+    aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed (java.awt.event.ActionEvent evt)
       {
         jMenuItem7ActionPerformed(evt);
       }
     });
-    jMenu6.add(jMenuItem7);
+    helpMenuItem.add(aboutMenuItem);
 
-    jMenuBar1.add(jMenu6);
+    menuBar.add(helpMenuItem);
 
-    setJMenuBar(jMenuBar1);
+    setJMenuBar(menuBar);
 
     javax.swing.GroupLayout layout =
       new javax.swing.GroupLayout(getContentPane());
@@ -798,7 +864,7 @@ public class GLEditor extends JFrame
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                  .addComponent(jTabbedPane1,
+                                                                  .addComponent(editorTabs,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                                 Short.MAX_VALUE)
@@ -814,7 +880,7 @@ public class GLEditor extends JFrame
                       layout.createSequentialGroup()
                               .addContainerGap()
                               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jTabbedPane1,
+                                                .addComponent(editorTabs,
                                                               javax.swing.GroupLayout.DEFAULT_SIZE,
                                                               javax.swing.GroupLayout.DEFAULT_SIZE,
                                                               Short.MAX_VALUE)
@@ -832,7 +898,7 @@ public class GLEditor extends JFrame
                                             javax.swing.GroupLayout.DEFAULT_SIZE,
                                             javax.swing.GroupLayout.PREFERRED_SIZE)));
 
-    jTabbedPane1.getAccessibleContext().setAccessibleName("[Design View]");
+    editorTabs.getAccessibleContext().setAccessibleName("[Design View]");
 
     pack();
   }// </editor-fold>
@@ -846,83 +912,5 @@ public class GLEditor extends JFrame
   {
     // TODO add your handling code here:
   }
-
-  /**
-   * @param args
-   *          the command line arguments
-   */
-  /*
-   * public static void main(String args[]) {
-   * 
-   * try {
-   * for (javax.swing.UIManager.LookAndFeelInfo info :
-   * javax.swing.UIManager.getInstalledLookAndFeels()) {
-   * if ("Nimbus".equals(info.getName())) {
-   * javax.swing.UIManager.setLookAndFeel(info.getClassName());
-   * break;
-   * }
-   * }
-   * } catch (ClassNotFoundException ex) {
-   * java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.
-   * logging.Level.SEVERE, null, ex);
-   * } catch (InstantiationException ex) {
-   * java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.
-   * logging.Level.SEVERE, null, ex);
-   * } catch (IllegalAccessException ex) {
-   * java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.
-   * logging.Level.SEVERE, null, ex);
-   * } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-   * java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.
-   * logging.Level.SEVERE, null, ex);
-   * }
-   * //</editor-fold>
-   * 
-   * 
-   * java.awt.EventQueue.invokeLater(new Runnable() {
-   * public void run() {
-   * new Editor().setVisible(true);
-   * }
-   * });
-   * }
-   */
-  // Variables declaration - do not modify
-  private java.awt.Canvas canvas;
-  private javax.swing.JList jList1;
-  private javax.swing.JMenu jMenu1;
-  private javax.swing.JMenu jMenu2;
-  private javax.swing.JMenu jMenu5;
-  private javax.swing.JMenu jMenu6;
-  private javax.swing.JMenuBar jMenuBar1;
-  private javax.swing.JMenuItem jMenuItem1;
-  private javax.swing.JMenuItem jMenuItem10;
-  private javax.swing.JMenuItem jMenuItem11;
-  private javax.swing.JMenuItem jMenuItem12;
-  private javax.swing.JMenuItem jMenuItem13;
-  private javax.swing.JMenuItem jMenuItem14;
-  private javax.swing.JMenuItem jMenuItem2;
-  private javax.swing.JMenuItem jMenuItem3;
-  private javax.swing.JMenuItem jMenuItem4;
-  private javax.swing.JMenuItem jMenuItem5;
-  private javax.swing.JMenuItem jMenuItem6;
-  private javax.swing.JMenuItem jMenuItem7;
-  private javax.swing.JMenuItem jMenuItem8;
-  private javax.swing.JMenuItem jMenuItem9;
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JPanel jPanel2;
-  private javax.swing.JProgressBar jProgressBar1;
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTabbedPane jTabbedPane1;
-
-  private javax.swing.JScrollPane jScrollPane2;
-  private javax.swing.JScrollPane jScrollPane3;
-  private javax.swing.JTextArea jTextArea1;
-  private javax.swing.JEditorPane edit;
-  private javax.swing.JToolBar jToolBar1;
-
-  private javax.swing.JTree jTree1;
-  private java.awt.Menu menu1;
-  private java.awt.Menu menu2;
-  private java.awt.MenuBar menuBar1;
-  // End of variables declaration
 
 }

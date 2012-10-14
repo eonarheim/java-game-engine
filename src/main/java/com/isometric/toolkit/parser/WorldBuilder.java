@@ -129,16 +129,24 @@ public class WorldBuilder {
 		return w;
 	}
 	
-	public static World parseWorld(String xml) {
+	public static World parseWorld(String xml) throws Exception {
 		World worldResult = new World();
 
 		logger.info("Reading world file");
 
 		XStream x = setup();
 
-		worldResult = (World) x.fromXML(xml);
+		try{
+		  worldResult = (World) x.fromXML(xml);
+		  logger.info("Parsing world successful");
+	                
+	          return worldResult;
+		}catch(Exception e){
+		  logger.error("Could not parse world file: " + e.getMessage() );
+		  
+		  throw e;
+		}
 		
-		return worldResult;
 	}
 
 	public static World parseWorldFromFile(String uri) {
