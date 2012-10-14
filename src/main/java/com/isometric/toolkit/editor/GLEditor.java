@@ -457,7 +457,7 @@ public class GLEditor extends JFrame
           };
 
           return w == null? null: new ImageIcon(w.getSpriteSheet("TestPlayer")
-                  .getImage(i).getBufferedImage()) {
+                  .getImage(i).loadBufferedImageFromFile()) {
 
             @Override
             public void paintIcon (Component c, Graphics g, int x, int y)
@@ -637,7 +637,7 @@ public class GLEditor extends JFrame
       public ImageIcon getElementAt (int i)
       {
         return w == null? null: new ImageIcon(w.getSpriteSheet("BasicTileSet")
-                .getImage(i).getBufferedImage());
+                .getImage(i).loadBufferedImageFromFile());
       }
 
       @Override

@@ -67,9 +67,6 @@ public class ImageConverter implements Converter
   public Object unmarshal (HierarchicalStreamReader reader,
                            UnmarshallingContext context)
   {
-    
-    
-    
     reader.moveDown();
     int height = Integer.parseInt(reader.getValue());
     reader.moveUp();
@@ -98,8 +95,8 @@ public class ImageConverter implements Converter
     int verticalOffset = Integer.parseInt(reader.getValue());
     reader.moveUp();
     
-    
-    Image image = Image.loadSubImageWithTexture(ref, width, height, horizontalOffset, verticalOffset);
+    Image image = Image.getSubImage(Image.loadImageFromFile(ref), ref, width, height, horizontalOffset, verticalOffset);
+
     image.setScale(scale);
     image.setRotation(rotation);
     

@@ -20,13 +20,12 @@ public class SpriteSheet
   private int verticalCount = 0;
   
   private List<Image> images = new ArrayList<Image>();
-  //private List<Animation> animations = new ArrayList<Animation>();
   private HashMap<String, Animation> animations = new HashMap<String, Animation>();
 
   public SpriteSheet (String ref, int horizontalCount, int verticalCount)
   {
     setInternalImagePath(ref);
-    internalImage = Image.loadImage(ref);
+    internalImage = Image.loadImageFromFile(ref);
     this.setHorizontalCount(horizontalCount);
     this.setVerticalCount(verticalCount);
     
@@ -37,7 +36,7 @@ public class SpriteSheet
 
     for (int j = 0; j < verticalCount; j++) {
       for (int i = 0; i < horizontalCount; i++) {
-        images.add(Image.loadSubImageWithTexture(ref, verticalSpacing, horizontalSpacing,
+        images.add(Image.getSubImage(internalImage, ref, verticalSpacing, horizontalSpacing,
                                       i, j));
       }
     }

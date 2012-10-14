@@ -309,7 +309,7 @@ public class Editor {
 			List<BufferedImage> images = new ArrayList<BufferedImage>();
 			for (int j = 0; j < verticalCount; j++) {
 				for (int i = 0; i < horizontalCount; i++) {
-					images.add(Image.loadSubImage(image, verticalSpacing,
+					images.add(Image.getSubImage(image, verticalSpacing,
 							horizontalSpacing, i, j));
 				}
 			}
