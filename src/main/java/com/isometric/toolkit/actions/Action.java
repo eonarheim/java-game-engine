@@ -2,19 +2,19 @@ package com.isometric.toolkit.actions;
 
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
+import com.isometric.toolkit.exceptions.RepeatForeverException;
 
 public abstract class Action
 {
-  protected Actor actor;
-  public Action(Actor a){
-    actor = a;
-  }
+  
+  
+  
   
   /***
    * Returns the endpoint of the action
    * @return Point
    */
-  public abstract Point getEnd();
+  public abstract Point getEnd() throws RepeatForeverException;
   
   /***
    * Sets the start of the action
@@ -25,12 +25,12 @@ public abstract class Action
   /***
    * Updates the actor in a certain way for the scripted action
    */
-  public abstract void update(ActionQueue a,float delta);
+  public abstract void update(Actor a,float delta);
   
   /***
    * Indicates whether an action is complete
    */
-  public abstract boolean isComplete();
+  public abstract boolean isComplete(Actor a);
   
   
 

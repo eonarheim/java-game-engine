@@ -17,7 +17,6 @@ public class MoveTo extends Action
 
   public MoveTo (Actor a, Point p, float speed)
   {
-    super(a);
     System.out.println("Actor: " + a);
     end = p;
 
@@ -35,7 +34,7 @@ public class MoveTo extends Action
   
   
   @Override
-  public void update (ActionQueue actionQueue, float delta)
+  public void update (Actor actor, float delta)
   {
     
     
@@ -44,7 +43,7 @@ public class MoveTo extends Action
     m.scale(speed*delta);
     
     actor.move(m);
-    if(isComplete()){
+    if(isComplete(actor)){
       actor.setX(end.getX());
       actor.setY(end.getY());
       actor.setDx(0);
@@ -54,9 +53,9 @@ public class MoveTo extends Action
   }
 
   @Override
-  public boolean isComplete ()
+  public boolean isComplete (Actor a)
   {
-    return actor.getPos().distance(start) >= distance;
+    return a.getPos().distance(start) >= distance;
   }
 
   @Override

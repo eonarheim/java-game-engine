@@ -28,7 +28,7 @@ public abstract class Actor
   private static Logger logger = LoggerFactory.getLogger();
 
   
-  private ActionQueue actionQueue = new ActionQueue();
+  private ActionQueue actionQueue;
   
   private float scale = 1.f;
 
@@ -59,6 +59,7 @@ public abstract class Actor
   protected Actor (World w, float x, float y, float dx, float dy)
   {
     this.world = w;
+    actionQueue = new ActionQueue(this);
     this.x = x;
     this.y = y;
     this.dx = dx;

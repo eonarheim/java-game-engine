@@ -6,25 +6,7 @@ import com.isometric.toolkit.entities.Actor;
 public class BezierTo extends Action
 {
 
-  public BezierTo (Actor a)
-  {
-    super(a);
-    // TODO Auto-generated constructor stub
-  }
 
-  @Override
-  public void update (ActionQueue actionQueue, float delta)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public boolean isComplete ()
-  {
-    // TODO Auto-generated method stub
-    return false;
-  }
 
   @Override
   public Point getEnd ()
@@ -38,6 +20,20 @@ public class BezierTo extends Action
   {
     // TODO Auto-generated method stub
     
+  }
+
+  @Override
+  public void update (Actor a, float delta)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public boolean isComplete (Actor a)
+  {
+    // TODO Auto-generated method stub
+    return false;
   }
 
 }
