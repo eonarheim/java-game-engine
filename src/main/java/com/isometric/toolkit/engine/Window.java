@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.util.Log;
 
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
@@ -114,14 +115,14 @@ public class Window
     // com.isometric.toolkit.editor.Editor();
     // com.isometric.toolkit.editor.Editor.start();
 
-    getDelta(); // call once before loop to initialise lastFrame
+    float delta = getDelta(); // call once before loop to initialise lastFrame
     lastFPS = getTime(); // call before loop to initialise fps timer
     while (!Display.isCloseRequested()
            && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 
       updateFPS();
       if (!isConsole()) {
-        gameWorld.update();
+        gameWorld.update(getDelta());
       }
       gameWorld.draw();
       // Debug text
@@ -197,13 +198,13 @@ public class Window
     fps++;
   }
 
-  public int getDelta ()
+  public float getDelta ()
   {
     long time = getTime();
     int delta = (int) (time - lastFrame);
     lastFrame = time;
 
-    return delta;
+    return delta/1000f;
   }
 
   public void checkInput ()

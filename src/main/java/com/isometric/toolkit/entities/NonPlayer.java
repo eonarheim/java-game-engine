@@ -29,7 +29,7 @@ public class NonPlayer extends Actor
   }
 
   @Override
-  public void update ()
+  public void update (float delta)
   {
     // TODO Auto-generated method stub
     

@@ -49,9 +49,9 @@ public class Player extends CombatActor
   }
 
   @Override
-  public void update ()
+  public void update (float delta)
   {
-    super.update();
+    super.update(delta);
     // Set animation
     for (int key: this.keyHooks.keySet()) {
       if (Keyboard.isKeyDown(key)) {

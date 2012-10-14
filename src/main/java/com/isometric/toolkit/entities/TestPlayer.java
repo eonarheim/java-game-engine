@@ -81,7 +81,7 @@ public class TestPlayer extends Actor
   }
 
   @Override
-  public void update ()
+  public void update (float delta)
   {
     lazyInit();
 

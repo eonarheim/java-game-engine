@@ -11,11 +11,15 @@ import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.actions.Action;
+import com.isometric.toolkit.actions.MoveTo;
+import com.isometric.toolkit.actions.RepeatForever;
 import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.Texture;
 import com.isometric.toolkit.engine.Trigger;
@@ -108,6 +112,18 @@ public class WorldBuilder {
 
 		Level newLevel = new Level();
 		newLevel.addActor(player);
+		
+		
+		Action move = new MoveTo(player, new Point(500,0), 40.f);
+		Action moveDown = new MoveTo(player, new Point(500,500),40.f);
+		Action moveLeft = new MoveTo(player, new Point(0,500),40.f);
+		Action moveUp = new MoveTo(player, new Point(0,0),40.f);
+		RepeatForever moveForever = new RepeatForever(player);
+		moveForever.addAction(move);
+		moveForever.addAction(moveDown);
+		moveForever.addAction(moveLeft);
+		moveForever.addAction(moveUp);
+		player.addAction(moveForever);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {

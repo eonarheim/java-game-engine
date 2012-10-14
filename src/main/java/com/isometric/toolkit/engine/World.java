@@ -32,19 +32,21 @@ public class World {
 	private int spriteWidth = 20;
 	private int spriteHeight = 20;
 	
+	
 	//TODO - Hard coding this for now...
 	public World()
 	{
 		this.spriteWidth = 22;//22
 		this.spriteHeight = 25;//25
+		
 	}
 	
-	public void update() {
+	public void update(float delta) {
 		
 
 		camera.update();
 
-		currentLevel.update();
+		currentLevel.update(delta);
 
 	}
 

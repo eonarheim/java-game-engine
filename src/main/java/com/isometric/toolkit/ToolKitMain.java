@@ -52,6 +52,7 @@ public class ToolKitMain
       e.printStackTrace();
     }
     
+    /*
     
     System.setProperty("org.lwjgl.input.Mouse.allowNegativeMouseCoords", "true");
     System.setProperty("sun.java2d.noddraw", "true");
@@ -68,8 +69,8 @@ public class ToolKitMain
 
     editor.setVisible(true);
     editor.run(args);
+    */
     
-    /*
     
    
     
@@ -78,9 +79,8 @@ public class ToolKitMain
     
     World gameWorld = null;
     try{
-      //gameWorld = WorldBuilder.newWorld();
-      
-      gameWorld = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      gameWorld = WorldBuilder.newWorld();
+      //gameWorld = WorldBuilder.parseWorldFromFile("worlds/world.xml");
       //gameWorld = WorldBuilder.parseWorld("worlds/test.world");//new World(ToolKitMain.class.getClassLoader().getResourceAsStream("start.world"));
     }catch (Exception e){
       logger.error("Failed to load world file! Exiting program...");
@@ -91,7 +91,7 @@ public class ToolKitMain
     application.init(gameWorld);
     application.start();
     logger.info("Stopping Java RPG toolkit...");
-   */
+   
   }
 
 }

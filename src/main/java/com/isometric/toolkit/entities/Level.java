@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.newdawn.slick.util.Log;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.actions.Action;
+import com.isometric.toolkit.actions.ActionQueue;
 import com.isometric.toolkit.engine.Trigger;
 
 public class Level
@@ -16,33 +18,34 @@ public class Level
 
   private String name = "Default Name";
 
-  private List<Tile> backgroundLayer = new ArrayList<Tile>(); // This data
-                                                                // type may need
-                                                                // to change
+  private List<Tile> backgroundLayer = new ArrayList<Tile>();
   private List<Actor> objectLayer = new ArrayList<Actor>();
-  private List<Actor> foregroundLayer = new ArrayList<Actor>(); // This data
-                                                                // type may need
-                                                                // to change
-
+  private List<Actor> foregroundLayer = new ArrayList<Actor>();
   private List<Trigger> triggers = new ArrayList<Trigger>();
+  
+  
 
   public Level ()
   {
 
   }
 
-  public void update ()
+  
+  
+  public void update (float delta)
   {
+    
+    
     for (Tile t: backgroundLayer){
-      t.update();
+      t.update(delta);
     }
    
     for (Actor a: objectLayer) {
-      a.update();
+      a.update(delta);
     }
 
     for (Actor a: foregroundLayer) {
-      a.update();
+      a.update(delta);
     }
 
     for (Trigger t: triggers) {

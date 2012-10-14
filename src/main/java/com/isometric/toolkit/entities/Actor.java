@@ -14,6 +14,8 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.actions.Action;
+import com.isometric.toolkit.actions.ActionQueue;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Motion;
@@ -24,8 +26,10 @@ import com.isometric.toolkit.engine.World;
 public abstract class Actor
 {
   private static Logger logger = LoggerFactory.getLogger();
-  protected String type = "Actor";
 
+  
+  private ActionQueue actionQueue = new ActionQueue();
+  
   private float scale = 1.f;
 
   protected float x;
@@ -40,14 +44,7 @@ public abstract class Actor
   protected HashMap<KeyCombo, Motion> motionHooks =
     new HashMap<KeyCombo, Motion>();
   
-  // Motion stuff
-  protected List<Motion> motionQueueDeltas = new ArrayList<Motion>();
-  protected List<Point> motionQueueDestination = new ArrayList<Point>();
-  protected List<String> motionQueueAnimations = new ArrayList<String>();
   
-  private float oldDistance = 99999f;
-  private long oldTime = System.currentTimeMillis();
-  private boolean start = true;
 
   protected String currentAnimation = "";
 
@@ -68,50 +65,22 @@ public abstract class Actor
     this.dy = dy;
   }
 
-//TODO Eventually get rid of... we want to force an Actor to have a width and
- // height of what is dicated by the World/Scale
-//  protected Actor (World w, float x, float y, float dx, float dy)
-//  {
-//    this.world = w;
-//    this.x = x;
-//    this.y = y;
-//    this.dx = dx;
-//    this.dy = dy;
-//  }
-
+  
+  public void addAction(Action a){
+    actionQueue.add(a);
+  }
+  
+  public void removeAction(Action a){
+    actionQueue.remove(a);
+  }
   public static String getType ()
   {
     return Actor.class.toString();
   }
 
-  protected void update (){
-    if(start){
-      oldTime = System.currentTimeMillis();
-      start = false;
-    }
-    if(motionQueueDeltas.size() > 0){
-      Motion m = motionQueueDeltas.get(0);
-      Point dest = motionQueueDestination.get(0);
-      logger.info("Distance to target: " + dest.distance(new Point(this.getX(), this.getY())));
-      float tmpDistance = dest.distance(new Point(this.getX(),this.getY()));
-      if(tmpDistance > oldDistance){
-        motionQueueDeltas.remove(0);
-        motionQueueDestination.remove(0);
-        motionQueueAnimations.remove(0);   
-        oldDistance = 999999f;
-        start=true;
-      }else if(!start){
-        oldDistance = tmpDistance;
-        //float elapsed = (System.currentTimeMillis() - oldTime)/1000.f;
-       
-        this.dx = m.getDx()*(1.f/60f);//*elapsed;
-        this.dy = m.getDy()*(1.f/60f);//*elapsed;
-        if(motionQueueAnimations.size()>0){
-          this.currentAnimation = motionQueueAnimations.get(0);
-        }
-        //oldTime = System.currentTimeMillis();
-      }
-    }
+  protected void update (float delta){
+    actionQueue.update(delta);
+    
   }
   
   public Point getPos(){
@@ -128,15 +97,11 @@ public abstract class Actor
 
   protected void drawBoundingBox ()
   {
-    
-    
-    
     glPushMatrix();
-    glDisable(GL_TEXTURE_2D);
-    //glEnable(GL_COLOR_MATERIAL);
-    glTranslatef(x,y,0);
     
-   
+    // Disable textures before glLines
+    glDisable(GL_TEXTURE_2D);
+    glTranslatef(x,y,0);
     
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 0.0f,1f);
@@ -156,61 +121,12 @@ public abstract class Actor
     glColor4f(1.f,1.f,1.f,1.f);
     glEnable(GL_TEXTURE_2D);
     
-    //glEnable(GL_BLEND);
-    //f.drawString(0, 5, "("+x+","+y+")");
-    //glDisable(GL_BLEND);
     glPopMatrix();
 
-    //glTranslatef((float)x,(float)y,0);
 
   }
   
-  
-  
-  public void move(float x, float y, float time, boolean interrupt){
-    Motion m = new Motion((x-this.getX() )/time,(y -this.getY() )/time);
-    
-    if(!interrupt){
-      start = true;
-      motionQueueDeltas.add(m);
-      motionQueueDestination.add(new Point(x,y));
-      motionQueueAnimations.add(this.currentAnimation);
-    }else{
-      start = true;
-      motionQueueDeltas.clear();
-      motionQueueDestination.clear();
-      motionQueueAnimations.clear();
-      
-
-      motionQueueDeltas.add(m);
-      motionQueueDestination.add(new Point(x,y));
-      motionQueueAnimations.add(this.currentAnimation);
-    }
-    
-    
-  }
-  
-  public void move(float x, float y, float time, String animation, boolean interrupt){
-    Motion m = new Motion((x-this.getX() )/time,(y -this.getY() )/time);
-    
-    if(!interrupt){
-      start = true;
-      motionQueueDeltas.add(m);
-      motionQueueDestination.add(new Point(x,y));
-      motionQueueAnimations.add(animation);
-    }else{
-      start = true;
-
-      motionQueueDeltas.clear();
-      motionQueueDestination.clear();
-      motionQueueAnimations.clear();
-      
-
-      motionQueueDeltas.add(m);
-      motionQueueDestination.add(new Point(x,y));
-      motionQueueAnimations.add(animation);
-    }   
-  }
+ 
 
   public float getX ()
   {
@@ -360,5 +276,13 @@ public abstract class Actor
   public float getHeight ()
   {
     return this.scale * this.world.getSpriteHeight();
+  }
+
+  public void move (Motion delta)
+  {
+    this.x += delta.getDx();
+    this.y += delta.getDy();
+    this.dx = delta.getDx();
+    this.dy = delta.getDy();
   }
 }

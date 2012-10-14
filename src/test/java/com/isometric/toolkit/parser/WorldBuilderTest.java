@@ -56,7 +56,14 @@ public class WorldBuilderTest {
              //those two at once, that way we don't have to create xml files that will become stale (that part is for the version compatibility!)
 		fail("Not yet implemented comletely"); // TODO
 		String worldFile = WorldBuilder.writeWorld(w);		
-		World ww = WorldBuilder.parseWorld(worldFile);
+		World ww = null;
+                try {
+                  ww = WorldBuilder.parseWorld(worldFile);
+                }
+                catch (Exception e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+                }
 		String worldFile2 = WorldBuilder.writeWorld(ww);
 		if (ww.equals(w))
 		{
