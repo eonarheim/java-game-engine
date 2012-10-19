@@ -1,5 +1,12 @@
 package com.isometric.toolkit.engine;
 
+
+/***
+ * Basic point abstraction for the engine.
+ * 
+ * @author Erik
+ *
+ */
 public class Point
 {
   private float x = 0.0f;
@@ -30,6 +37,7 @@ public class Point
     return (float) Math.sqrt( Math.pow(Math.abs(p.getX() - this.getX()),2) + Math.pow(Math.abs(p.getY() - this.getY()),2)); 
   }
   
+  //TODO: This is not manhattanDistance rename this.
   public float manhattanDistance(Point p){
     return Math.max(Math.abs(p.getX() - this.getX()), Math.abs(p.getY() - this.getY()));
     

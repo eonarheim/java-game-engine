@@ -19,6 +19,12 @@ import org.python.util.PythonInterpreter;
 
 import com.isometric.toolkit.LoggerFactory;
 
+/***
+ * UI python based console for the engine.
+ * 
+ * @author Erik
+ *
+ */
 public class Console
 {
   private static Logger logger = LoggerFactory.getLogger();

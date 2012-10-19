@@ -19,6 +19,14 @@ import com.isometric.toolkit.entities.Level;
 import com.isometric.toolkit.parser.WorldBuilder;
 import com.isometric.toolkit.sound.SoundManager;
 
+
+
+/***
+ * World represents an entire game in the engine.
+ * 
+ * @author Jeff and Erik
+ *
+ */
 public class World {
 	static Logger logger = LoggerFactory.getLogger();
 

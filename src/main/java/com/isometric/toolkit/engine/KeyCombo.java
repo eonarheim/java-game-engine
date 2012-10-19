@@ -1,6 +1,12 @@
 package com.isometric.toolkit.engine;
 
-
+/***
+ * Basic Key Combo abstraction for the engine
+ * 
+ * @author Erik
+ *
+ */
+//TODO: Consider revising
 public class KeyCombo implements Comparable<KeyCombo>
 {
   private Integer key1;

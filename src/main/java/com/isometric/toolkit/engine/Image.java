@@ -34,6 +34,13 @@ import com.isometric.toolkit.exceptions.MissingSpriteSheetException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
+
+/***
+ * Basic Image abstraction for the engine
+ * 
+ * @author Jeff and Erik
+ *
+ */
 public class Image implements Drawable {
 
 	static Logger logger = LoggerFactory.getLogger();

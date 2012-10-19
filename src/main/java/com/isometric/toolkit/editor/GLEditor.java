@@ -59,6 +59,13 @@ import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.parser.WorldBuilder;
 
+
+/***
+ * Main editor for the toolkit.
+ * 
+ * @author Jeff and Erik
+ *
+ */
 public class GLEditor extends JFrame
 {
   // Get Logger

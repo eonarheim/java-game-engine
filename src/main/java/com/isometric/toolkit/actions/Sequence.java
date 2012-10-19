@@ -3,6 +3,12 @@ package com.isometric.toolkit.actions;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
+/***
+ * Action to aggregate any number of actions in a row together as one action. Useful for complex behavior.
+ * 
+ * @author Erik
+ *
+ */
 public class Sequence extends Action
 {
 

@@ -1,6 +1,5 @@
 package com.isometric.toolkit.actions;
 
-
 import org.apache.log4j.Logger;
 
 import com.isometric.toolkit.LoggerFactory;
@@ -8,12 +7,17 @@ import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.exceptions.RepeatForeverException;
 
+/***
+ * Action class that will repeat any action forever. No other action may come
+ * after a repeat forever in an action queue.
+ * 
+ * @author Erik
+ * 
+ */
 public class RepeatForever extends Action
 {
   Logger log = LoggerFactory.getLogger();
   ActionQueue actions;
-  
-  
 
   public RepeatForever (Actor a)
   {
@@ -25,9 +29,12 @@ public class RepeatForever extends Action
     actions.add(a);
   }
 
+  /***
+   * Cannot get the end of a repeat forever action.
+   */
   public Point getEnd () throws RepeatForeverException
   {
-    throw new RepeatForeverException("The action RepeatForever cannot have any actions after it!");
+    throw new RepeatForeverException("The action RepeatForever cannot have any actions after it, cannot retreive the end!");
   }
 
   public void setStart (Point start)
@@ -43,7 +50,7 @@ public class RepeatForever extends Action
       current.update(a, delta);
       if (current.isComplete(a)) {
         log.info("Action Completed: " + current.getClass());
-        //Move current to the back of the queue
+        // Move current to the back of the queue
         actions.remove(current);
         actions.add(current);
 

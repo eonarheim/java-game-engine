@@ -1,6 +1,5 @@
 package com.isometric.toolkit;
 
-
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.log4j.Logger;
@@ -19,8 +18,13 @@ public class ToolKitMain
 
   static Logger logger = LoggerFactory.getLogger();
 
+  /*
+   * Main Entry point to the application. Keep main methods short because they
+   * are very difficult to test.
+   */
   public static void main (String[] args)
   {
+    // Configure log4j
     try {
       PropertyConfigurator.configure(ToolKitMain.class.getClassLoader()
               .getResourceAsStream("log4j.properties"));
@@ -30,10 +34,12 @@ public class ToolKitMain
       e.printStackTrace();
       System.exit(1);
     }
+
     
-    
+    // If you are using the Swing Editor set the look and feel for the specific system.
     try {
-      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager
+              .getSystemLookAndFeelClassName());
     }
     catch (ClassNotFoundException e) {
       // TODO Auto-generated catch block
@@ -51,47 +57,50 @@ public class ToolKitMain
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+
+    // Call the editor if entering that mode.
     
     /*
-    
-    System.setProperty("org.lwjgl.input.Mouse.allowNegativeMouseCoords", "true");
-    System.setProperty("sun.java2d.noddraw", "true");
-    System.setProperty("sun.java2d.opengl", "false");
-    
-    final int desktopWidth = Display.getDesktopDisplayMode().getWidth();
-    final int desktopHeight = Display.getDesktopDisplayMode().getHeight();
-    // final Preferences prefs = Preferences.userNodeForPackage(c)
+     * 
+     * System.setProperty("org.lwjgl.input.Mouse.allowNegativeMouseCoords",
+     * "true");
+     * System.setProperty("sun.java2d.noddraw", "true");
+     * System.setProperty("sun.java2d.opengl", "false");
+     * 
+     * final int desktopWidth = Display.getDesktopDisplayMode().getWidth();
+     * final int desktopHeight = Display.getDesktopDisplayMode().getHeight();
+     * // final Preferences prefs = Preferences.userNodeForPackage(c)
+     * 
+     * 
+     * final GLEditor editor = new GLEditor();
+     * editor.setFocusTraversalKeysEnabled(false);
+     * editor.setSize(desktopWidth, desktopHeight);
+     * 
+     * editor.setVisible(true);
+     * editor.run(args);
+     */
 
-    
-    final GLEditor editor = new GLEditor();
-    editor.setFocusTraversalKeysEnabled(false);
-    editor.setSize(desktopWidth, desktopHeight);
-
-    editor.setVisible(true);
-    editor.run(args);
-    */
-    
-    
-   
-    
-    logger.info("Starting Java RPG toolkit...");
+    // Call the engine and start the game.
+    logger.info("Starting Java RPG Engine...");
     Window application = new Window();
-    
+
     World gameWorld = null;
-    try{
+    try {
       gameWorld = WorldBuilder.newWorld();
-      //gameWorld = WorldBuilder.parseWorldFromFile("worlds/world.xml");
-      //gameWorld = WorldBuilder.parseWorld("worlds/test.world");//new World(ToolKitMain.class.getClassLoader().getResourceAsStream("start.world"));
-    }catch (Exception e){
+      // gameWorld = WorldBuilder.parseWorldFromFile("worlds/world.xml");
+      // gameWorld = WorldBuilder.parseWorld("worlds/test.world");//new
+      // World(ToolKitMain.class.getClassLoader().getResourceAsStream("start.world"));
+    }
+    catch (Exception e) {
       logger.error("Failed to load world file! Exiting program...");
       e.printStackTrace();
       System.exit(1);
     }
-    
+
     application.init(gameWorld);
     application.start();
     logger.info("Stopping Java RPG toolkit...");
-   
+
   }
 
 }

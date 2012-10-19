@@ -8,6 +8,13 @@ import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 
+/***
+ * Used for scenery and objects that are not players, npcs, or enemies.
+ * 
+ * @author Erik
+ * @author Jeff
+ *
+ */
 public class Tile extends Actor
 {
 

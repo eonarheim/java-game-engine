@@ -1,12 +1,18 @@
 package com.isometric.toolkit.actions;
 
-import org.apache.log4j.Logger;
 
-import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Motion;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
+
+
+/***
+ * Action to move an Actor to a destination at a certain speed.
+ * 
+ * @author Erik
+ *
+ */
 public class MoveTo extends Action
 {
   Point start;
@@ -15,16 +21,13 @@ public class MoveTo extends Action
   float distance;
   float speed;
 
-  public MoveTo (Actor a, Point p, float speed)
+  public MoveTo (Actor actor, Point destination, float speed)
   {
-    System.out.println("Actor: " + a);
-    end = p;
+    //System.out.println("Actor: " + a);
+    end = destination;
 
-    setStart(a.getPos());    
+    setStart(actor.getPos());    
     this.speed = speed;
-    
-    
-    
   }
   
   public Point getEnd(){
@@ -36,8 +39,6 @@ public class MoveTo extends Action
   @Override
   public void update (Actor actor, float delta)
   {
-    
-    
     Motion m = new Motion(this.delta.getDx(),this.delta.getDy());
     m.normalize();
     m.scale(speed*delta);
@@ -48,8 +49,7 @@ public class MoveTo extends Action
       actor.setY(end.getY());
       actor.setDx(0);
       actor.setDy(0);
-    }
-    
+    } 
   }
 
   @Override

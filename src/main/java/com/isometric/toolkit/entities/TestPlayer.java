@@ -11,6 +11,13 @@ import com.isometric.toolkit.parser.WorldBuilder;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+/***
+ * Deprecated TestPlayer class for playable characters
+ * 
+ * @author Erik
+ *
+ */
+@Deprecated
 public class TestPlayer extends Actor
 {
 

@@ -3,6 +3,12 @@ package com.isometric.toolkit.actions;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
+/***
+ * Action to move an Actor to a destination by a certain time.
+ * 
+ * @author Erik
+ *
+ */
 public class MoveBy extends Action
 {
 

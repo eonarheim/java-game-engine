@@ -9,6 +9,13 @@ import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.entities.Actor;
 
+/***
+ * Camera abstraction to handle camera like operations in the engine.
+ * 
+ * @author Erik
+ *
+ */
+//TODO: Consider refactoring unessisary paramters, and clean up method names.
 public class Camera
 {
   private Actor actorToFollow = null;

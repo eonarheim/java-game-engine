@@ -10,7 +10,7 @@ import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.exceptions.RepeatForeverException;
 
 /***
- * Class to manage the various scripted actions through the python api
+ * Class to manage the various scripted actions through code and the python api
  * 
  * @author Erik
  * 
@@ -20,14 +20,21 @@ public class ActionQueue
   Logger log = LoggerFactory.getLogger();
   private List<Action> actions = new ArrayList<Action>();
 
-  private long oldTime = 0L;
   private Actor actor;
 
+  /***
+   * ActionQueue's belong to actors, the ActionQueue must also observe the actor inorder to modify it. 
+   * @param actor
+   */
   public ActionQueue (Actor actor)
   {
     this.actor = actor;
   }
 
+  /***
+   * Returns the actor that owns this queue.
+   * @return internal Actor
+   */
   public Actor getActor(){
     return this.actor;
   }
@@ -62,16 +69,29 @@ public class ActionQueue
     actions.remove(action);
   }
 
+  /***
+   * Returns the size of the internal queue.
+   * @return int Size
+   */
   public int getSize ()
   {
     return actions.size();
   }
 
+  /***
+   * Returns the action at a particular index in the internal representation.
+   * @param index
+   * @return Action
+   */
   public Action getAction (int index)
   {
     return actions.get(index);
   }
 
+  /***
+   * Returns true if there is an action after the current one.
+   * @return boolean
+   */
   public boolean hasNext ()
   {
     return actions.size() > 1;

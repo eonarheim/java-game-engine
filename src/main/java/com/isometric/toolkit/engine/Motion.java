@@ -1,6 +1,13 @@
 package com.isometric.toolkit.engine;
 
 
+
+/***
+ * Basic motion vector for unit of time for the engine.
+ * 
+ * @author Erik
+ *
+ */
 public class Motion implements Comparable<Motion>
 {
 

@@ -4,12 +4,15 @@ import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 import com.isometric.toolkit.exceptions.RepeatForeverException;
 
+/***
+ * Base action from which all other derive.
+ * 
+ * @author Erik
+ *
+ */
 public abstract class Action
 {
-  
-  
-  
-  
+    
   /***
    * Returns the endpoint of the action
    * @return Point
@@ -31,7 +34,6 @@ public abstract class Action
    * Indicates whether an action is complete
    */
   public abstract boolean isComplete(Actor a);
-  
-  
+    
 
 }

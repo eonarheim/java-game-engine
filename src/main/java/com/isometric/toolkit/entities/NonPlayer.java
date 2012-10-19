@@ -8,8 +8,9 @@ import com.isometric.toolkit.engine.World;
 
 
 /***
- * Like an NPCs or Enemies
+ * Class for actors that are not playable like NPCs or Enemies
  * @author Erik
+ * @author Jeff
  *
  */
 public class NonPlayer extends Actor

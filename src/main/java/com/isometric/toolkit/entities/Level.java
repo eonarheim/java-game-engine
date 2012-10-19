@@ -11,6 +11,14 @@ import com.isometric.toolkit.actions.Action;
 import com.isometric.toolkit.actions.ActionQueue;
 import com.isometric.toolkit.engine.Trigger;
 
+
+/***
+ * Level or game screen abstraction for the engine, meant to be contained inside of a world.
+ * 
+ * @author Erik
+ * @author Jeff
+ *
+ */
 public class Level
 {
 

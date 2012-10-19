@@ -49,11 +49,18 @@ import org.lwjgl.opengl.GL11;
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
 
+
+/***
+ * Animation abstraction for the toolkit 
+ * 
+ * @author Jeff and Erik
+ *
+ */
 public class Animation implements Drawable
 {
   static Logger logger = LoggerFactory.getLogger();
   
-  
+  /// Types of animations
   public enum Type {
     CYCLE,
     PING_PONG,

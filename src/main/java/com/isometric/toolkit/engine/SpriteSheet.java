@@ -9,6 +9,13 @@ import org.apache.log4j.Logger;
 
 import com.isometric.toolkit.LoggerFactory;
 
+
+/***
+ * Spritesheet abstraction for the engine that can dispatch animations.
+ * 
+ * @author Erik
+ *
+ */
 public class SpriteSheet
 {
   private static Logger logger = LoggerFactory.getLogger();

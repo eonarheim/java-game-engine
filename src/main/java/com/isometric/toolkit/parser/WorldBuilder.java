@@ -33,9 +33,13 @@ import com.isometric.toolkit.sound.Sound;
 import com.isometric.toolkit.sound.SoundManager;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-
-//import com.isometric.toolkit.entities.Playable;
-
+/***
+ * Static class responsible for going to and from XML representations of games.
+ * 
+ * @author Erik
+ * @author Jeff
+ *
+ */
 public class WorldBuilder {
 
 	static Logger logger = LoggerFactory.getLogger();

@@ -22,6 +22,13 @@ import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.ToolKitMain;
 import com.isometric.toolkit.parser.WorldBuilder;
 
+
+/***
+ * Window container for the engine that handles high level concerns.
+ * 
+ * @author Jeff and Erik
+ *
+ */
 public class Window
 {
 

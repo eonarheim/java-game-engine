@@ -19,6 +19,14 @@ import com.isometric.toolkit.sound.SoundManager;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+
+/***
+ * Abstraction for a playable character in the engine.
+ * 
+ * @author Erik
+ * @author Jeff
+ *
+ */
 @XStreamAlias("player")
 public class Player extends CombatActor
 {

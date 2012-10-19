@@ -5,6 +5,14 @@ import java.util.List;
 
 import com.isometric.toolkit.engine.World;
 
+
+/***
+ * Base class for an actor that can engage in any form of "combat"
+ * 
+ * @author Erik
+ * @author Jeff
+ *
+ */
 public abstract class CombatActor extends Actor
 {
 
