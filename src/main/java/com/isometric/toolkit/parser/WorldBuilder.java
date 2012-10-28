@@ -122,7 +122,7 @@ public class WorldBuilder {
 		newLevel.addActor(player);
 
 		
-		IAction move = new MoveTo(player, new Point(500,0), 40.f);
+		IAction move = new MoveTo(player, new Point(500,0), 50.f);
 		IAction moveDown = new MoveTo(player, new Point(500,500),40.f);
 		IAction moveLeft = new MoveTo(player, new Point(0,500),40.f);
 		IAction moveUp = new MoveTo(player, new Point(0,0),40.f);
@@ -138,6 +138,7 @@ public class WorldBuilder {
 		player.addAction(moveForever);*/
 		
 		player.addAction(move2);
+		player.addAction(moveUp);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {

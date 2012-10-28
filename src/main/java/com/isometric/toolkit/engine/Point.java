@@ -59,4 +59,9 @@ public class Point
     return new Motion(this.x - p.getX(),this.y - p.getY());
   }
   
+  @Override
+  public String toString(){
+    return String.format("(%f,%f)", this.x,this.y);
+  }
+  
 }

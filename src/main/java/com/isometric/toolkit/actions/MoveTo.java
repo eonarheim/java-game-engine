@@ -67,6 +67,8 @@ public class MoveTo implements IAction
     
     
     if(isComplete(actor)){
+      actor.setX(end.getX());
+      actor.setY(end.getY());
       actor.setDx(0);
       actor.setDy(0);
     } 

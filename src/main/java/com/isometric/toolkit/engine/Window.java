@@ -17,10 +17,7 @@ import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
-import org.newdawn.slick.util.Log;
-
 import com.isometric.toolkit.LoggerFactory;
-import com.isometric.toolkit.ToolKitMain;
 import com.isometric.toolkit.parser.WorldBuilder;
 
 /***
@@ -151,9 +148,10 @@ public class Window {
 				// c.update();
 				c.draw();
 			}
-
+			//Display.setVSyncEnabled(true);
 			Display.update();
 			Display.sync(60);
+			
 
 		}
 
