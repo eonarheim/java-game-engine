@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.LoggerFactory;
-import com.isometric.toolkit.actions.Action;
+import com.isometric.toolkit.actions.IAction;
 import com.isometric.toolkit.actions.MoveTo;
 import com.isometric.toolkit.actions.RepeatForever;
 import com.isometric.toolkit.cameras.Camera;
@@ -118,10 +118,10 @@ public class WorldBuilder {
 		newLevel.addActor(player);
 		
 		
-		Action move = new MoveTo(player, new Point(500,0), 40.f);
-		Action moveDown = new MoveTo(player, new Point(500,500),40.f);
-		Action moveLeft = new MoveTo(player, new Point(0,500),40.f);
-		Action moveUp = new MoveTo(player, new Point(0,0),40.f);
+		IAction move = new MoveTo(player, new Point(500,0), 40.f);
+		IAction moveDown = new MoveTo(player, new Point(500,500),40.f);
+		IAction moveLeft = new MoveTo(player, new Point(0,500),40.f);
+		IAction moveUp = new MoveTo(player, new Point(0,0),40.f);
 		RepeatForever moveForever = new RepeatForever(player);
 		moveForever.addAction(move);
 		moveForever.addAction(moveDown);

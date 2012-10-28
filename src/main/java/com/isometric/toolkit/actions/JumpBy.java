@@ -9,26 +9,18 @@ import com.isometric.toolkit.entities.Actor;
  * @author Erik
  *
  */
-public class JumpBy extends Action
+public class JumpBy implements IAction
 {
 
-
   @Override
-  public Point getEnd ()
+  public Point getPos ()
   {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public void setStart (Point start)
-  {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public void update (Actor a, float delta)
+  public void update (float delta)
   {
     // TODO Auto-generated method stub
     
@@ -40,5 +32,13 @@ public class JumpBy extends Action
     // TODO Auto-generated method stub
     return false;
   }
+
+  @Override
+  public boolean hasStarted ()
+  {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 
 }

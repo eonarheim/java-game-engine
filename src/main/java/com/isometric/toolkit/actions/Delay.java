@@ -10,28 +10,21 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  *
  */
-public class Delay extends Action
+public class Delay implements IAction
 {
 
   @Override
-  public Point getEnd () throws RepeatForeverException
+  public Point getPos ()
   {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public void setStart (Point start)
+  public void update (float delta)
   {
     // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void update (Actor a, float delta)
-  {
-    // TODO Auto-generated method stub
-
+    
   }
 
   @Override
@@ -40,5 +33,13 @@ public class Delay extends Action
     // TODO Auto-generated method stub
     return false;
   }
+
+  @Override
+  public boolean hasStarted ()
+  {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 
 }

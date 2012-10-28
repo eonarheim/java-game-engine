@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.newdawn.slick.util.Log;
 
 import com.isometric.toolkit.LoggerFactory;
-import com.isometric.toolkit.actions.Action;
+import com.isometric.toolkit.actions.IAction;
 import com.isometric.toolkit.actions.ActionQueue;
 import com.isometric.toolkit.engine.Trigger;
 

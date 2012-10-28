@@ -3,27 +3,18 @@ package com.isometric.toolkit.actions;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
-public class Blink extends Action
+public class Blink implements IAction
 {
 
-  
-
   @Override
-  public Point getEnd ()
+  public Point getPos ()
   {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public void setStart (Point start)
-  {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public void update (Actor a, float delta)
+  public void update (float delta)
   {
     // TODO Auto-generated method stub
     
@@ -35,5 +26,13 @@ public class Blink extends Action
     // TODO Auto-generated method stub
     return false;
   }
+
+  @Override
+  public boolean hasStarted ()
+  {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 
 }

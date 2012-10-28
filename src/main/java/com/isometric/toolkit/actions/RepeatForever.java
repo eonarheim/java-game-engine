@@ -14,54 +14,79 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  * 
  */
-public class RepeatForever extends Action
+public class RepeatForever implements IAction
 {
   Logger log = LoggerFactory.getLogger();
   ActionQueue actions;
+  Actor actor;
+  
+  private boolean hasStarted = false;
+  
 
   public RepeatForever (Actor a)
   {
+    actor = a;
     actions = new ActionQueue(a);
   }
 
-  public void addAction (Action a)
+  public void addAction (IAction a)
   {
-    actions.add(a);
+    try {
+      actions.add(a);
+    }
+    catch (RepeatForeverException e) {
+      log.error(e.getMessage());
+    }
   }
 
-  /***
-   * Cannot get the end of a repeat forever action.
-   */
-  public Point getEnd () throws RepeatForeverException
-  {
-    throw new RepeatForeverException("The action RepeatForever cannot have any actions after it, cannot retreive the end!");
-  }
 
-  public void setStart (Point start)
+  public void update (float delta)
   {
-
-  }
-
-  public void update (Actor a, float delta)
-  {
+    if(!hasStarted()){
+      setStarted(true);
+    }
+    
 
     if (actions.getSize() > 0) {
-      Action current = actions.getAction(0);
-      current.update(a, delta);
-      if (current.isComplete(a)) {
+      IAction current = actions.getAction(0);
+      current.update(delta);
+      if (current.isComplete(actor)) {
         log.info("Action Completed: " + current.getClass());
+        
         // Move current to the back of the queue
         actions.remove(current);
-        actions.add(current);
+        try {
+          actions.add(current);
+        }
+        catch (RepeatForeverException e) {
+          log.error(e.getMessage());
+        }
 
       }
 
     }
   }
 
+  @Override
   public boolean isComplete (Actor a)
   {
     return false;
+  }
+
+  @Override
+  public Point getPos ()
+  {
+   return actor.getPos();
+  }
+
+  @Override
+  public boolean hasStarted ()
+  {
+    return hasStarted;
+  }
+  
+  private void setStarted(boolean hasStarted){
+    this.hasStarted = hasStarted;
   }
 
 }

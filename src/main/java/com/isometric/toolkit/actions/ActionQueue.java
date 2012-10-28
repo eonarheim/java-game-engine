@@ -18,9 +18,12 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
 public class ActionQueue
 {
   Logger log = LoggerFactory.getLogger();
-  private List<Action> actions = new ArrayList<Action>();
+  private List<IAction> actions = new ArrayList<IAction>();
 
   private Actor actor;
+  private IAction currentAction;
+  
+  private boolean actionsNotAllowed = false;
 
   /***
    * ActionQueue's belong to actors, the ActionQueue must also observe the actor inorder to modify it. 
@@ -43,19 +46,18 @@ public class ActionQueue
    * Adds an action to the internal action queue
    * 
    * @param action
+   * @throws RepeatForeverException 
    */
-  public void add (Action action)
+  public void add (IAction action) throws RepeatForeverException
   {
-    try {
-      if (actions.size() > 0) {
-
-        action.setStart(actions.get(actions.size() - 1).getEnd());
-      }
-
-      actions.add(action);
-    }
-    catch (RepeatForeverException e) {
-      e.printStackTrace();
+    if(actionsNotAllowed)
+      throw new RepeatForeverException("The action RepeatForever cannot have any actions after it");
+      
+    actions.add(action);
+    
+    
+    if(action instanceof RepeatForever){
+      actionsNotAllowed = true;
     }
   }
 
@@ -64,7 +66,7 @@ public class ActionQueue
    * 
    * @param action
    */
-  public void remove (Action action)
+  public void remove (IAction action)
   {
     actions.remove(action);
   }
@@ -83,7 +85,7 @@ public class ActionQueue
    * @param index
    * @return Action
    */
-  public Action getAction (int index)
+  public IAction getAction (int index)
   {
     return actions.get(index);
   }
@@ -103,8 +105,8 @@ public class ActionQueue
   public void update (float delta)
   {
     if (actions.size() > 0) {
-      Action currentAction = actions.get(0);
-      currentAction.update(actor, delta);
+      currentAction = actions.get(0);
+      currentAction.update(delta);
 
       // log.info("Current Action Updating: " + currentAction.getClass());
       if (currentAction.isComplete(actor)) {

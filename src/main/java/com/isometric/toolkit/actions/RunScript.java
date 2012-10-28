@@ -11,28 +11,21 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  *
  */
-public class RunScript extends Action
+public class RunScript implements IAction
 {
 
   @Override
-  public Point getEnd () throws RepeatForeverException
+  public Point getPos ()
   {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public void setStart (Point start)
+  public void update (float delta)
   {
     // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void update (Actor a, float delta)
-  {
-    // TODO Auto-generated method stub
-
+    
   }
 
   @Override
@@ -41,5 +34,13 @@ public class RunScript extends Action
     // TODO Auto-generated method stub
     return false;
   }
+
+  @Override
+  public boolean hasStarted ()
+  {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
 
 }
