@@ -238,27 +238,15 @@ public class WorldBuilder {
 
 		return worldResult;
 	}
-
-	public static void writeWorldToLogger(World w) {
-
-		logger.info("Serializing world file to logger");		
-		logger.info("World To XML: \n" + serializeWorld(w));
-	}
-
-	public static String writeWorld(World w) {
-
-		logger.info("Serializing world file");
-		String serializedWorld = serializeWorld(w);
-		logger.info(serializedWorld);
-		return serializedWorld;
-	}
-
-	public static String serializeWorld(World w) {
-		XStream x = setup();
-		return x.toXML(w);
-	}
 	
-	public static boolean serializeWorldToFile(World w, String filePath) {
+	/**
+	 * Writes the world to a file specified by filePath. Returns a boolean success indicator.
+	 * @param w
+	 * @param filePath
+	 * @return
+	 */
+	public static boolean writeWorldToFile(World w, String filePath) {
+		logger.info("Serializing world file to a file on the file system: " + filePath);
 		XStream x = setup();
 		  try {
 	            FileOutputStream fs = new FileOutputStream(filePath);
@@ -268,10 +256,33 @@ public class WorldBuilder {
 	            logger.error("Serializing world to XML file failed: " + e1.getMessage());
 	            return false;
 	        }
-
 		return true;
 	}
+	
+	/**
+	 * Writes the world to the logger.
+	 * @param w
+	 */
+	public static void writeWorldToLogger(World w) {
+		logger.info("Serializing world file to logger");		
+		logger.info("World To XML: \n" + serializeWorldToString(w));
+	}
 
+	/**
+	 * Serializes the world to a string and returns the string object.
+	 * @param w
+	 * @return
+	 */
+	public static String writeWorld(World w) {
+		logger.info("Serializing world file to a String object in memory.");
+		return serializeWorldToString(w);
+	}
+
+	private static String serializeWorldToString(World w) {
+		XStream x = setup();
+		return x.toXML(w);
+	}	
+	
 	public static Level parseLevel(String xml) {
 
 		return new Level();

@@ -1,6 +1,7 @@
 package com.isometric.toolkit.engine;
 
 import java.awt.Font;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -222,9 +223,35 @@ public class Window
       c.update(Keyboard.getEventCharacter());
       if (Keyboard.getEventKeyState()) {
         if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-          String w = WorldBuilder.writeWorld(gameWorld);
-          
-          Window.writeToDebug("Serializing world now!");
+        	 Window.writeToDebug("Serializing world now!");
+        	 logger.info("Serializing world...");
+
+        	 //Attempt to write world to xml file.
+        	 //Relies on format of *world_x.* where * can be anything not containing '_' or '.' and x is an int 
+        	 try
+        	 {
+	        	 System.out.println("Working Directory = " + System.getProperty("user.dir"));
+	        	 
+	        	 File folder = new File(System.getProperty("user.dir") + "/src/main/resources/worlds/");
+	        	 int fileNum = 0;
+	        	 for(File file : folder.listFiles())
+	        	 {
+	        		 String fileName = file.getName();
+	        		        		 
+	        		 if (fileName.contains("world_"))
+	        		 {
+	        			  int fileNumber = Integer.parseInt(fileName.substring(fileName.indexOf('_') + 1, fileName.indexOf('.')));
+	        			 if (fileNumber > fileNum)
+	        				 fileNum = fileNumber;        			 
+	        		 }
+	        		 
+	        	 }
+	        	 WorldBuilder.writeWorldToFile(gameWorld, System.getProperty("user.dir") + "/src/main/resources/worlds/world_" + String.valueOf(++fileNum) + ".xml");
+        	 }
+        	 catch (Exception e)
+        	 {
+        		 logger.info("Serialization of world failed. Exception: " +  e.toString() + ". Message:  " + e.getMessage());
+        	 }
         }
 
         if (Keyboard.getEventKey() == Keyboard.KEY_D && !isConsole()) {
