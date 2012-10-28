@@ -486,7 +486,7 @@ public class GLEditor extends JFrame
       // Setup the XML editor for the world file
 
       xmlEditorTextArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
-      xmlEditorTextArea.setText(WorldBuilder.serializeWorld(w));
+      xmlEditorTextArea.setText(WorldBuilder.writeWorld(w));
       xmlEditorTextArea.setCodeFoldingEnabled(true);
       xmlEditorTextArea.setAntiAliasingEnabled(true);
 
