@@ -1,6 +1,8 @@
 package com.isometric.toolkit.parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
@@ -246,13 +248,28 @@ public class WorldBuilder {
 	public static String writeWorld(World w) {
 
 		logger.info("Serializing world file");
-		logger.info(serializeWorld(w));
-		return serializeWorld(w);
+		String serializedWorld = serializeWorld(w);
+		logger.info(serializedWorld);
+		return serializedWorld;
 	}
 
 	public static String serializeWorld(World w) {
 		XStream x = setup();
 		return x.toXML(w);
+	}
+	
+	public static boolean serializeWorldToFile(World w, String filePath) {
+		XStream x = setup();
+		  try {
+	            FileOutputStream fs = new FileOutputStream(filePath);
+	            x.toXML(w, fs);
+	        } catch (FileNotFoundException e1) {
+	            e1.printStackTrace();
+	            logger.error("Serializing world to XML file failed: " + e1.getMessage());
+	            return false;
+	        }
+
+		return true;
 	}
 
 	public static Level parseLevel(String xml) {
