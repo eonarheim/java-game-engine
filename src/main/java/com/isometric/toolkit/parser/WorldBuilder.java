@@ -35,12 +35,13 @@ import com.isometric.toolkit.sound.Sound;
 import com.isometric.toolkit.sound.SoundManager;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
 /***
  * Static class responsible for going to and from XML representations of games.
  * 
  * @author Erik
  * @author Jeff
- *
+ * 
  */
 public class WorldBuilder {
 
@@ -72,16 +73,16 @@ public class WorldBuilder {
 
 		Player player = new Player(w, 0, 0);
 		player.setSpriteSheetName("TestPlayer");
-		//player.setHeight(25.f);
-		//player.setWidth(25.f);
+		// player.setHeight(25.f);
+		// player.setWidth(25.f);
 		w.addActor(player);
 
 		Player testCollide = new Player(w, 100, 100);
 		testCollide.setSpriteSheetName("TestPlayer");
 		testCollide.addAnimation("walkUp");
 		testCollide.addAnimation("walkDown");
-		//testCollide.setHeight(35.f);
-		//testCollide.setWidth(35.f);
+		// testCollide.setHeight(35.f);
+		// testCollide.setWidth(35.f);
 
 		testCollide.setScale(2.f);
 
@@ -118,12 +119,11 @@ public class WorldBuilder {
 
 		Level newLevel = new Level();
 		newLevel.addActor(player);
-		
-		
-		IAction move = new MoveTo(player, new Point(500,0), 40.f);
-		IAction moveDown = new MoveTo(player, new Point(500,500),40.f);
-		IAction moveLeft = new MoveTo(player, new Point(0,500),40.f);
-		IAction moveUp = new MoveTo(player, new Point(0,0),40.f);
+
+		IAction move = new MoveTo(player, new Point(500, 0), 40.f);
+		IAction moveDown = new MoveTo(player, new Point(500, 500), 40.f);
+		IAction moveLeft = new MoveTo(player, new Point(0, 500), 40.f);
+		IAction moveUp = new MoveTo(player, new Point(0, 0), 40.f);
 		RepeatForever moveForever = new RepeatForever(player);
 		moveForever.addAction(move);
 		moveForever.addAction(moveDown);
@@ -150,7 +150,7 @@ public class WorldBuilder {
 
 		return w;
 	}
-	
+
 	public static World parseWorld(String xml) throws Exception {
 		World worldResult = new World();
 
@@ -158,17 +158,17 @@ public class WorldBuilder {
 
 		XStream x = setup();
 
-		try{
-		  worldResult = (World) x.fromXML(xml);
-		  logger.info("Parsing world successful");
-	                
-	          return worldResult;
-		}catch(Exception e){
-		  logger.error("Could not parse world file: " + e.getMessage() );
-		  
-		  throw e;
+		try {
+			worldResult = (World) x.fromXML(xml);
+			logger.info("Parsing world successful");
+
+			return worldResult;
+		} catch (Exception e) {
+			logger.error("Could not parse world file: " + e.getMessage());
+
+			throw e;
 		}
-		
+
 	}
 
 	public static World parseWorldFromFile(String uri) {
@@ -238,38 +238,44 @@ public class WorldBuilder {
 
 		return worldResult;
 	}
-	
+
 	/**
-	 * Writes the world to a file specified by filePath. Returns a boolean success indicator.
+	 * Writes the world to a file specified by filePath. Returns a boolean
+	 * success indicator.
+	 * 
 	 * @param w
 	 * @param filePath
 	 * @return
 	 */
 	public static boolean writeWorldToFile(World w, String filePath) {
-		logger.info("Serializing world file to a file on the file system: " + filePath);
+		logger.info("Serializing world file to a file on the file system: "
+				+ filePath);
 		XStream x = setup();
-		  try {
-	            FileOutputStream fs = new FileOutputStream(filePath);
-	            x.toXML(w, fs);
-	        } catch (FileNotFoundException e1) {
-	            e1.printStackTrace();
-	            logger.error("Serializing world to XML file failed: " + e1.getMessage());
-	            return false;
-	        }
+		try {
+			FileOutputStream fs = new FileOutputStream(filePath);
+			x.toXML(w, fs);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			logger.error("Serializing world to XML file failed: "
+					+ e1.getMessage());
+			return false;
+		}
 		return true;
 	}
-	
+
 	/**
 	 * Writes the world to the logger.
+	 * 
 	 * @param w
 	 */
 	public static void writeWorldToLogger(World w) {
-		logger.info("Serializing world file to logger");		
+		logger.info("Serializing world file to logger");
 		logger.info("World To XML: \n" + serializeWorldToString(w));
 	}
 
 	/**
 	 * Serializes the world to a string and returns the string object.
+	 * 
 	 * @param w
 	 * @return
 	 */
@@ -281,8 +287,8 @@ public class WorldBuilder {
 	private static String serializeWorldToString(World w) {
 		XStream x = setup();
 		return x.toXML(w);
-	}	
-	
+	}
+
 	public static Level parseLevel(String xml) {
 
 		return new Level();
@@ -309,7 +315,7 @@ public class WorldBuilder {
 		// World Alias's
 		x.alias("world", World.class);
 		x.alias("actor", Actor.class);
-		//x.alias("player", Player.class);
+		// x.alias("player", Player.class);
 		x.alias("level", Level.class);
 		x.alias("trigger", Trigger.class);
 		x.alias("tile", Tile.class);
