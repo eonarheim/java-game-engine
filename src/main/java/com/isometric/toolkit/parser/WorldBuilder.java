@@ -14,6 +14,7 @@ import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.actions.IAction;
+import com.isometric.toolkit.actions.MoveBy;
 import com.isometric.toolkit.actions.MoveTo;
 import com.isometric.toolkit.actions.RepeatForever;
 import com.isometric.toolkit.cameras.Camera;
@@ -124,12 +125,18 @@ public class WorldBuilder {
 		IAction moveDown = new MoveTo(player, new Point(500,500),40.f);
 		IAction moveLeft = new MoveTo(player, new Point(0,500),40.f);
 		IAction moveUp = new MoveTo(player, new Point(0,0),40.f);
-		RepeatForever moveForever = new RepeatForever(player);
+		
+		IAction move2 = new MoveBy(player, new Point(500,0), 10.f);
+		
+		
+		/*RepeatForever moveForever = new RepeatForever(player);
 		moveForever.addAction(move);
 		moveForever.addAction(moveDown);
 		moveForever.addAction(moveLeft);
 		moveForever.addAction(moveUp);
-		player.addAction(moveForever);
+		player.addAction(moveForever);*/
+		
+		player.addAction(move2);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {

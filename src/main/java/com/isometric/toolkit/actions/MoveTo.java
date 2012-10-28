@@ -38,8 +38,6 @@ public class MoveTo implements IAction
     this.actor = actor;
     this.end = destination;
     this.speed = speed;
-    
-    
   }
     
   @Override
