@@ -30,7 +30,9 @@ public abstract class CombatActor extends Actor
     // TODO Auto-generated constructor stub
   }
 
-  public abstract void draw ();
+  protected void draw (){
+    super.draw();
+  }
 
   public abstract boolean collides (Actor a);
 

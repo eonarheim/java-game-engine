@@ -12,33 +12,51 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  */
 public class Delay implements IAction
 {
+  
+  private Actor actor;
+  private float delay;
+  private float elapsedTime = 0.f;
+  private boolean hasStarted = false;
+  
+  public Delay(Actor actor, float delay){
+    this.actor = actor;
+    this.delay = delay;
+    
+  }
 
   @Override
   public Point getPos ()
   {
-    // TODO Auto-generated method stub
-    return null;
+    return actor.getPos();
   }
 
   @Override
   public void update (float delta)
   {
-    // TODO Auto-generated method stub
+    if(!hasStarted()){
+      hasStarted = true;
+    }
+    
+    elapsedTime += delta;
+    
     
   }
 
   @Override
   public boolean isComplete (Actor a)
   {
-    // TODO Auto-generated method stub
-    return false;
+    return elapsedTime >= delay;
+  }
+  
+  @Override
+  public void reset(Actor a){
+    elapsedTime = 0.f;
   }
 
   @Override
   public boolean hasStarted ()
   {
-    // TODO Auto-generated method stub
-    return false;
+    return hasStarted;
   }
 
 

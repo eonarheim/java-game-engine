@@ -106,4 +106,11 @@ public class MoveBy implements IAction
   }
 
 
+  @Override
+  public void reset (Actor a)
+  {
+    elapsedTime = 0.f;
+  }
+
+
 }

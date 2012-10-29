@@ -89,4 +89,11 @@ public class MoveTo implements IAction
     this.hasStarted = hasStarted;
   }
 
+  @Override
+  public void reset (Actor a)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

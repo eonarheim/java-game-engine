@@ -38,6 +38,12 @@ public interface IAction
    * @return boolean
    */
   public boolean hasStarted();
+
+
+  /***
+   * Reset internal state to play the action again and re-perform any initialization calculations 
+   */
+  void reset (Actor a);
     
  
 

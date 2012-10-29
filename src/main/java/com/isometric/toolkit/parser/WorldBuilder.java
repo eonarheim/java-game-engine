@@ -13,6 +13,8 @@ import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.LoggerFactory;
+import com.isometric.toolkit.actions.Blink;
+import com.isometric.toolkit.actions.Delay;
 import com.isometric.toolkit.actions.IAction;
 import com.isometric.toolkit.actions.MoveBy;
 import com.isometric.toolkit.actions.MoveTo;
@@ -129,13 +131,18 @@ public class WorldBuilder {
 		
 		IAction move2 = new MoveBy(player, new Point(500,0), 10.f);
 		
+		IAction delay = new Delay(player, 2.f);
 		
-		/*RepeatForever moveForever = new RepeatForever(player);
+		IAction blink = new Blink(player, 1.f/.3f,10.f);
+		
+		RepeatForever moveForever = new RepeatForever(player);
 		moveForever.addAction(move);
+		moveForever.addAction(delay);
+		moveForever.addAction(blink);
 		moveForever.addAction(moveDown);
 		moveForever.addAction(moveLeft);
 		moveForever.addAction(moveUp);
-		player.addAction(moveForever);*/
+		player.addAction(moveForever);
 		
 		player.addAction(move2);
 		player.addAction(moveUp);

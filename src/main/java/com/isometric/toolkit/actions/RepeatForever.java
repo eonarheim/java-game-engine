@@ -56,6 +56,7 @@ public class RepeatForever implements IAction
         // Move current to the back of the queue
         actions.remove(current);
         try {
+          current.reset(actor);
           actions.add(current);
         }
         catch (RepeatForeverException e) {
@@ -87,6 +88,13 @@ public class RepeatForever implements IAction
   
   private void setStarted(boolean hasStarted){
     this.hasStarted = hasStarted;
+  }
+
+  @Override
+  public void reset (Actor a)
+  {
+    // TODO Auto-generated method stub
+    
   }
 
 }

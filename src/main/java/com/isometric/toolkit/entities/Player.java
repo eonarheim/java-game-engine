@@ -99,6 +99,8 @@ public class Player extends CombatActor
   @Override
   public void draw ()
   {
+    
+    super.draw();
     if(font==null){
       font = new Font("Consolas", Font.BOLD, 10);      
     }
@@ -115,11 +117,14 @@ public class Player extends CombatActor
       }
     }
     
-
+    /* moved to super class
     Animation a = null;
     if ((a = animations.get(this.getCurrentAnimation())) != null) {
       a.draw((int) this.getX(), (int) this.getY());
     }
+    */
+    
+    
     if (Window.isDebug()) {
       this.drawBoundingBox();
       glPushMatrix();

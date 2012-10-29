@@ -57,6 +57,9 @@ public abstract class Actor
 
   private boolean isometric = false;
 
+
+  private boolean canDraw = true;
+
   protected Actor (World w, float x, float y, float dx, float dy)
   {
     this.world = w;
@@ -99,7 +102,14 @@ public abstract class Actor
     return new Motion(this.dx,this.dy);
   }
 
-  abstract public void draw ();
+  protected void draw (){
+    if(canDraw()){
+      Animation a = null;
+      if ((a = animations.get(this.getCurrentAnimation())) != null) {
+        a.draw((int) this.getX(), (int) this.getY());
+      }
+    }
+  }
 
   abstract boolean collides (Actor a);
 
@@ -293,4 +303,13 @@ public abstract class Actor
     this.dx = delta.getDx();
     this.dy = delta.getDy();
   }
+  
+  public boolean canDraw(){
+    return canDraw;
+  }
+  
+  public void setDraw(boolean canDraw){
+    this.canDraw = canDraw;    
+  }
+  
 }

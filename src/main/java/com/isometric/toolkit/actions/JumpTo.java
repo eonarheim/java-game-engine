@@ -40,5 +40,12 @@ public class JumpTo implements IAction
     return false;
   }
 
+  @Override
+  public void reset (Actor a)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
 
 }
