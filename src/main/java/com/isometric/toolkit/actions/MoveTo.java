@@ -92,7 +92,7 @@ public class MoveTo implements IAction
   @Override
   public void reset (Actor a)
   {
-    // TODO Auto-generated method stub
+    hasStarted = false;
     
   }
 

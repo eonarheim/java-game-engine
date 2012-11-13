@@ -14,10 +14,12 @@ import org.lwjgl.input.Keyboard;
 
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.actions.Blink;
+import com.isometric.toolkit.actions.ActorAnimation;
 import com.isometric.toolkit.actions.Delay;
 import com.isometric.toolkit.actions.IAction;
 import com.isometric.toolkit.actions.MoveBy;
 import com.isometric.toolkit.actions.MoveTo;
+import com.isometric.toolkit.actions.Repeat;
 import com.isometric.toolkit.actions.RepeatForever;
 import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
@@ -125,9 +127,16 @@ public class WorldBuilder {
 
 		
 		IAction move = new MoveTo(player, new Point(500,0), 50.f);
+		IAction moveRAnim = new ActorAnimation(player, "walkLeft");
+		
 		IAction moveDown = new MoveTo(player, new Point(500,500),40.f);
+		IAction moveDAnim = new ActorAnimation(player, "walkDown");
+		
 		IAction moveLeft = new MoveTo(player, new Point(0,500),40.f);
+		IAction moveLAnim = new ActorAnimation(player, "walkRight");
+		
 		IAction moveUp = new MoveTo(player, new Point(0,0),40.f);
+		IAction moveUAnim = new ActorAnimation(player,"walkUp");
 		
 		IAction move2 = new MoveBy(player, new Point(500,0), 10.f);
 		
@@ -135,17 +144,29 @@ public class WorldBuilder {
 		
 		IAction blink = new Blink(player, 1.f/.3f,10.f);
 		
-		RepeatForever moveForever = new RepeatForever(player);
-		moveForever.addAction(move);
-		moveForever.addAction(delay);
-		moveForever.addAction(blink);
-		moveForever.addAction(moveDown);
-		moveForever.addAction(moveLeft);
-		moveForever.addAction(moveUp);
-		player.addAction(moveForever);
+		Repeat move4times = new Repeat(player, 1);
 		
-		player.addAction(move2);
-		player.addAction(moveUp);
+
+                move4times.addAction(moveRAnim);
+		move4times.addAction(move);
+		
+		move4times.addAction(delay);
+		move4times.addAction(blink);
+		
+
+                move4times.addAction(moveDAnim);
+		move4times.addAction(moveDown);
+		
+		move4times.addAction(moveLAnim);
+		move4times.addAction(moveLeft);
+		
+		move4times.addAction(moveUAnim);
+		move4times.addAction(moveUp);
+		
+		player.addAction(move4times);
+		
+		//player.addAction(move2);
+		//player.addAction(moveUp);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {

@@ -210,6 +210,10 @@ public abstract class Actor
   {
     this.animations.put(key, value);
   }
+  
+  public boolean animationExists (String animName){
+    return animations.containsKey(animName);
+  }
 
   public void addAnimation (String key)
   {

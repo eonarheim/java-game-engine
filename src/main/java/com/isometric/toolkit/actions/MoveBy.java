@@ -110,6 +110,7 @@ public class MoveBy implements IAction
   public void reset (Actor a)
   {
     elapsedTime = 0.f;
+    hasStarted = false;
   }
 
 
