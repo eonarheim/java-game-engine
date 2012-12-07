@@ -17,14 +17,14 @@ public class MotionTest
   @Test
   public void testGetSet(){
     Vector m = new Vector(.5f,.5f);
-    assertEquals(m.getDx(),.5f,.001);
-    assertEquals(m.getDy(),.5f,.001);
-    m.setDx(0f);
-    assertEquals(m.getDx(),0f,.001);
-    assertEquals(m.getDy(),.5f,.001);
-    m.setDy(0f);
-    assertEquals(m.getDy(),0f,.001);
-    assertEquals(m.getDx(),0f,.001);
+    assertEquals(m.getX(),.5f,.001);
+    assertEquals(m.getY(),.5f,.001);
+    m.setX(0f);
+    assertEquals(m.getX(),0f,.001);
+    assertEquals(m.getY(),.5f,.001);
+    m.setY(0f);
+    assertEquals(m.getY(),0f,.001);
+    assertEquals(m.getX(),0f,.001);
     
   }
   
@@ -35,7 +35,7 @@ public class MotionTest
     
     assertEquals(m.compareTo(m2),0);
     
-    m2.setDx(.6f);
+    m2.setX(.6f);
     
     assertEquals(m.compareTo(m2),-1);
     

@@ -45,8 +45,8 @@ public class Point
   
   
   public void add(Vector m){
-    this.x += m.getDx();
-    this.y += m.getDy();
+    this.x += m.getX();
+    this.y += m.getY();
   }
   
   public Point add(Point p){
@@ -54,8 +54,8 @@ public class Point
   }
   
   public void sub(Vector m){
-    this.x -= m.getDx();
-    this.y -= m.getDy();
+    this.x -= m.getX();
+    this.y -= m.getY();
     
   }
   

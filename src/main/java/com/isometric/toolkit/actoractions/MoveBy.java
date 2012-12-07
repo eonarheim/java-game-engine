@@ -70,7 +70,7 @@ public class MoveBy implements Actionable
     
     elapsedTime += delta;
     
-    Vector m = new Vector(this.move.getDx(),this.move.getDy());
+    Vector m = new Vector(this.move.getX(),this.move.getY());
     m.normalize();
     // this is off by a factor of 2, no idea why
     m.scale(calculatedSpeed*delta/2.f);
