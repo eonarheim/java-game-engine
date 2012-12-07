@@ -16,7 +16,7 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  */
 public class RepeatForever implements Actionable
 {
-  Logger log = LoggerFactory.getLogger();
+  private static Logger log = LoggerFactory.getLogger();
   ActionQueue actions;
   Actor actor;
   

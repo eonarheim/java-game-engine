@@ -12,38 +12,40 @@ import com.isometric.toolkit.entities.Actor;
 public class Sequence implements Actionable
 {
 
+  Repeat sequence;
+  
+  public Sequence(Actor a){
+    this.sequence = new Repeat(a,1);
+  }
+  
   @Override
   public Point getPos ()
   {
-    // TODO Auto-generated method stub
-    return null;
+    return this.sequence.getPos();
   }
 
   @Override
   public void update (float delta)
   {
-    // TODO Auto-generated method stub
-    
+    this.sequence.update(delta);    
   }
 
   @Override
   public boolean isComplete (Actor a)
   {
-    // TODO Auto-generated method stub
-    return false;
+    return this.sequence.isComplete(a);
   }
 
   @Override
   public boolean hasStarted ()
   {
-    // TODO Auto-generated method stub
-    return false;
+    return this.sequence.hasStarted();
   }
 
   @Override
   public void reset (Actor a)
   {
-    // TODO Auto-generated method stub
+    this.sequence.reset(a);
     
   }
 

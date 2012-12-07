@@ -15,6 +15,7 @@ import org.lwjgl.input.Keyboard;
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.actoractions.Actionable;
 import com.isometric.toolkit.actoractions.ActorAnimation;
+import com.isometric.toolkit.actoractions.BezierBy;
 import com.isometric.toolkit.actoractions.Blink;
 import com.isometric.toolkit.actoractions.Delay;
 import com.isometric.toolkit.actoractions.MoveBy;
@@ -127,6 +128,9 @@ public class WorldBuilder {
 
 		
 		Actionable move = new MoveTo(player, new Point(500,0), 50.f);
+		Actionable moveBezierOut = new BezierBy(player, new Point[]{new Point(500,0), new Point(700, -550) ,new Point(500,500)}, 10.f);
+		Actionable moveBezierIn = new BezierBy(player, new Point[]{new Point(500,500), new Point(-200, -550) ,new Point(500,0)}, 10.f);
+		
 		Actionable moveRAnim = new ActorAnimation(player, "walkLeft");
 		
 		Actionable moveDown = new MoveTo(player, new Point(500,500),40.f);
@@ -149,6 +153,8 @@ public class WorldBuilder {
 
                 move4times.addAction(moveRAnim);
 		move4times.addAction(move);
+		move4times.addAction(moveBezierOut);
+		move4times.addAction(moveBezierIn);
 		
 		move4times.addAction(delay);
 		move4times.addAction(blink);

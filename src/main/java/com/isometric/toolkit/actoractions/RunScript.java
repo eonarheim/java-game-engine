@@ -14,6 +14,11 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
 public class RunScript implements Actionable
 {
 
+  
+  public RunScript(Actor a, String filePath){
+    
+  }
+  
   @Override
   public Point getPos ()
   {

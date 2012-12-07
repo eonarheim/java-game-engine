@@ -19,7 +19,7 @@ import com.isometric.toolkit.entities.Actor;
 public class MoveBy implements Actionable
 {
 
-  Logger log = LoggerFactory.getLogger();
+  private static Logger log = LoggerFactory.getLogger();
   float elapsedTime = 0.f;
   
   Actor actor;

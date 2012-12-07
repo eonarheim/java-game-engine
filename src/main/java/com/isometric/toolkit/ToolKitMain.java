@@ -82,7 +82,7 @@ public class ToolKitMain
 
     // Call the engine and start the game.
     logger.info("Starting Java RPG Engine...");
-    Window application = new Window(800,600,false);
+    Window application = new Window(800,600,true);
 
     World gameWorld = null;
     try {

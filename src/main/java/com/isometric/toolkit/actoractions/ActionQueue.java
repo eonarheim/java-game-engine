@@ -17,7 +17,7 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  */
 public class ActionQueue
 {
-  Logger log = LoggerFactory.getLogger();
+  private static Logger log = LoggerFactory.getLogger();
   private List<Actionable> actions = new ArrayList<Actionable>();
 
   private Actor actor;

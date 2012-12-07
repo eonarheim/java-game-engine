@@ -59,6 +59,10 @@ public class Point
     
   }
   
+  public float dot(Point p){
+    return this.x*p.x + this.y+p.y;
+  }
+  
   public Point scale(float val){
     return new Point(this.x*val, this.y*val);
   }

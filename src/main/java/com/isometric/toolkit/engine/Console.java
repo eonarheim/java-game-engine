@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.newdawn.slick.UnicodeFont;
@@ -57,6 +58,9 @@ public class Console
 
   public Console ()
   {
+    
+    this.width = Display.getWidth()*.7f;
+    this.height = Display.getHeight()*.8f;
     try {
       f.addAsciiGlyphs();
       f.getEffects().add(new ColorEffect(java.awt.Color.YELLOW));
@@ -77,12 +81,7 @@ public class Console
   
   private void tick ()
   {
-    /* Old way, buggy when sharing animations
-    if (ticker++ / 60.f > getSpeed()) {
-      currIndex = (currIndex + 1) % maxIndex;
-      ticker = 0;
-    }
-    */
+    
     long newTime = System.currentTimeMillis();
     if((newTime - oldTime)/1000.f > .5f){
       blink = !blink;
@@ -119,6 +118,9 @@ public class Console
           
           ByteArrayOutputStream out = new  ByteArrayOutputStream();
           interpreter.setOut(out);
+          
+          ByteArrayOutputStream err = new ByteArrayOutputStream();
+          interpreter.setErr(err);
           interpreter.exec(lines.get(currentLine));
           if(out.toString().length()>0){
             for(String s : out.toString().split("\n")){
@@ -126,11 +128,18 @@ public class Console
               currentLine++;
             }
           }
+          if(out.toString().length()>0){
+            for(String s : err.toString().split("\n")){
+              lines.add(s);
+              currentLine++;
+            }
+          }
+          
         } catch (Exception e){
             //Window.writeToDebug(e.getMessage());
           lines.add("---Python syntax error---");
           currentLine++;
-          logger.info(e.getMessage());       
+                
         }
         
         lines.add("");
