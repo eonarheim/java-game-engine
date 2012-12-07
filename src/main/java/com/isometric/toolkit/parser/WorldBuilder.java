@@ -22,6 +22,7 @@ import com.isometric.toolkit.actoractions.MoveTo;
 import com.isometric.toolkit.actoractions.Repeat;
 import com.isometric.toolkit.actoractions.RepeatForever;
 import com.isometric.toolkit.cameraactions.CameraActionable;
+import com.isometric.toolkit.cameraactions.CameraFollowActor;
 import com.isometric.toolkit.cameraactions.CameraMoveTo;
 import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
@@ -170,8 +171,9 @@ public class WorldBuilder {
 		//player.addAction(move2);
 		//player.addAction(moveUp);
 		
-		CameraActionable foop = new CameraMoveTo(c, new Point(500,200), 200);
-		c.addAction(foop);
+		//CameraActionable foop = cameraAction CameraMoveTo(c, new Point(500,200), 200);
+		CameraActionable cameraAction = new CameraFollowActor(c, player, 200f);
+		c.addAction(cameraAction);
 
 		for (int x = 0; x < 20; x++) {
 			for (int y = 0; y < 20; y++) {

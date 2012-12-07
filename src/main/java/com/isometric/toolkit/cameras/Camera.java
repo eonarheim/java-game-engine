@@ -65,20 +65,6 @@ public class Camera {
 	}
 
 	public void update(float delta) {
-
-		// System.out.println("Distance: " +
-		// pos.distance(actorToFollow.getPos()) + " Threshold: "+
-		// distanceFromCenter + " Camera Pos: ("+pos.getX()+","+pos.getY()+")");
-		float distance = 0.0f;
-		if ((distance = pos.manhattanDistance(actorToFollow.getPos())) > distanceFromCenter) {
-			Vector m = pos.sub(actorToFollow.getPos());
-			m.normalize();
-			m.scale(distance - distanceFromCenter);
-
-			// m.scale(distance);
-			pos.sub(m);
-		}
-
 		if (Keyboard.isKeyDown(Keyboard.KEY_ADD)
 				|| Keyboard.isKeyDown(Keyboard.KEY_EQUALS)) {
 
