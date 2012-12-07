@@ -74,8 +74,8 @@ public class Player extends CombatActor
       if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
           && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
         Vector m = motionHooks.get(key);
-        this.dx += m.getDx();
-        this.dy += m.getDy();
+        this.dx += m.getX();
+        this.dy += m.getY();
       }
     }
     

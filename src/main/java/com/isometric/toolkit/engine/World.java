@@ -52,7 +52,7 @@ public class World {
 	public void update(float delta) {
 		
 
-		camera.update();
+		camera.update(delta);
 
 		currentLevel.update(delta);
 

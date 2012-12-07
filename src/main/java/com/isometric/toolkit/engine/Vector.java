@@ -11,19 +11,19 @@ package com.isometric.toolkit.engine;
 public class Vector implements Comparable<Vector>
 {
 
-  private float dx = 0.f;
-  private float dy = 0.f;
+  private float x = 0.f;
+  private float y = 0.f;
 
   public Vector (float dx, float dy)
   {
-    this.setDx(dx);
-    this.setDy(dy);
+    this.setX(dx);
+    this.setY(dy);
   }
 
   @Override
   public int compareTo (Vector o)
   {
-    if (o.getDx() == this.getDx() && o.getDy() == this.getDy()) {
+    if (o.getX() == this.getX() && o.getY() == this.getY()) {
       // TODO Auto-generated method stub
       return 0;
     }else{
@@ -31,40 +31,40 @@ public class Vector implements Comparable<Vector>
     }
   }
 
-  public float getDx ()
+  public float getX ()
   {
-    return dx;
+    return x;
   }
 
-  public void setDx (float dx)
+  public void setX (float dx)
   {
-    this.dx = dx;
+    this.x = dx;
   }
 
-  public float getDy ()
+  public float getY ()
   {
-    return dy;
+    return y;
   }
 
-  public void setDy (float dy)
+  public void setY (float dy)
   {
-    this.dy = dy;
+    this.y = dy;
   }
   
   public void normalize(){
-    Point tmp = new Point(dx,dy);
+    Point tmp = new Point(x,y);
     float magnitude = tmp.distance(new Point(0f,0f));
-    this.dx = this.dx/ magnitude;
-    this.dy = this.dy/ magnitude;
+    this.x = this.x/ magnitude;
+    this.y = this.y/ magnitude;
   }
   
   public void scale(float scale){
-    this.dx *= scale;
-    this.dy *= scale;
+    this.x *= scale;
+    this.y *= scale;
   }
   
   public float maxComponent(){
-    return Math.max(Math.abs(dx), Math.abs(dx));
+    return Math.max(Math.abs(x), Math.abs(x));
   }
   
 

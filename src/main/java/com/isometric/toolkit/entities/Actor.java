@@ -302,10 +302,10 @@ public abstract class Actor
 
   public void move (Vector delta)
   {
-    this.x += delta.getDx();
-    this.y += delta.getDy();
-    this.dx = delta.getDx();
-    this.dy = delta.getDy();
+    this.x += delta.getX();
+    this.y += delta.getY();
+    this.dx = delta.getX();
+    this.dy = delta.getY();
   }
   
   public boolean canDraw(){

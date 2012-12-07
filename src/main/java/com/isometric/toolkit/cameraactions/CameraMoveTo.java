@@ -1,19 +1,19 @@
-package com.isometric.toolkit.actoractions;
+package com.isometric.toolkit.cameraactions;
 
 
 import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Point;
-import com.isometric.toolkit.entities.Actor;
+import com.isometric.toolkit.cameras.*;
 
 
 
 /***
- * Action to move an Actor to a destination at a certain speed.
+ * Action to move an Camera to a destination at a certain speed.
  * 
- * @author Erik
+ * @author Jeff
  *
  */
-public class MoveTo implements Actionable
+public class CameraMoveTo implements CameraActionable
 {
   private Point start;
   private Point end;
@@ -23,19 +23,19 @@ public class MoveTo implements Actionable
   
   float distance;
   float speed;  
-  Actor actor;
+  Camera camera;
   
 /***
- * Action to move an actor to a destination at a certain speed.
+ * Action to move an camera to a destination at a certain speed.
  *  
- * @param actor
+ * @param camera
  * @param destination
  * @param speed
  */
-  public MoveTo (Actor actor, Point destination, float speed)
+  public CameraMoveTo (Camera camera, Point destination, float speed)
   {
-    // Store internal actor
-    this.actor = actor;
+    // Store internal camera
+    this.camera = camera;
     this.end = destination;
     this.speed = speed;
   }
@@ -43,7 +43,7 @@ public class MoveTo implements Actionable
   @Override
   public Point getPos()
   {
-    return actor.getPos(); 
+    return camera.getPos(); 
   }
   
   
@@ -52,7 +52,7 @@ public class MoveTo implements Actionable
   {
     if(!hasStarted()){
       setStarted(true);
-      this.start = actor.getPos();
+      this.start = camera.getPos();
       this.distance = start.distance(end);
       
       this.delta = end.sub(start);
@@ -63,19 +63,19 @@ public class MoveTo implements Actionable
     Vector m = new Vector(this.delta.getX(),this.delta.getY());
     m.normalize();
     m.scale(speed*delta);
-    actor.move(m);
+    camera.move(m);
     
     
-    if(isComplete(actor)){
-      actor.setX(end.getX());
-      actor.setY(end.getY());
-      actor.setDx(0);
-      actor.setDy(0);
+    if(isComplete(camera)){
+      camera.setX(end.getX());
+      camera.setY(end.getY());
+      camera.setDx(0);
+      camera.setDy(0);
     } 
   }
 
   @Override
-  public boolean isComplete (Actor a)
+  public boolean isComplete (Camera a)
   {
     return a.getPos().distance(start) >= distance;
   }
@@ -90,7 +90,7 @@ public class MoveTo implements Actionable
   }
 
   @Override
-  public void reset (Actor a)
+  public void reset (Camera a)
   {
     hasStarted = false;
     

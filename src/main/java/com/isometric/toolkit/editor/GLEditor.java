@@ -194,15 +194,15 @@ public class GLEditor extends JFrame
     // I apologize for what follows
     // Begin shame
     float leftRight =
-      (float) Math.floor((w.getCamera().getX() - shift.getDx()) / width) + 1;
+      (float) Math.floor((w.getCamera().getX() - shift.getX()) / width) + 1;
     float upDown =
-      (float) Math.floor((w.getCamera().getY() - shift.getDy()) / height) + 1;
+      (float) Math.floor((w.getCamera().getY() - shift.getY()) / height) + 1;
 
     // Draw horizontal lines
     for (float i = 0 + upDown * height; i < canvas.getHeight() + upDown
                                             * height + 1; i += height) {
 
-      glVertex2f(0f - shift.getDx() + w.getCamera().getX(), i);
+      glVertex2f(0f - shift.getX() + w.getCamera().getX(), i);
       glVertex2f(canvas.getWidth() + w.getCamera().getX(), i);
     }
 
@@ -210,7 +210,7 @@ public class GLEditor extends JFrame
     for (float i = 0 + leftRight * width; i < canvas.getWidth() + leftRight
                                               * width + 1; i += width) {
 
-      glVertex2f(i, 0f - shift.getDy() + w.getCamera().getY());
+      glVertex2f(i, 0f - shift.getY() + w.getCamera().getY());
       glVertex2f(i, canvas.getHeight() + w.getCamera().getY());
     }
     // End shame
@@ -243,18 +243,18 @@ public class GLEditor extends JFrame
     // I apologize for what follows
     // Begin shame
     float leftRight =
-      (float) Math.floor((w.getCamera().getX() - shift.getDx()) / width) + 1;
+      (float) Math.floor((w.getCamera().getX() - shift.getX()) / width) + 1;
     float upDown =
-      (float) Math.floor((w.getCamera().getY() - shift.getDy()) / height) + 1;
+      (float) Math.floor((w.getCamera().getY() - shift.getY()) / height) + 1;
 
     float left =
-      (float) Math.floor((Mouse.getX() + c.getX() - shift.getDx())
+      (float) Math.floor((Mouse.getX() + c.getX() - shift.getX())
                          / c.getScale() / width)
               * width;// *(1/canvas.getWidth())*leftRight;
     float top =
       (float) Math
               .floor(((canvas.getHeight() - Mouse.getY()) + c.getY() - shift
-                      .getDy()) / c.getScale() / height)
+                      .getY()) / c.getScale() / height)
               * height;// *(1/canvas.getHeight())*upDown;
     // System.out.println("X:"+Mouse.getX());
     // System.out.println("Y:"+(canvas.getHeight()-Mouse.getY()));
