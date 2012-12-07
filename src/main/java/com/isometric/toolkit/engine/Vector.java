@@ -8,20 +8,20 @@ package com.isometric.toolkit.engine;
  * @author Erik
  *
  */
-public class Motion implements Comparable<Motion>
+public class Vector implements Comparable<Vector>
 {
 
   private float dx = 0.f;
   private float dy = 0.f;
 
-  public Motion (float dx, float dy)
+  public Vector (float dx, float dy)
   {
     this.setDx(dx);
     this.setDy(dy);
   }
 
   @Override
-  public int compareTo (Motion o)
+  public int compareTo (Vector o)
   {
     if (o.getDx() == this.getDx() && o.getDy() == this.getDy()) {
       // TODO Auto-generated method stub

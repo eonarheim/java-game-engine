@@ -10,13 +10,13 @@ public class MotionTest
   @Test
   public void testConstructor()
   {
-    Motion m = new Motion(.5f,.5f);
+    Vector m = new Vector(.5f,.5f);
     assertNotNull(m);
   }
   
   @Test
   public void testGetSet(){
-    Motion m = new Motion(.5f,.5f);
+    Vector m = new Vector(.5f,.5f);
     assertEquals(m.getDx(),.5f,.001);
     assertEquals(m.getDy(),.5f,.001);
     m.setDx(0f);
@@ -30,8 +30,8 @@ public class MotionTest
   
   @Test
   public void testComparison(){
-    Motion m = new Motion(.5f,.5f);
-    Motion m2 = new Motion(.5f,.5f);
+    Vector m = new Vector(.5f,.5f);
+    Vector m2 = new Vector(.5f,.5f);
     
     assertEquals(m.compareTo(m2),0);
     

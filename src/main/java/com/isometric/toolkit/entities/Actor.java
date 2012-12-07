@@ -18,7 +18,7 @@ import com.isometric.toolkit.actions.IAction;
 import com.isometric.toolkit.actions.ActionQueue;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.World;
@@ -42,8 +42,8 @@ public abstract class Actor
   protected HashMap<String, Animation> animations =
     new HashMap<String, Animation>();
   protected HashMap<Integer, String> keyHooks = new HashMap<Integer, String>();
-  protected HashMap<KeyCombo, Motion> motionHooks =
-    new HashMap<KeyCombo, Motion>();
+  protected HashMap<KeyCombo, Vector> motionHooks =
+    new HashMap<KeyCombo, Vector>();
   
   
 
@@ -98,8 +98,8 @@ public abstract class Actor
     return new Point(this.x,this.y);
   }
   
-  public Motion getMotion(){
-    return new Motion(this.dx,this.dy);
+  public Vector getMotion(){
+    return new Vector(this.dx,this.dy);
   }
 
   protected void draw (){
@@ -237,7 +237,7 @@ public abstract class Actor
     this.keyHooks.remove(key);
   }
 
-  public void addMotionHook (KeyCombo key, Motion motion)
+  public void addMotionHook (KeyCombo key, Vector motion)
   {
     this.motionHooks.put(key, motion);
   }
@@ -300,7 +300,7 @@ public abstract class Actor
     return this.scale * this.world.getSpriteHeight();
   }
 
-  public void move (Motion delta)
+  public void move (Vector delta)
   {
     this.x += delta.getDx();
     this.y += delta.getDy();

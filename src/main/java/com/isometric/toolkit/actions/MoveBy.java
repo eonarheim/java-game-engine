@@ -5,7 +5,7 @@ import org.lwjgl.Sys;
 import org.newdawn.slick.util.Log;
 
 import com.isometric.toolkit.LoggerFactory;
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.entities.Actor;
@@ -29,7 +29,7 @@ public class MoveBy implements IAction
 
   private boolean hasStarted;
   
-  Motion move;
+  Vector move;
   
   public MoveBy(Actor actor, Point destination, float time){
     this.actor = actor;
@@ -70,7 +70,7 @@ public class MoveBy implements IAction
     
     elapsedTime += delta;
     
-    Motion m = new Motion(this.move.getDx(),this.move.getDy());
+    Vector m = new Vector(this.move.getDx(),this.move.getDy());
     m.normalize();
     // this is off by a factor of 2, no idea why
     m.scale(calculatedSpeed*delta/2.f);

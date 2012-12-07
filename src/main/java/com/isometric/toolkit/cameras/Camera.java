@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.input.Keyboard;
 
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.entities.Actor;
@@ -21,8 +21,8 @@ public class Camera
   private Actor actorToFollow = null;
   private float distanceFromCenter = 0.0f;
   private Point pos = new Point(0.f,0.f);
-  private Motion shift = new Motion(0.f,0.f);
-  private Motion trans = new Motion(0.f,0.f);
+  private Vector shift = new Vector(0.f,0.f);
+  private Vector trans = new Vector(0.f,0.f);
   
   
   private float width = 800;
@@ -50,7 +50,7 @@ public class Camera
         
   }
   
-  public Motion getShift(){
+  public Vector getShift(){
     return shift;
   }
   
@@ -70,7 +70,7 @@ public class Camera
     //System.out.println("Distance: " + pos.distance(actorToFollow.getPos()) + " Threshold: "+ distanceFromCenter + " Camera Pos: ("+pos.getX()+","+pos.getY()+")");
     float distance = 0.0f;
     if((distance = pos.manhattanDistance(actorToFollow.getPos())) > distanceFromCenter){
-      Motion m = pos.sub(actorToFollow.getPos());
+      Vector m = pos.sub(actorToFollow.getPos());
       m.normalize();
       m.scale(distance-distanceFromCenter);
       

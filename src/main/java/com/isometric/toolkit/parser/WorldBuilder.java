@@ -25,7 +25,7 @@ import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
 import com.isometric.toolkit.engine.KeyCombo;
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.Texture;
@@ -101,22 +101,22 @@ public class WorldBuilder {
 		w.getSoundManager().addSound("ring", s);
 		player.addAnimation("walkDown");
 		player.addKeyHook(Keyboard.KEY_DOWN, "walkDown");
-		player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN, null), new Motion(
+		player.addMotionHook(new KeyCombo(Keyboard.KEY_DOWN, null), new Vector(
 				0.f, 1.f));
 
 		player.addAnimation("walkLeft");
 		player.addKeyHook(Keyboard.KEY_RIGHT, "walkLeft");
 		player.addMotionHook(new KeyCombo(Keyboard.KEY_RIGHT, null),
-				new Motion(1.f, 0.f));
+				new Vector(1.f, 0.f));
 
 		player.addAnimation("walkUp");
 		player.addKeyHook(Keyboard.KEY_UP, "walkUp");
-		player.addMotionHook(new KeyCombo(Keyboard.KEY_UP, null), new Motion(
+		player.addMotionHook(new KeyCombo(Keyboard.KEY_UP, null), new Vector(
 				0.f, -1.f));
 
 		player.addAnimation("walkRight");
 		player.addKeyHook(Keyboard.KEY_LEFT, "walkRight");
-		player.addMotionHook(new KeyCombo(Keyboard.KEY_LEFT, null), new Motion(
+		player.addMotionHook(new KeyCombo(Keyboard.KEY_LEFT, null), new Vector(
 				-1.f, 0.f));
 
 		player.setCurrentAnimation("walkDown");
@@ -144,7 +144,7 @@ public class WorldBuilder {
 		
 		IAction blink = new Blink(player, 1.f/.3f,10.f);
 		
-		Repeat move4times = new Repeat(player, 1);
+		Repeat move4times = new Repeat(player, 2);
 		
 
                 move4times.addAction(moveRAnim);
@@ -358,7 +358,7 @@ public class WorldBuilder {
 		x.alias("tile", Tile.class);
 		x.alias("nonPlayer", NonPlayer.class);
 		x.alias("texture", Texture.class);
-		x.alias("motion", Motion.class);
+		x.alias("motion", Vector.class);
 		x.alias("keyCombo", KeyCombo.class);
 		x.alias("image", Image.class);
 		x.alias("sound", Sound.class);

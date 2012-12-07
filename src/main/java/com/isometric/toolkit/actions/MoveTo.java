@@ -1,7 +1,7 @@
 package com.isometric.toolkit.actions;
 
 
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
@@ -17,7 +17,7 @@ public class MoveTo implements IAction
 {
   private Point start;
   private Point end;
-  private Motion delta;
+  private Vector delta;
   
   private boolean hasStarted = false;
   
@@ -60,7 +60,7 @@ public class MoveTo implements IAction
     }
     
     
-    Motion m = new Motion(this.delta.getDx(),this.delta.getDy());
+    Vector m = new Vector(this.delta.getDx(),this.delta.getDy());
     m.normalize();
     m.scale(speed*delta);
     actor.move(m);

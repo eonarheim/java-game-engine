@@ -44,19 +44,27 @@ public class Point
   }
   
   
-  public void add(Motion m){
+  public void add(Vector m){
     this.x += m.getDx();
     this.y += m.getDy();
   }
   
-  public void sub(Motion m){
+  public Point add(Point p){
+    return new Point(this.x+p.x,this.y+p.y);
+  }
+  
+  public void sub(Vector m){
     this.x -= m.getDx();
     this.y -= m.getDy();
     
   }
   
-  public Motion sub(Point p){
-    return new Motion(this.x - p.getX(),this.y - p.getY());
+  public Point scale(float val){
+    return new Point(this.x*val, this.y*val);
+  }
+  
+  public Vector sub(Point p){
+    return new Vector(this.x - p.getX(),this.y - p.getY());
   }
   
   @Override

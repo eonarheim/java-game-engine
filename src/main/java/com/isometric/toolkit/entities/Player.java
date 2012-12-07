@@ -12,7 +12,7 @@ import static org.lwjgl.opengl.GL11.*;
 import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
 import com.isometric.toolkit.sound.SoundManager;
@@ -73,7 +73,7 @@ public class Player extends CombatActor
 
       if ((key.getKey1() == null || Keyboard.isKeyDown(key.getKey1()))
           && (key.getKey2() == null || Keyboard.isKeyDown(key.getKey2()))) {
-        Motion m = motionHooks.get(key);
+        Vector m = motionHooks.get(key);
         this.dx += m.getDx();
         this.dy += m.getDy();
       }
@@ -85,6 +85,8 @@ public class Player extends CombatActor
     // TODO improve collision detection logic, right now doing an n^2 check
     for (Actor a: super.world.getActors())
       if (this != a) {
+        
+        
         if (this.collides(a)) {
           world.getSoundManager().playSound("ring");
           this.x -= this.dx;

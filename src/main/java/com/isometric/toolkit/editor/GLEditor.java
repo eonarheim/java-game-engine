@@ -53,7 +53,7 @@ import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.cameras.Camera;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.Image;
-import com.isometric.toolkit.engine.Motion;
+import com.isometric.toolkit.engine.Vector;
 import com.isometric.toolkit.engine.SpriteSheet;
 import com.isometric.toolkit.engine.Window;
 import com.isometric.toolkit.engine.World;
@@ -187,7 +187,7 @@ public class GLEditor extends JFrame
     int width = 44;
 
     w.getCamera().applyTransform();
-    Motion shift = w.getCamera().getShift();
+    Vector shift = w.getCamera().getShift();
     glBegin(GL_LINES);
     glColor4f(1.f, 1.f, 1.0f, 1f);
 
@@ -239,7 +239,7 @@ public class GLEditor extends JFrame
 
     w.getCamera().applyTransform();
     Camera c = w.getCamera();
-    Motion shift = c.getShift();
+    Vector shift = c.getShift();
     // I apologize for what follows
     // Begin shame
     float leftRight =
