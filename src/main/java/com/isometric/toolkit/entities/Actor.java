@@ -14,8 +14,8 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
 import com.isometric.toolkit.LoggerFactory;
-import com.isometric.toolkit.actions.Actionable;
-import com.isometric.toolkit.actions.ActionQueue;
+import com.isometric.toolkit.actoractions.ActionQueue;
+import com.isometric.toolkit.actoractions.Actionable;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
 import com.isometric.toolkit.engine.Vector;
