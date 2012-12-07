@@ -33,6 +33,9 @@ public class Window {
 
 	private static List<String> debugList = new ArrayList<String>();
 	private static List<Integer> timerList = new ArrayList<Integer>();
+	
+	private int width = 800;
+	private int height = 600;
 
 	private World gameWorld = null;
 	private boolean calledInit = false;
@@ -54,12 +57,20 @@ public class Window {
 
 	private long lastFPS;
 
-	public Window() {
+	public Window(int width, int height, boolean fullscreen) {
+	  
 
 		try {
 			logger.info("Creating LWJGL display");
 
-			Display.setDisplayMode(new DisplayMode(800, 600));
+			if(fullscreen){
+			  Display.setFullscreen(true);
+			  this.width = Display.getWidth();
+			  this.height = Display.getHeight();
+			}else{
+			  Display.setDisplayMode(new DisplayMode(width, height));
+			}
+			
 			Display.create();
 			Display.setTitle("Java RPG Toolkit");
 
@@ -80,6 +91,8 @@ public class Window {
 		}
 
 	}
+	
+	
 
 	public void init(World w) {
 		logger.info("Window initialized");
@@ -101,10 +114,10 @@ public class Window {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 600, 0, 1, -1);
+		GL11.glOrtho(0, width, height, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
-		GL11.glViewport(0, 0, 800, 600);
+		GL11.glViewport(0, 0, width, height);
 		GL11.glClearColor(0f, 0f, .0f, 1f);
 
 		logger.info("Entering mainloop");
