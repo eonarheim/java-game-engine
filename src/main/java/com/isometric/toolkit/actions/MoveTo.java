@@ -13,7 +13,7 @@ import com.isometric.toolkit.entities.Actor;
  * @author Erik
  *
  */
-public class MoveTo implements IAction
+public class MoveTo implements Actionable
 {
   private Point start;
   private Point end;

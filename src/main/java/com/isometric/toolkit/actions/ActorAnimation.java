@@ -3,7 +3,7 @@ package com.isometric.toolkit.actions;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
-public class ActorAnimation implements IAction
+public class ActorAnimation implements Actionable
 {
   private Actor actor;
   private String animName;

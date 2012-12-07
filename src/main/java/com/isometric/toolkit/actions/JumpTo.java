@@ -9,7 +9,7 @@ import com.isometric.toolkit.entities.Actor;
  * @author Erik
  *
  */
-public class JumpTo implements IAction
+public class JumpTo implements Actionable
 {
 
   @Override

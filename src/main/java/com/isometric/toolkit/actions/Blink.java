@@ -3,7 +3,7 @@ package com.isometric.toolkit.actions;
 import com.isometric.toolkit.engine.Point;
 import com.isometric.toolkit.entities.Actor;
 
-public class Blink implements IAction
+public class Blink implements Actionable
 {
   private Actor actor;
   private float frequency;

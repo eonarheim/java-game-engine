@@ -14,7 +14,7 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  * 
  */
-public class RepeatForever implements IAction
+public class RepeatForever implements Actionable
 {
   Logger log = LoggerFactory.getLogger();
   ActionQueue actions;
@@ -29,7 +29,7 @@ public class RepeatForever implements IAction
     actions = new ActionQueue(a);
   }
 
-  public void addAction (IAction a)
+  public void addAction (Actionable a)
   {
     try {
       actions.add(a);
@@ -48,7 +48,7 @@ public class RepeatForever implements IAction
     
 
     if (actions.getSize() > 0) {
-      IAction current = actions.getAction(0);
+      Actionable current = actions.getAction(0);
       current.update(delta);
       if (current.isComplete(actor)) {
         log.info("Action Completed: " + current.getClass());

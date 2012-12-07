@@ -11,7 +11,7 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  *
  */
-public class RunScript implements IAction
+public class RunScript implements Actionable
 {
 
   @Override

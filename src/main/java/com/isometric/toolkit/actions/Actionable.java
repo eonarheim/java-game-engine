@@ -10,7 +10,7 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  *
  */
-public interface IAction
+public interface Actionable
 {
     
   

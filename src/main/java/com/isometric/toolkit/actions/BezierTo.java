@@ -10,7 +10,7 @@ import com.isometric.toolkit.exceptions.InvalidArgumentException;
  * @author Erik
  *
  */
-public class BezierTo implements IAction
+public class BezierTo implements Actionable
 {
   
   
@@ -35,12 +35,15 @@ public class BezierTo implements IAction
     this.points = points;
     this.actor = a;
     this.speed = speed;
+    this.totalTime = points[0].distance(points[2])/speed;
+    this.distance = points[0].distance(points[2]);
+    
     // Quadratic bezier requires three points
     if(points.length != 3){
       throw new InvalidArgumentException("Quadratic Bezier Curves require three points.");
     }
-    
   }
+  
   
   private Point bezier(float time){
     float tmp = 1.f -time;
@@ -64,6 +67,20 @@ public class BezierTo implements IAction
     }
     time += delta;
     
+    // Scale time on [0,1]
+    Point p = this.bezier(time/totalTime);
+    
+    actor.setX(p.getX());
+    actor.setY(p.getY());
+    
+    
+    if(isComplete(actor)){
+      actor.setX(points[2].getX());
+      actor.setY(points[2].getY());
+      actor.setDx(0);
+      actor.setDy(0);
+    } 
+    
     
     
   }
@@ -71,8 +88,7 @@ public class BezierTo implements IAction
   @Override
   public boolean isComplete (Actor a)
   {
-    // TODO Auto-generated method stub
-    return false;
+    return a.getPos().distance(points[0]) >= distance;
   }
 
   @Override

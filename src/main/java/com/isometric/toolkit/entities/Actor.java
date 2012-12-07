@@ -14,7 +14,7 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
 import com.isometric.toolkit.LoggerFactory;
-import com.isometric.toolkit.actions.IAction;
+import com.isometric.toolkit.actions.Actionable;
 import com.isometric.toolkit.actions.ActionQueue;
 import com.isometric.toolkit.engine.Animation;
 import com.isometric.toolkit.engine.KeyCombo;
@@ -71,7 +71,7 @@ public abstract class Actor
   }
 
   
-  public void addAction(IAction a){
+  public void addAction(Actionable a){
     
     try {
       actionQueue.add(a);
@@ -81,7 +81,7 @@ public abstract class Actor
     }
   }
   
-  public void removeAction(IAction a){
+  public void removeAction(Actionable a){
     actionQueue.remove(a);
   }
   public static String getType ()

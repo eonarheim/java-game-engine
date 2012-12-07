@@ -9,7 +9,7 @@ import com.isometric.toolkit.entities.Actor;
  * @author Erik
  *
  */
-public class BezierBy implements IAction
+public class BezierBy implements Actionable
 {
 
   @Override

@@ -18,10 +18,10 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
 public class ActionQueue
 {
   Logger log = LoggerFactory.getLogger();
-  private List<IAction> actions = new ArrayList<IAction>();
+  private List<Actionable> actions = new ArrayList<Actionable>();
 
   private Actor actor;
-  private IAction currentAction;
+  private Actionable currentAction;
   
   private boolean actionsNotAllowed = false;
 
@@ -48,7 +48,7 @@ public class ActionQueue
    * @param action
    * @throws RepeatForeverException 
    */
-  public void add (IAction action) throws RepeatForeverException
+  public void add (Actionable action) throws RepeatForeverException
   {
     if(actionsNotAllowed)
       throw new RepeatForeverException("The action RepeatForever cannot have any actions after it");
@@ -66,7 +66,7 @@ public class ActionQueue
    * 
    * @param action
    */
-  public void remove (IAction action)
+  public void remove (Actionable action)
   {
     actions.remove(action);
   }
@@ -85,7 +85,7 @@ public class ActionQueue
    * @param index
    * @return Action
    */
-  public IAction getAction (int index)
+  public Actionable getAction (int index)
   {
     return actions.get(index);
   }

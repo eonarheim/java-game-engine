@@ -10,7 +10,7 @@ import com.isometric.toolkit.exceptions.RepeatForeverException;
  * @author Erik
  *
  */
-public class Delay implements IAction
+public class Delay implements Actionable
 {
   
   private Actor actor;

@@ -9,7 +9,7 @@ import com.isometric.toolkit.entities.Actor;
  * @author Erik
  *
  */
-public class Sequence implements IAction
+public class Sequence implements Actionable
 {
 
   @Override

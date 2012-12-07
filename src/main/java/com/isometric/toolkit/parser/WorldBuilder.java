@@ -16,7 +16,7 @@ import com.isometric.toolkit.LoggerFactory;
 import com.isometric.toolkit.actions.Blink;
 import com.isometric.toolkit.actions.ActorAnimation;
 import com.isometric.toolkit.actions.Delay;
-import com.isometric.toolkit.actions.IAction;
+import com.isometric.toolkit.actions.Actionable;
 import com.isometric.toolkit.actions.MoveBy;
 import com.isometric.toolkit.actions.MoveTo;
 import com.isometric.toolkit.actions.Repeat;
@@ -126,23 +126,23 @@ public class WorldBuilder {
 		newLevel.addActor(player);
 
 		
-		IAction move = new MoveTo(player, new Point(500,0), 50.f);
-		IAction moveRAnim = new ActorAnimation(player, "walkLeft");
+		Actionable move = new MoveTo(player, new Point(500,0), 50.f);
+		Actionable moveRAnim = new ActorAnimation(player, "walkLeft");
 		
-		IAction moveDown = new MoveTo(player, new Point(500,500),40.f);
-		IAction moveDAnim = new ActorAnimation(player, "walkDown");
+		Actionable moveDown = new MoveTo(player, new Point(500,500),40.f);
+		Actionable moveDAnim = new ActorAnimation(player, "walkDown");
 		
-		IAction moveLeft = new MoveTo(player, new Point(0,500),40.f);
-		IAction moveLAnim = new ActorAnimation(player, "walkRight");
+		Actionable moveLeft = new MoveTo(player, new Point(0,500),40.f);
+		Actionable moveLAnim = new ActorAnimation(player, "walkRight");
 		
-		IAction moveUp = new MoveTo(player, new Point(0,0),40.f);
-		IAction moveUAnim = new ActorAnimation(player,"walkUp");
+		Actionable moveUp = new MoveTo(player, new Point(0,0),40.f);
+		Actionable moveUAnim = new ActorAnimation(player,"walkUp");
 		
-		IAction move2 = new MoveBy(player, new Point(500,0), 10.f);
+		Actionable move2 = new MoveBy(player, new Point(500,0), 10.f);
 		
-		IAction delay = new Delay(player, 2.f);
+		Actionable delay = new Delay(player, 2.f);
 		
-		IAction blink = new Blink(player, 1.f/.3f,10.f);
+		Actionable blink = new Blink(player, 1.f/.3f,10.f);
 		
 		Repeat move4times = new Repeat(player, 2);
 		

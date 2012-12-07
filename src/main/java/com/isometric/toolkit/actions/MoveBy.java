@@ -16,7 +16,7 @@ import com.isometric.toolkit.entities.Actor;
  * @author Erik
  *
  */
-public class MoveBy implements IAction
+public class MoveBy implements Actionable
 {
 
   Logger log = LoggerFactory.getLogger();
